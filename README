@@ -1,17 +1,17 @@
 My Aim : 
 --------
-
 What I wanna do is a game.
-
 An incrementer game. 
-
 In short, a point and clickety clickety click. 
-
 I have a lot of trouble finding another one of these games online (except for Coockie Clicker / Candy Box), so why not making one.
 
 
 Chapter 1.
 ----------
+* intro.
 First I wan't some data. Some thing i may manipulate.  A Concept to be incremented.
-
 Why not several resources. I'll start with one. (Fallout's bottle caps :p I'll rename later :p)
+
+* 1.1. 
+My resource may be incremented, so i'll have an amount by witch it'll be incremented.
+I'll also have the quantity i currently has, and some container.
