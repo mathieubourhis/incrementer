@@ -20,11 +20,29 @@ public class BottleCap {
 		this.increment = startingIncrement;
 	}
 	
+	/**
+	 * Increment a resource's quantity by an increment value.
+	 */
 	public void increment() {
 		quantity += increment;
 	}
 	
+	/**
+	 * Get the current quantity.
+	 * @return the current quantity.
+	 */
 	public double getQuantity() {
 		return quantity;
+	}
+	
+	/**
+	 * Basic override for debugging purposes.
+	 */
+	@Override
+	public String toString() {
+		return new StringBuffer(30).append("[").append(this.getClass().getSimpleName())
+				.append("] [Quantity: ").append(quantity)
+				.append("] [Increment: ").append(increment)
+				.append("]").toString();
 	}
 }
