@@ -18,3 +18,9 @@ I'll also have the quantity i currently has, and some container.
 
 * 1.2. 
 I'll need to ad some basic gaming main.. for science..
+
+* 1.3 
+I'll need to be able to update the increment value. With some levels on the bottlecaps. That's what i want in games :p building levels.
+In fact, a ressource shouldn't be able to know how to increment itself. 
+It should be dependent on formulas based on buildings levels incrementing one or several resource.
+(Several this may increment one resource)

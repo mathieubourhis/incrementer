@@ -35,6 +35,14 @@ public class BottleCap {
 		return quantity;
 	}
 	
+	/** 
+	 * Updates the increment's value.
+	 * @param updatedIncrement the new increment;
+	 */
+	public void updateIncrementValue(double updatedIncrement) {
+		this.increment = updatedIncrement;
+	}
+	
 	/**
 	 * Basic override for debugging purposes.
 	 */

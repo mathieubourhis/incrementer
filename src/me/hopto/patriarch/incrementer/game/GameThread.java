@@ -9,6 +9,10 @@ public class GameThread extends Thread {
 	public GameThread() {
 		built = new Built();
 	}
+	
+	public void levelUpPub() {
+		built.levelUpPub();
+	}
 
 	@Override
 	public void run() {

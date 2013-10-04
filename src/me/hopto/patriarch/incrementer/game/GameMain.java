@@ -10,6 +10,7 @@ public class GameMain {
 	    while( thread.isAlive() ) {
 	      try {
 	        Thread.sleep(800);
+	        thread.levelUpPub();
 	      }
 	      catch (InterruptedException ex) {}
 	    }
