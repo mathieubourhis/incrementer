@@ -6,11 +6,16 @@ public class GameMain {
 	public static void main(String[] args) {
 		GameThread thread = new GameThread();
 	    thread.start();
-	    
+	    long hasSlept = 0;
 	    while( thread.isAlive() ) {
 	      try {
-	        Thread.sleep(800);
-	        thread.levelUpPub();
+	        Thread.sleep(200);
+	        hasSlept+=200;
+	        if (hasSlept%1000 == 400) {
+		        thread.levelUpPub();
+	        } else if (hasSlept%600 == 400) {
+	        	thread.levelUpTrashBin();
+	        }
 	      }
 	      catch (InterruptedException ex) {}
 	    }

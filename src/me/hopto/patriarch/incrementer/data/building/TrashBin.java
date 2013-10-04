@@ -1,19 +1,17 @@
 package me.hopto.patriarch.incrementer.data.building;
 
-
-/** 
- * You can find bottle caps in pubs.
+/**
+ * You find bottle caps in trash bins
  * @see {@link Building} 
  */
-public class Pub extends Building {
-
+public class TrashBin extends Building  {
 	/**	
 	 * Init this building's level. 
 	 * @param startingLevel starting level of building
 	 * @param baseIncrement starting increment given by building
 	 * @see {@link Building#Building}
 	 */
-	public Pub(int startingLevel, final double baseIncrement) {
+	public TrashBin(int startingLevel, final double baseIncrement) {
 		super(startingLevel, baseIncrement);
 	}
 	
@@ -24,6 +22,6 @@ public class Pub extends Building {
 	 */
 	@Override
 	public double getIncrement() {
-		return level * baseIncrement;
+		return baseIncrement * level;
 	}
 }

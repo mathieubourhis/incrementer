@@ -11,14 +11,21 @@ public class GameThread extends Thread {
 	}
 	
 	public void levelUpPub() {
+		System.out.println("[Infos] Leveling Pub");
 		built.levelUpPub();
+	}
+	
+
+	public void levelUpTrashBin() {
+		System.out.println("[Infos] Leveling TrashBin");
+		built.levelUpTrashBin();
 	}
 
 	@Override
 	public void run() {
 		long start = System.currentTimeMillis();
 
-		while (System.currentTimeMillis() < (start + (1000 * 5))) {
+		while (System.currentTimeMillis() < (start + (1000 * 10))) {
 
 			built.incrementAll();
 
