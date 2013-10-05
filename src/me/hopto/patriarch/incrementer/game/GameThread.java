@@ -10,15 +10,13 @@ public class GameThread extends Thread {
 		built = new Built();
 	}
 	
-	public void levelUpPub() {
-		System.out.println("[Infos] Leveling Pub");
-		built.levelUpPub();
+	public void levelUpMiner() {
+		built.levelUpMiner();
 	}
 	
 
-	public void levelUpTrashBin() {
-		System.out.println("[Infos] Leveling TrashBin");
-		built.levelUpTrashBin();
+	public void levelUpLumberJack() {
+		built.levelUpLumberJack();
 	}
 
 	@Override
@@ -29,7 +27,6 @@ public class GameThread extends Thread {
 
 			built.incrementAll();
 
-			System.out.println(built);
 
 			try {
 				Thread.sleep(500);

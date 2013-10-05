@@ -12,9 +12,9 @@ public class GameMain {
 	        Thread.sleep(200);
 	        hasSlept+=200;
 	        if (hasSlept%1000 == 400) {
-		        thread.levelUpPub();
+		        thread.levelUpMiner();
 	        } else if (hasSlept%600 == 400) {
-	        	thread.levelUpTrashBin();
+	        	thread.levelUpLumberJack();
 	        }
 	      }
 	      catch (InterruptedException ex) {}

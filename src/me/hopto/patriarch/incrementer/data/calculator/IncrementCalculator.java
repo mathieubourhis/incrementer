@@ -6,9 +6,9 @@ import me.hopto.patriarch.incrementer.data.building.Building;
 
 
 // TODO this should be a spring stateless service, gotta add maven or dl libs.
-public class BottleCapIncrementCalculator {
+public class IncrementCalculator {
 	
-	public BottleCapIncrementCalculator() {
+	public IncrementCalculator() {
 		
 	}
 	

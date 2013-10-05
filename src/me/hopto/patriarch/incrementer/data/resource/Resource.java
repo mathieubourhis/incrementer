@@ -1,22 +1,23 @@
 package me.hopto.patriarch.incrementer.data.resource;
 
-
 /**
- * A fallout bottle caps :p.
+ * A resource
  */
-public class BottleCap {
+public abstract class Resource {
 
 	/** Current quantity of resource. */
-	private double quantity;
+	double quantity;
 	/** Current increment by this the quantity of resource. */
-	private double increment;
+	double increment;
+	/** This resource's type. */
+	ResourceType type;
 
 	/**
 	 * Init this resource stack.
 	 * @param startingQuantity starting quantity of resource.
 	 * @param incrementBy starting increment by this the quantity of resource.
 	 */
-	public BottleCap(double startingQuantity, double startingIncrement) {
+	public Resource(double startingQuantity, double startingIncrement) {
 		this.quantity = startingQuantity;
 		this.increment = startingIncrement;
 	}
@@ -54,7 +55,7 @@ public class BottleCap {
 
 		return new StringBuffer(30).append("[").append(this.getClass().getSimpleName())
 				.append("] [Quantity: ").append(String.format("%.2f",quantity))
-				.append("] [Increment: ").append(increment)
+				.append("] [Increment: ").append(String.format("%.2f",increment))
 				.append("]").toString();
 	}
 }

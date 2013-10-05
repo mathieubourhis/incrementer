@@ -8,7 +8,10 @@ I have a lot of trouble finding another one of these games online (except for Co
 
 Chapter 1.
 ----------
-* intro.
+* intro
+Let's write some basics.
+
+* 1.0
 First I wan't some data. Some thing i may manipulate.  A Concept to be incremented.
 Why not several resources. I'll start with one. (Fallout's bottle caps :p I'll rename later :p)
 
@@ -28,6 +31,17 @@ It should be dependent on formulas based on buildings levels incrementing one or
 * 1.4.
 I'll add annother building for testing 
 
+Chapter 2.
+----------
+* intro
+Let's introduce other resources.
+
+* 2.0
+I actually can't find any other fun resource with the bottlecaps so i'll stick to basics.
+I'm actually thinks about a viable way to keep this an incrementer game with multiple resources.
+Each resource has to be clickable, and the player has to choose which one he want's to boost. 
+I'll use wood and metal at first, i'll see later if i find something else.
+I'll change the Buildings accordinly too.
 
 Issues
 - Weird thing, the loss of precision for doubles is quite troubling for outputs. Tried with BigDecimals, and was worse.. I formatted, but its heavy for performances / memory, especially for a game like this.

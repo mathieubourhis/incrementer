@@ -5,7 +5,7 @@ package me.hopto.patriarch.incrementer.data.building;
  * You can find bottle caps in pubs.
  * @see {@link Building} 
  */
-public class Pub extends Building {
+public class Miner extends Building {
 
 	/**	
 	 * Init this building's level. 
@@ -13,7 +13,7 @@ public class Pub extends Building {
 	 * @param baseIncrement starting increment given by building
 	 * @see {@link Building#Building}
 	 */
-	public Pub(int startingLevel, final double baseIncrement) {
+	public Miner(int startingLevel, final double baseIncrement) {
 		super(startingLevel, baseIncrement);
 	}
 	
