@@ -43,6 +43,9 @@ Each resource has to be clickable, and the player has to choose which one he wan
 I'll use wood and metal at first, i'll see later if i find something else.
 I'll change the Buildings accordinly too.
 
+* 2.1
+A building costs resources, which are decremented from the total acquired.
+
 Issues
 - Weird thing, the loss of precision for doubles is quite troubling for outputs. Tried with BigDecimals, and was worse.. I formatted, but its heavy for performances / memory, especially for a game like this.
 

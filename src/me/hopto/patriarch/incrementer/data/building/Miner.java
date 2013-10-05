@@ -13,8 +13,8 @@ public class Miner extends Building {
 	 * @param baseIncrement starting increment given by building
 	 * @see {@link Building#Building}
 	 */
-	public Miner(int startingLevel, final double baseIncrement) {
-		super(startingLevel, baseIncrement);
+	public Miner(int startingLevel, final double baseIncrement, final double baseCost) {
+		super(startingLevel, baseIncrement, baseCost);
 	}
 	
 	/** 
@@ -25,5 +25,15 @@ public class Miner extends Building {
 	@Override
 	public double getIncrement() {
 		return level * baseIncrement;
+	}
+
+	/** 
+	 * Get the current cost value based on the building's level.
+	 * @return the current cost value.
+	 * @see {@link Building#getCost()}
+	 */
+	@Override
+	public double getCost() {
+		return baseCost * level;
 	}
 }

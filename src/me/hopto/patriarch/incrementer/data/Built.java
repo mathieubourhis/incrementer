@@ -24,8 +24,8 @@ public class Built {
 	public Built() {
 		wood = new Wood(0.0d,0.0d);
 		metal = new Metal(0.0d,0.0d);
-		lumberJack = new LumberJack(0, 0.1d);
-		miner = new Miner(0, 0.5d);
+		lumberJack = new LumberJack(0, 0.2d, 0.0d);
+		miner = new Miner(0, 0.5d, 3.0d);
 		woodIncrementingBuildings = new ArrayList<Building>();
 		woodIncrementingBuildings.add(lumberJack);
 		metalIncrementingBuildings = new ArrayList<Building>();
@@ -40,15 +40,19 @@ public class Built {
 	}
 	
 	public void levelUpMiner(){
-		miner.levelUp();
-		System.out.println("[DEBUG] Leveling miner to " + miner.getLevel());
-		metal.updateIncrementValue(IncrementCalculator.getIncrement(metalIncrementingBuildings));
+		if (miner.canBuy(metal.getQuantity())) {
+			metal.buy(miner.getCost());
+			miner.levelUp();
+			metal.updateIncrementValue(IncrementCalculator.getIncrement(metalIncrementingBuildings));
+		}
 	}
 	
 	public void levelUpLumberJack(){
-		lumberJack.levelUp();
-		System.out.println("[DEBUG] Leveling lumber jack to " + lumberJack.getLevel());
-		wood.updateIncrementValue(IncrementCalculator.getIncrement(woodIncrementingBuildings));
+		if (lumberJack.canBuy(wood.getQuantity())) {
+			wood.buy(lumberJack.getCost());
+			lumberJack.levelUp();
+			wood.updateIncrementValue(IncrementCalculator.getIncrement(woodIncrementingBuildings));
+		}
 	}
 	
 	/**

@@ -11,8 +11,8 @@ public class LumberJack extends Building  {
 	 * @param baseIncrement starting increment given by building
 	 * @see {@link Building#Building}
 	 */
-	public LumberJack(int startingLevel, final double baseIncrement) {
-		super(startingLevel, baseIncrement);
+	public LumberJack(int startingLevel, final double baseIncrement, final double baseCost) {
+		super(startingLevel, baseIncrement, baseCost);
 	}
 	
 	/** 
@@ -23,5 +23,16 @@ public class LumberJack extends Building  {
 	@Override
 	public double getIncrement() {
 		return baseIncrement * level;
+	}
+	
+
+	/** 
+	 * Get the current cost value based on the building's level.
+	 * @return the current cost value.
+	 * @see {@link Building#getCost()}
+	 */
+	@Override
+	public double getCost() {
+		return baseCost * level;
 	}
 }

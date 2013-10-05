@@ -30,6 +30,13 @@ public abstract class Resource {
 	}
 	
 	/**
+	 * decrement a resource's quantity by an cost value.
+	 */
+	public void buy(double cost) {
+		quantity -= cost;
+	}
+	
+	/**
 	 * Get the current quantity.
 	 * @return the current quantity.
 	 */
