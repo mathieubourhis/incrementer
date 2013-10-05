@@ -1,5 +1,25 @@
-img
-{
-width:80px;
-height:15px;
+img {
+	width: 80px;
+	height: 15px;
+}
+
+.buildings {
+	display: table;
+	width: auto;
+	background-color: #eee;
+	border: 1px solid #666666;
+	border-spacing: 5px; /*cellspacing:poor IE support for  this*/
+	/* border-collapse:separate;*/
+}
+
+.building {
+	display: table-row;
+	width: auto;
+}
+
+.button,.ressource {
+	float: left; /*fix for  buggy browsers*/
+	display: table-column;
+	width: 200px;
+	background-color: #ccc;
 }

@@ -9,7 +9,31 @@
 <span wicket:id="dev">[DebugBar]</span>
     Wood:&nbsp;<span wicket:id="woodQuantity">[woodQuantity]</span><br>
 	Metal:&nbsp;<span wicket:id="metalQuantity">[metalQuantity]</span><br>
-	<img wicket:id = "LumberJack"/>&nbsp;<br>
-	<img wicket:id = "Miner"/>&nbsp;
+
+	<div wicket:id = "buildings">
+		<div class="building"> 
+			<div class="button">Batiment</div>
+			<div class="cost">
+				<div class="ressource">Cout en bois</div>
+				<div class="ressource">Cout en Metal</div>
+			</div>
+		</div>
+	
+		<div class="building"> 
+			<div class="button"><img wicket:id = "LumberJack"/></div>
+			<div class="cost">
+				<div class="ressource">23</div>
+				<div class="ressource">0</div>
+			</div>
+		</div>
+		<div class="building"> 
+			<div class="button"><img wicket:id = "Miner"/></div>
+			<div class="cost">
+				<div class="ressource">2</div>
+				<div class="ressource">0</div>
+			</div>
+		</div>
+	
+	</div>
 </body>
 </html>
