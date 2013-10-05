@@ -16,6 +16,12 @@
     <dependent-module archiveName="wicket-request-6.11.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/apache/wicket/wicket-request/6.11.0/wicket-request-6.11.0.jar">
       <dependency-type>uses</dependency-type>
     </dependent-module>
+    <dependent-module archiveName="wicket-devutils-6.11.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/apache/wicket/wicket-devutils/6.11.0/wicket-devutils-6.11.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
+    <dependent-module archiveName="wicket-extensions-6.11.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/org/apache/wicket/wicket-extensions/6.11.0/wicket-extensions-6.11.0.jar">
+      <dependency-type>uses</dependency-type>
+    </dependent-module>
     <dependent-module archiveName="guava-11.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/var/M2_REPO/com/google/guava/guava/11.0.1/guava-11.0.1.jar">
       <dependency-type>uses</dependency-type>
     </dependent-module>

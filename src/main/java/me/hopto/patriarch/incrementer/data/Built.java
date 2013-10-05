@@ -10,14 +10,14 @@ import me.hopto.patriarch.incrementer.data.building.Miner;
 import me.hopto.patriarch.incrementer.data.calculator.IncrementCalculator;
 import me.hopto.patriarch.incrementer.data.resource.Metal;
 import me.hopto.patriarch.incrementer.data.resource.Resource;
+import me.hopto.patriarch.incrementer.data.resource.ResourceType;
 import me.hopto.patriarch.incrementer.data.resource.Wood;
 
-public class Built implements Serializable {
+import org.apache.log4j.Logger;
 
-	/**
-	 * 
-	 */
+public class Built implements Serializable {
 	private static final long serialVersionUID = 8766412728828956639L;
+	private static Logger logger = Logger.getLogger(Built.class);
 	IncrementCalculator IncrementCalculator;
 	Resource wood;
 	Resource metal;
@@ -41,7 +41,11 @@ public class Built implements Serializable {
 	public void incrementAll(double ratio) {
 		wood.increment(ratio);
 		metal.increment(ratio);
-		System.out.println("[DEBUG] " + this);
+		if (logger.isDebugEnabled()) {
+			logger.debug(wood);
+			logger.debug(metal);
+		}
+
 	}
 
 	public void levelUpMiner() {
@@ -70,5 +74,21 @@ public class Built implements Serializable {
 		return new StringBuffer(30).append("[")
 				.append(this.getClass().getSimpleName()).append("]\n\t")
 				.append(wood).append("\n\t").append(metal).toString();
+	}
+
+	/**
+	 * Returns a formatted quantity of resources
+	 * 
+	 * @return the formatted quantity of resources
+	 */
+	public String getFormattedResourceQuantity(ResourceType resourceType) {
+		switch (resourceType) {
+		case Metal:
+			return String.format("%.2f", metal.getQuantity());
+		case Wood:
+			return String.format("%.2f", wood.getQuantity());
+		default:
+			return "";
+		}
 	}
 }

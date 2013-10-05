@@ -56,6 +56,17 @@ OMG wicket is wicked !
 * 2.4
 I'll add some visual content and provide a manual mode, not always automatic mode.
 
+Chapter 3.
+----------
+* intro
+Ok, i have somethine really cool now, and what Wicket provides is OVER 9000 ! 
+I'll smooth up the visual a bit, add the +1 ressource mechanics and adjust the formulas.
+
+ * 3.0
+ I need to have separated ressources amounts, not juste a massive toString one the biggest container.
+ 
+ 
+
 Issues
 - Weird thing, the loss of precision for doubles is quite troubling for outputs. Tried with BigDecimals, and was worse.. I formatted, but its heavy for performances / memory, especially for a game like this.
 

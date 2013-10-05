@@ -2,8 +2,11 @@ package me.hopto.patriarch.incrementer.data.building;
 
 import java.io.Serializable;
 
+import org.apache.log4j.Logger;
+
 public abstract class Building implements Serializable {
 	private static final long serialVersionUID = 1931346693501761137L;
+	private static Logger logger = Logger.getLogger(Building.class);
 
 	/** Current level of building. */
 	int level;
@@ -41,9 +44,11 @@ public abstract class Building implements Serializable {
 	/** Increase this building's level. */
 	public void levelUp() {
 		this.level++;
-		System.out.println(new StringBuffer(30).append("[DEBUG] Leveling ")
-				.append(this.getClass().getSimpleName()).append(" to ")
-				.append(level).toString());
+		if (logger.isDebugEnabled()) {
+			logger.debug(new StringBuffer(30).append("Leveling ")
+					.append(this.getClass().getSimpleName()).append(" to ")
+					.append(level).toString());
+		}
 	}
 
 	/**
@@ -62,11 +67,11 @@ public abstract class Building implements Serializable {
 	 */
 	public boolean canBuy(double resourceQuantity) {
 		boolean canBuy = getCost() <= resourceQuantity;
-		if (!canBuy)
-			System.err.println(new StringBuffer(30)
-					.append("[DEBUG] Cannot level ")
+		if (!canBuy && logger.isDebugEnabled()) {
+			logger.error(new StringBuffer(30).append("Cannot level ")
 					.append(this.getClass().getSimpleName()).append(" to ")
-					.append(level + 1).toString());
+					.append(level).toString());
+		}
 		return canBuy;
 	}
 

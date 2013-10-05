@@ -1,14 +1,17 @@
 package me.hopto.patriarch.incrementer.web;
 
 import me.hopto.patriarch.incrementer.data.Built;
+import me.hopto.patriarch.incrementer.data.resource.ResourceType;
 import me.hopto.patriarch.incrementer.web.components.ResourceLabel;
 
 import org.apache.wicket.ajax.AbstractAjaxTimerBehavior;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.devutils.debugbar.DebugBar;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.image.resource.DefaultButtonImageResource;
+import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.request.resource.IResource;
 import org.apache.wicket.request.resource.ResourceReference;
@@ -20,20 +23,39 @@ public class Incrementer extends WebPage {
 	private Built built;
 	long hasSlept;
 
+	private ResourceLabel woodLabel;
+
+	private ResourceLabel metalLabel;
+
+	private Image lumberJackBuilding;
+
+	private Image minerBuilding;
+
 	public Incrementer(final PageParameters parameters) {
 
 		super(parameters);
+		if (getApplication().getDebugSettings().isDevelopmentUtilitiesEnabled()) {
+			add(new DebugBar("dev"));
+		} else {
+			add(new EmptyPanel("dev").setVisible(false));
+		}
+
 		built = new Built();
 		hasSlept = 0;
-		final ResourceLabel label = new ResourceLabel("message", built);
-		add(label);
-		final Image lumberJackBuilding = new Image("LumberJack",
+
+		woodLabel = new ResourceLabel("woodQuantity", built, ResourceType.Wood);
+		metalLabel = new ResourceLabel("metalQuantity", built,
+				ResourceType.Metal);
+		add(woodLabel);
+		add(metalLabel);
+		metalLabel.setOutputMarkupId(true);
+		woodLabel.setOutputMarkupId(true);
+
+		lumberJackBuilding = new Image("LumberJack",
 				getBuildingImage("LumberJack"));
-		final Image minerBuilding = new Image("Miner",
-				getBuildingImage("Miner"));
+		minerBuilding = new Image("Miner", getBuildingImage("Miner"));
 		add(lumberJackBuilding);
 		add(minerBuilding);
-		label.setOutputMarkupId(true);
 		lumberJackBuilding.setOutputMarkupId(true);
 		minerBuilding.setOutputMarkupId(true);
 		lumberJackBuilding.add(new AjaxEventBehavior("onclick") {
@@ -52,10 +74,10 @@ public class Incrementer extends WebPage {
 			}
 		});
 
-		manual(label);
+		manual();
 	}
 
-	private void manual(final ResourceLabel label) {
+	private void manual() {
 		add(new AbstractAjaxTimerBehavior(Duration.milliseconds(10d)) {
 			private static final long serialVersionUID = 1100349890208440665L;
 
@@ -65,12 +87,13 @@ public class Incrementer extends WebPage {
 			@Override
 			protected void onTimer(AjaxRequestTarget target) {
 				built.incrementAll(0.01d);
-				target.add(label);
+				target.add(metalLabel);
+				target.add(woodLabel);
 			}
 		});
 	}
 
-	void automatic(final ResourceLabel label) {
+	void automatic() {
 		add(new AbstractAjaxTimerBehavior(Duration.milliseconds(500d)) {
 			private static final long serialVersionUID = 1100349890208440665L;
 
@@ -97,7 +120,8 @@ public class Incrementer extends WebPage {
 				} else if (hasSlept % 600 == 400) {
 					built.levelUpLumberJack();
 				}
-				target.add(label);
+				target.add(metalLabel);
+				target.add(woodLabel);
 			}
 		});
 	}
