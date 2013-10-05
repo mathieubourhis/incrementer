@@ -1,24 +1,35 @@
 package me.hopto.patriarch.incrementer.data.building;
 
-
-/** 
+/**
  * You can find bottle caps in pubs.
- * @see {@link Building} 
+ * 
+ * @see {@link Building}
  */
 public class Miner extends Building {
+	private static final long serialVersionUID = 2733711938756765142L;
 
-	/**	
-	 * Init this building's level. 
-	 * @param startingLevel starting level of building
-	 * @param baseIncrement starting increment given by building
+	/** Default constructor for serialization. */
+	public Miner() {
+		super();
+	}
+
+	/**
+	 * Init this building's level.
+	 * 
+	 * @param startingLevel
+	 *            starting level of building
+	 * @param baseIncrement
+	 *            starting increment given by building
 	 * @see {@link Building#Building}
 	 */
-	public Miner(int startingLevel, final double baseIncrement, final double baseCost) {
+	public Miner(int startingLevel, final double baseIncrement,
+			final double baseCost) {
 		super(startingLevel, baseIncrement, baseCost);
 	}
-	
-	/** 
+
+	/**
 	 * Get the current increment value based on the building's level.
+	 * 
 	 * @return the current increment value.
 	 * @see {@link Building#getIncrement()}
 	 */
@@ -27,8 +38,9 @@ public class Miner extends Building {
 		return level * baseIncrement;
 	}
 
-	/** 
+	/**
 	 * Get the current cost value based on the building's level.
+	 * 
 	 * @return the current cost value.
 	 * @see {@link Building#getCost()}
 	 */

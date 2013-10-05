@@ -49,6 +49,10 @@ A building costs resources, which are decremented from the total acquired.
 * 2.2
 I'll need to consider this game a web app at some point. I'll try "wicket", and add maven support and several cool tools.
 
+* 2.3
+I need to be able to see this as a client side ajax thread and see the actual incrementing on screen.
+OMG wicket is wicked !
+
 Issues
 - Weird thing, the loss of precision for doubles is quite troubling for outputs. Tried with BigDecimals, and was worse.. I formatted, but its heavy for performances / memory, especially for a game like this.
 

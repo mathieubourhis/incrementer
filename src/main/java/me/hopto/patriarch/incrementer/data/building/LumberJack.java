@@ -2,21 +2,34 @@ package me.hopto.patriarch.incrementer.data.building;
 
 /**
  * You find bottle caps in trash bins
- * @see {@link Building} 
+ * 
+ * @see {@link Building}
  */
-public class LumberJack extends Building  {
-	/**	
-	 * Init this building's level. 
-	 * @param startingLevel starting level of building
-	 * @param baseIncrement starting increment given by building
+public class LumberJack extends Building {
+	private static final long serialVersionUID = 4822841833261117010L;
+
+	/** Default constructor for serialization. */
+	public LumberJack() {
+		super();
+	}
+
+	/**
+	 * Init this building's level.
+	 * 
+	 * @param startingLevel
+	 *            starting level of building
+	 * @param baseIncrement
+	 *            starting increment given by building
 	 * @see {@link Building#Building}
 	 */
-	public LumberJack(int startingLevel, final double baseIncrement, final double baseCost) {
+	public LumberJack(int startingLevel, final double baseIncrement,
+			final double baseCost) {
 		super(startingLevel, baseIncrement, baseCost);
 	}
-	
-	/** 
+
+	/**
 	 * Get the current increment value based on the building's level.
+	 * 
 	 * @return the current increment value.
 	 * @see {@link Building#getIncrement()}
 	 */
@@ -24,15 +37,15 @@ public class LumberJack extends Building  {
 	public double getIncrement() {
 		return baseIncrement * level;
 	}
-	
 
-	/** 
+	/**
 	 * Get the current cost value based on the building's level.
+	 * 
 	 * @return the current cost value.
 	 * @see {@link Building#getCost()}
 	 */
 	@Override
 	public double getCost() {
-		return baseCost * level;
+		return baseCost + (0.5d * level);
 	}
 }

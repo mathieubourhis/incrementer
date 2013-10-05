@@ -9,11 +9,10 @@ public class GameThread extends Thread {
 	public GameThread() {
 		built = new Built();
 	}
-	
+
 	public void levelUpMiner() {
 		built.levelUpMiner();
 	}
-	
 
 	public void levelUpLumberJack() {
 		built.levelUpLumberJack();
@@ -23,10 +22,9 @@ public class GameThread extends Thread {
 	public void run() {
 		long start = System.currentTimeMillis();
 
-		while (System.currentTimeMillis() < (start + (1000 * 10))) {
+		while (System.currentTimeMillis() < (start + (1000 * 5))) {
 
 			built.incrementAll();
-
 
 			try {
 				Thread.sleep(500);
