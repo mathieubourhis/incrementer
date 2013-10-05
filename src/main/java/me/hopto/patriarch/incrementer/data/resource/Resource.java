@@ -38,8 +38,8 @@ public abstract class Resource implements Serializable {
 	/**
 	 * Increment a resource's quantity by an increment value.
 	 */
-	public void increment() {
-		quantity += increment;
+	public void increment(double ratio) {
+		quantity += (increment * ratio);
 	}
 
 	/**

@@ -24,7 +24,7 @@ public class GameThread extends Thread {
 
 		while (System.currentTimeMillis() < (start + (1000 * 5))) {
 
-			built.incrementAll();
+			built.incrementAll(0.5d);
 
 			try {
 				Thread.sleep(500);

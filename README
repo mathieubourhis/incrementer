@@ -53,6 +53,9 @@ I'll need to consider this game a web app at some point. I'll try "wicket", and 
 I need to be able to see this as a client side ajax thread and see the actual incrementing on screen.
 OMG wicket is wicked !
 
+* 2.4
+I'll add some visual content and provide a manual mode, not always automatic mode.
+
 Issues
 - Weird thing, the loss of precision for doubles is quite troubling for outputs. Tried with BigDecimals, and was worse.. I formatted, but its heavy for performances / memory, especially for a game like this.
 

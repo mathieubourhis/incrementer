@@ -38,9 +38,9 @@ public class Built implements Serializable {
 		IncrementCalculator = new IncrementCalculator();
 	}
 
-	public void incrementAll() {
-		wood.increment();
-		metal.increment();
+	public void incrementAll(double ratio) {
+		wood.increment(ratio);
+		metal.increment(ratio);
 		System.out.println("[DEBUG] " + this);
 	}
 

@@ -4,9 +4,14 @@ import me.hopto.patriarch.incrementer.data.Built;
 import me.hopto.patriarch.incrementer.web.components.ResourceLabel;
 
 import org.apache.wicket.ajax.AbstractAjaxTimerBehavior;
+import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.image.Image;
+import org.apache.wicket.markup.html.image.resource.DefaultButtonImageResource;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+import org.apache.wicket.request.resource.IResource;
+import org.apache.wicket.request.resource.ResourceReference;
 import org.apache.wicket.util.time.Duration;
 
 public class Incrementer extends WebPage {
@@ -22,8 +27,50 @@ public class Incrementer extends WebPage {
 		hasSlept = 0;
 		final ResourceLabel label = new ResourceLabel("message", built);
 		add(label);
+		final Image lumberJackBuilding = new Image("LumberJack",
+				getBuildingImage("LumberJack"));
+		final Image minerBuilding = new Image("Miner",
+				getBuildingImage("Miner"));
+		add(lumberJackBuilding);
+		add(minerBuilding);
 		label.setOutputMarkupId(true);
+		lumberJackBuilding.setOutputMarkupId(true);
+		minerBuilding.setOutputMarkupId(true);
+		lumberJackBuilding.add(new AjaxEventBehavior("onclick") {
+			private static final long serialVersionUID = 7136318411468165625L;
 
+			protected void onEvent(AjaxRequestTarget target) {
+				built.levelUpLumberJack();
+			}
+		});
+
+		minerBuilding.add(new AjaxEventBehavior("onclick") {
+			private static final long serialVersionUID = -3803612229594342066L;
+
+			protected void onEvent(AjaxRequestTarget target) {
+				built.levelUpMiner();
+			}
+		});
+
+		manual(label);
+	}
+
+	private void manual(final ResourceLabel label) {
+		add(new AbstractAjaxTimerBehavior(Duration.milliseconds(10d)) {
+			private static final long serialVersionUID = 1100349890208440665L;
+
+			/**
+			 * @see org.apache.wicket.ajax.AbstractAjaxTimerBehavior#onTimer(org.apache.wicket.ajax.AjaxRequestTarget)
+			 */
+			@Override
+			protected void onTimer(AjaxRequestTarget target) {
+				built.incrementAll(0.01d);
+				target.add(label);
+			}
+		});
+	}
+
+	void automatic(final ResourceLabel label) {
 		add(new AbstractAjaxTimerBehavior(Duration.milliseconds(500d)) {
 			private static final long serialVersionUID = 1100349890208440665L;
 
@@ -32,7 +79,7 @@ public class Incrementer extends WebPage {
 			 */
 			@Override
 			protected void onTimer(AjaxRequestTarget target) {
-				built.incrementAll();
+				built.incrementAll(0.5d);
 			}
 		});
 
@@ -53,5 +100,16 @@ public class Incrementer extends WebPage {
 				target.add(label);
 			}
 		});
+	}
+
+	final ResourceReference getBuildingImage(final String label) {
+		return new ResourceReference(label) {
+			private static final long serialVersionUID = -548600298151897112L;
+
+			@Override
+			public IResource getResource() {
+				return new DefaultButtonImageResource(label);
+			}
+		};
 	}
 }
