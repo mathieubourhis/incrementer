@@ -1,5 +1,6 @@
 package me.hopto.patriarch.incrementer.data.resource;
 
+
 /**
  * A fallout bottle caps :p.
  */
@@ -45,11 +46,14 @@ public class BottleCap {
 	
 	/**
 	 * Basic override for debugging purposes.
+	 * @TODO Beware String.format is really heavy for almost nothing.
+	 * @link http://stackoverflow.com/questions/513600/should-i-use-javas-string-format-if-performance-is-important
 	 */
 	@Override
 	public String toString() {
+
 		return new StringBuffer(30).append("[").append(this.getClass().getSimpleName())
-				.append("] [Quantity: ").append(quantity)
+				.append("] [Quantity: ").append(String.format("%.2f",quantity))
 				.append("] [Increment: ").append(increment)
 				.append("]").toString();
 	}

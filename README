@@ -26,4 +26,9 @@ It should be dependent on formulas based on buildings levels incrementing one or
 (Several this may increment one resource)
 
 * 1.4.
-I'll add anonther building for testing 
+I'll add annother building for testing 
+
+
+Issues
+- Weird thing, the loss of precision for doubles is quite troubling for outputs. Tried with BigDecimals, and was worse.. I formatted, but its heavy for performances / memory, especially for a game like this.
+
