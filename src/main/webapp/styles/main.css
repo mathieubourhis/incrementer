@@ -3,6 +3,24 @@ img {
 	height: 15px;
 }
 
+.rightButton, .leftButton {
+	width: 25px;
+	height: 15px;
+}
+
+.rightButton {
+	float:right;
+	padding-right:10px;
+}
+
+.leftButton  {
+	float:left;
+	padding-left:10px;
+}
+
+
+
+
 .buildings, .resources {
 	display: table;
 	width: 610px;
@@ -33,8 +51,12 @@ img {
 	width: auto;
 }
 
-.button, .resource, .level {
+.button, .resource, .centeredTextCell, .level {
 	float: left; /*fix for  buggy browsers*/
 	display: table-column;
 	width: 100px;
+}
+
+.centeredTextCell {
+	text-align:center;
 }

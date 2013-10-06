@@ -1,4 +1,4 @@
-package me.hopto.patriarch.incrementer.web.components;
+package me.hopto.patriarch.incrementer.web.components.resource;
 
 import me.hopto.patriarch.incrementer.data.Built;
 import me.hopto.patriarch.incrementer.data.resource.ResourceType;
