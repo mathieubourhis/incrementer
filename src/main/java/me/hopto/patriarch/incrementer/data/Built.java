@@ -1,5 +1,7 @@
 package me.hopto.patriarch.incrementer.data;
 
+import static com.google.common.base.Objects.toStringHelper;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,42 +34,25 @@ public class Built implements Serializable {
 	private static Logger logger = Logger.getLogger(Built.class);
 	IncrementCalculator incrementCalculator;
 
-	// TODO i might delete all the sub references and keep working with the
-	// guava predicates.
 	List<Resource> resources;
-	Wood wood;
-	Metal metal;
-	Food food;
-	Tool tool;
-
-	// TODO i might delete all the sub references and keep working with the
-	// guava predicates.
 	List<Building> buildings;
-	BerryPicker berryPicker;
-	FisherMan fisherMan;
-	WoodGatherer woodGatherer;
-	LumberJack lumberJack;
-	MetalDigger metalDigger;
-	Miner miner;
-	Inventor inventor;
-	BlackSmith blackSmith;
 
 	public Built() {
 		resources = new ArrayList<Resource>();
-		resources.add(food = new Food(0.0d, 0.0d));
-		resources.add(metal = new Metal(0.0d, 0.0d));
-		resources.add(wood = new Wood(0.0d, 0.0d));
-		resources.add(tool = new Tool(0.0d, 0.0d));
+		resources.add(new Food(0.0d, 0.0d));
+		resources.add(new Metal(0.0d, 0.0d));
+		resources.add(new Wood(0.0d, 0.0d));
+		resources.add(new Tool(0.0d, 0.0d));
 
 		buildings = new ArrayList<Building>();
-		buildings.add(berryPicker = new BerryPicker(0, 0.2d, 0.0d));
-		buildings.add(fisherMan = new FisherMan(0, 0.2d, 0.0d));
-		buildings.add(woodGatherer = new WoodGatherer(0, 0.2d, 0.0d));
-		buildings.add(lumberJack = new LumberJack(0, 0.2d, 0.0d));
-		buildings.add(metalDigger = new MetalDigger(0, 0.2d, 0.0d));
-		buildings.add(miner = new Miner(0, 0.5d, 3.0d));
-		buildings.add(inventor = new Inventor(0, 0.2d, 0.0d));
-		buildings.add(blackSmith = new BlackSmith(0, 0.2d, 0.0d));
+		buildings.add(new BerryPicker(0, 0.2d, 0.0d));
+		buildings.add(new FisherMan(0, 0.2d, 0.0d));
+		buildings.add(new WoodGatherer(0, 0.2d, 0.0d));
+		buildings.add(new LumberJack(0, 0.2d, 0.0d));
+		buildings.add(new MetalDigger(0, 0.2d, 0.0d));
+		buildings.add(new Miner(0, 0.5d, 3.0d));
+		buildings.add(new Inventor(0, 0.2d, 0.0d));
+		buildings.add(new BlackSmith(0, 0.2d, 0.0d));
 
 		incrementCalculator = new IncrementCalculator();
 	}
@@ -103,6 +88,16 @@ public class Built implements Serializable {
 	}
 
 	/**
+	 * Returns a formatted quantity of resources
+	 * 
+	 * @return the formatted quantity of resources
+	 */
+	public String getFormattedLevelForBuilding(final BuildingType buildingType) {
+		Building findBuildingByType = findBuildingByType(buildingType);
+		return String.valueOf(findBuildingByType.getLevel());
+	}
+
+	/**
 	 * Approach by predicates Just be sure not to level up an inexisting
 	 * building. is that even possible ? :p
 	 * 
@@ -135,9 +130,8 @@ public class Built implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return new StringBuffer(30).append("[")
-				.append(this.getClass().getSimpleName()).append("]\n\t")
-				.append(wood).append("\n\t").append(metal).toString();
+		return toStringHelper(this).addValue(this.resources)
+				.addValue(this.buildings).toString();
 	}
 
 	private Resource findResourceByType(final ResourceType resourceType) {

@@ -3,9 +3,9 @@ img {
 	height: 15px;
 }
 
-.buildings {
+.buildings, .resources {
 	display: table;
-	width: auto;
+	width: 610px;
 /* 	background-color: #eee; */
 	border: 1px solid #666666;
 	border-spacing: 5px; /*cellspacing:poor IE support for  this*/
@@ -24,13 +24,17 @@ img {
 	background-color: #ccc;
 }
 
-.buildingeven, .buildingodd, .buildingtitle {
+.resourcerow {
+	background-color: #ccc;
+}
+
+.buildingeven, .buildingodd, .buildingtitle, .resourcerow {
 	display: table-row;
 	width: auto;
 }
 
-.button,.ressource {
+.button, .resource, .level {
 	float: left; /*fix for  buggy browsers*/
 	display: table-column;
-	width: 200px;
+	width: 100px;
 }

@@ -67,6 +67,10 @@ I'll smooth up the visual a bit, add the +1 ressource mechanics and adjust the f
  
  * 3.1 
  I have an idea where i want to go from here. I need another resource for it, food. I'll come back to visuals later.
+ I need a lot of resources and buildings. And a better handling of those (not by hand i mean).
+ 
+ * 3.2
+I'll update the front now, to have a nice visual of what's been done untile now.
 
 Issues
 - Weird thing, the loss of precision for doubles is quite troubling for outputs. Tried with BigDecimals, and was worse.. I formatted, but its heavy for performances / memory, especially for a game like this.
