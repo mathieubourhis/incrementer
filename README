@@ -1,8 +1,8 @@
 My Aim : 
 --------
-What I wanna do is a game.
+I wan't to do a game.
 An incrementer game. 
-In short, a point and clickety clickety click. 
+In short, a point and clickety-clickety-click. 
 I have a lot of trouble finding another one of these games online (except for Coockie Clicker / Candy Box), so why not making one.
 
 
@@ -12,24 +12,24 @@ Chapter 1.
 Let's write some basics.
 
 * 1.0
-First I wan't some data. Some thing i may manipulate.  A Concept to be incremented.
+First I wan't some data. Something i may manipulate.  A Concept to be incremented.
 Why not several resources. I'll start with one. (Fallout's bottle caps :p I'll rename later :p)
 
 * 1.1. 
-My resource may be incremented, so i'll have an amount by witch it'll be incremented.
-I'll also have the quantity i currently has, and some container.
+My resource may be incremented, so i'll have an amount by which it'll be incremented.
+It will also know the quantity it currently has. I'll add some container too.
 
 * 1.2. 
-I'll need to ad some basic gaming main.. for science..
+I'll need to add some basic gaming main.. for science..
 
 * 1.3.
 I'll need to be able to update the increment value. With some levels on the bottlecaps. That's what i want in games :p building levels.
-In fact, a ressource shouldn't be able to know how to increment itself. 
+In fact, a resource shouldn't be able to know how to increment itself. 
 It should be dependent on formulas based on buildings levels incrementing one or several resource.
-(Several this may increment one resource)
+(Several buildings may increment one resource)
 
 * 1.4.
-I'll add annother building for testing 
+I'll add another building for testing 
 
 Chapter 2.
 ----------
@@ -38,10 +38,10 @@ Let's introduce other resources.
 
 * 2.0
 I actually can't find any other fun resource with the bottlecaps so i'll stick to basics.
-I'm actually thinks about a viable way to keep this an incrementer game with multiple resources.
+I'm actually thinking about a viable way to keep this an incrementer game with multiple resources.
 Each resource has to be clickable, and the player has to choose which one he want's to boost. 
 I'll use wood and metal at first, i'll see later if i find something else.
-I'll change the Buildings accordinly too.
+I'll change the Buildings accordingly too.
 
 * 2.1
 A building costs resources, which are decremented from the total acquired.
@@ -59,18 +59,33 @@ I'll add some visual content and provide a manual mode, not always automatic mod
 Chapter 3.
 ----------
 * intro
-Ok, i have somethine really cool now, and what Wicket provides is OVER 9000 ! 
-I'll smooth up the visual a bit, add the +1 ressource mechanics and adjust the formulas.
+Ok, i have something really cool now, and what Wicket provides is OVER 9000 ! 
+I'll smooth up the visual a bit, add the +1 resource mechanics and adjust the formulas.
 
  * 3.0
- I need to have separated ressources amounts, not juste a massive toString one the biggest container.
+ I need to have separated resources amounts, not just a massive toString one the biggest container.
  
  * 3.1 
  I have an idea where i want to go from here. I need another resource for it, food. I'll come back to visuals later.
  I need a lot of resources and buildings. And a better handling of those (not by hand i mean).
  
  * 3.2
-I'll update the front now, to have a nice visual of what's been done untile now.
+I'll update the front now, to have a nice visual of what's been done until now.
+
+Incoming
+- Grouping the resources by Produced resource (with some nice css)
+- Hiding everything except what's buildable and what resource is produced (hide or change style, idk)
+- Save / load
+- Learning about hash code.
+- Removing every specific classes and keeping only "Building", "BuildingType", "Resource", "ResourceType".
+- Having distinct bas values and increments / resources in buildings. 
+- Having a distinct framework to initialize elements / formulas.
+- Do something with that calculator. delete or something.
+- Adding manual (clickable) resources. Maybe immdiately over the labels "food", and stuff. Buff a lot the costs in order to promote clicking.
+- Adding onHover on images to resize them (up), and onClick to resize them (back to normal), and them back up 
+	(cause we're still onHover) but do the operation over time to allow the user to feel how the button is organic. :p
+- The todos in code.
+- Parsing this file in a web component to see the update notes.
 
 Issues
 - Weird thing, the loss of precision for doubles is quite troubling for outputs. Tried with BigDecimals, and was worse.. I formatted, but its heavy for performances / memory, especially for a game like this.
