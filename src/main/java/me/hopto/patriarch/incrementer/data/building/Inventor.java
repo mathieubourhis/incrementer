@@ -76,7 +76,7 @@ public class Inventor extends Building {
 	@Override
 	public void addMetalFormula() {
 		formulas.put(ResourceType.Metal, new FormulaWrapper(ResourceType.Metal,
-				0.0d, 20.0d, new Formula() {
+				0.0d, 60.0d, new Formula() {
 					private static final long serialVersionUID = -8646879104938688035L;
 
 					@Override

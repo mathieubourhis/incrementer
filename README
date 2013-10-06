@@ -80,9 +80,11 @@ Chapter 4.
 * intro
 Now is time to do some logic about formula handling (and values)
 
-* 1.0
+* 4.0
 Let's add some class about cost holding and handling. I wan't to have diferent costs and formulas for each buildings.
 
+* 4.1
+The game starts to take some time to play, i need a comprehensive auto mode, for science.
 
 Incoming
 --------

@@ -52,11 +52,11 @@ public class Incrementer extends WebPage {
 			addBuilding(built, buildingType);
 		}
 
-		manual();
+		automatic();
 	}
 
 	private void manual() {
-		add(new AbstractAjaxTimerBehavior(Duration.milliseconds(10d)) {
+		add(new AbstractAjaxTimerBehavior(Duration.milliseconds(100d)) {
 			private static final long serialVersionUID = 1100349890208440665L;
 
 			/**
@@ -64,10 +64,8 @@ public class Incrementer extends WebPage {
 			 */
 			@Override
 			protected void onTimer(AjaxRequestTarget target) {
-				built.incrementAll(0.01d);
-				for (Component component : componentsToRefresh) {
-					target.add(component);
-				}
+				built.incrementAll(0.1d);
+				refreshComponents(target);
 			}
 		});
 	}
@@ -75,7 +73,7 @@ public class Incrementer extends WebPage {
 	void automatic() {
 		hasSlept = 0;
 
-		add(new AbstractAjaxTimerBehavior(Duration.milliseconds(500d)) {
+		add(new AbstractAjaxTimerBehavior(Duration.milliseconds(100d)) {
 			private static final long serialVersionUID = 1100349890208440665L;
 
 			/**
@@ -83,7 +81,7 @@ public class Incrementer extends WebPage {
 			 */
 			@Override
 			protected void onTimer(AjaxRequestTarget target) {
-				built.incrementAll(0.5d);
+				built.incrementAll(0.1d);
 			}
 		});
 
@@ -96,16 +94,52 @@ public class Incrementer extends WebPage {
 			@Override
 			protected void onTimer(AjaxRequestTarget target) {
 				hasSlept += 200;
-				if (hasSlept % 1000 == 400) {
+				built.incrementOne(ResourceType.Food);
+				built.incrementOne(ResourceType.Food);
+				built.incrementOne(ResourceType.Food);
+				built.incrementOne(ResourceType.Wood);
+				built.incrementOne(ResourceType.Metal);
+				built.incrementOne(ResourceType.Tool);
+				if (hasSlept % 600 == 400) {
+					built.levelUp(BuildingType.BlackSmith);
+				}
+
+				if (hasSlept % 500 == 400) {
+					built.levelUp(BuildingType.Inventor);
+				}
+
+				if (hasSlept % 600 == 400) {
 					built.levelUp(BuildingType.Miner);
-				} else if (hasSlept % 600 == 400) {
+				}
+
+				if (hasSlept % 500 == 400) {
+					built.levelUp(BuildingType.MetalDigger);
+				}
+
+				if (hasSlept % 500 == 300) {
 					built.levelUp(BuildingType.LumberJack);
 				}
-				for (Component component : componentsToRefresh) {
-					target.add(component);
+				if (hasSlept % 500 == 100) {
+					built.levelUp(BuildingType.WoodGatherer);
 				}
+
+				if (hasSlept % 300 == 200) {
+					built.levelUp(BuildingType.BerryPicker);
+				}
+				if (hasSlept % 300 == 100) {
+					built.levelUp(BuildingType.FisherMan);
+				}
+
+				refreshComponents(target);
 			}
+
 		});
+	}
+
+	private void refreshComponents(AjaxRequestTarget target) {
+		for (Component component : componentsToRefresh) {
+			target.add(component);
+		}
 	}
 
 	private void addResource(final Built built, final ResourceType resourceType) {
@@ -184,8 +218,7 @@ public class Incrementer extends WebPage {
 
 		@Override
 		public String getObject() {
-			return built.getResourceCostForBuilding(resourceType,
-					buildingType);
+			return built.getResourceCostForBuilding(resourceType, buildingType);
 		}
 	}
 

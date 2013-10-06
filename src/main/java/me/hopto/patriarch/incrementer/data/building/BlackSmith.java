@@ -74,7 +74,7 @@ public class BlackSmith extends Building {
 	@Override
 	public void addMetalFormula() {
 		formulas.put(ResourceType.Metal, new FormulaWrapper(ResourceType.Metal,
-				0.0d, 30.0d, new Formula() {
+				0.0d, 100.0d, new Formula() {
 					private static final long serialVersionUID = -6714763910461930868L;
 
 					@Override

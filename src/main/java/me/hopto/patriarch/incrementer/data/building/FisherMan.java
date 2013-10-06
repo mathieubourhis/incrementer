@@ -30,7 +30,7 @@ public class FisherMan extends Building {
 	@Override
 	public void addFoodFormula() {
 		formulas.put(ResourceType.Food, new FormulaWrapper(ResourceType.Food,
-				0.5d, 25.0d, new Formula() {
+				2.0d, 25.0d, new Formula() {
 					private static final long serialVersionUID = 4282001913370688493L;
 
 					@Override

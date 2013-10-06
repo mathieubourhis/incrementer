@@ -75,7 +75,7 @@ public class Miner extends Building {
 	@Override
 	public void addMetalFormula() {
 		formulas.put(ResourceType.Metal, new FormulaWrapper(ResourceType.Metal,
-				0.5d, 0.0d, new Formula() {
+				0.3d, 0.0d, new Formula() {
 					private static final long serialVersionUID = -7441010107416769221L;
 
 					@Override

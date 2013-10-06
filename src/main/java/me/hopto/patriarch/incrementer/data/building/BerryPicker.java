@@ -30,7 +30,7 @@ public class BerryPicker extends Building {
 	@Override
 	public void addFoodFormula() {
 		formulas.put(ResourceType.Food, new FormulaWrapper(ResourceType.Food,
-				0.1d, 15.0d, new Formula() {
+				0.5d, 15.0d, new Formula() {
 					private static final long serialVersionUID = 8601143026598137879L;
 
 					@Override
