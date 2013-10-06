@@ -6,13 +6,13 @@ import me.hopto.patriarch.incrementer.data.resource.ResourceType;
  * 
  * @see {@link Building}
  */
-public class LumberJack extends Building {
-	private static final long serialVersionUID = 4822841833261117010L;
+public class Inventor extends Building {
+	private static final long serialVersionUID = 2733711938756765142L;
 
 	/** Default constructor for serialization. */
-	public LumberJack() {
+	public Inventor() {
 		super();
-		buildingType = BuildingType.LumberJack;
+		buildingType = BuildingType.Inventor;
 	}
 
 	/**
@@ -24,10 +24,10 @@ public class LumberJack extends Building {
 	 *            starting increment given by building
 	 * @see {@link Building#Building}
 	 */
-	public LumberJack(int startingLevel, final double baseIncrement,
+	public Inventor(int startingLevel, final double baseIncrement,
 			final double baseCost) {
 		super(startingLevel, baseIncrement, baseCost);
-		buildingType = BuildingType.LumberJack;
+		buildingType = BuildingType.Inventor;
 	}
 
 	/**
@@ -38,15 +38,16 @@ public class LumberJack extends Building {
 	 */
 	@Override
 	public double getIncrementForResource(ResourceType resourceType) {
+
 		switch (resourceType) {
 		case Food:
 			return 0.0d;
 		case Metal:
 			return 0.0d;
 		case Wood:
-			return baseIncrement * level;
-		case Tool:
 			return 0.0d;
+		case Tool:
+			return level * baseIncrement;
 		default:
 			break;
 		}
@@ -61,15 +62,16 @@ public class LumberJack extends Building {
 	 */
 	@Override
 	public double getCostForResource(ResourceType resourceType) {
+
 		switch (resourceType) {
 		case Food:
-			return baseCost + (0.5d * level);
-		case Metal:
-			return 0.0d;
-		case Wood:
-			return 0.0d;
-		case Tool:
 			return baseCost * level;
+		case Metal:
+			return baseCost * level;
+		case Wood:
+			return baseCost * level;
+		case Tool:
+			return 0.0d;
 		default:
 			break;
 		}

@@ -1,6 +1,10 @@
 package me.hopto.patriarch.incrementer.data.building;
 
 import java.io.Serializable;
+import java.util.List;
+
+import me.hopto.patriarch.incrementer.data.resource.Resource;
+import me.hopto.patriarch.incrementer.data.resource.ResourceType;
 
 import org.apache.log4j.Logger;
 
@@ -16,6 +20,9 @@ public abstract class Building implements Serializable {
 
 	/** Base cost of building. */
 	final double baseCost;
+
+	/** the kind of building this is. */
+	BuildingType buildingType;
 
 	/** Default constructor for serialization. */
 	public Building() {
@@ -36,6 +43,8 @@ public abstract class Building implements Serializable {
 	 */
 	public Building(int startingLevel, final double baseIncrement,
 			final double baseCost) {
+		// TODO Will need sooner or later a base cost per resources and not a
+		// general one
 		this.level = startingLevel;
 		this.baseIncrement = baseIncrement;
 		this.baseCost = baseCost;
@@ -65,27 +74,49 @@ public abstract class Building implements Serializable {
 	 * 
 	 * @return the current level
 	 */
-	public boolean canBuy(double resourceQuantity) {
-		boolean canBuy = getCost() <= resourceQuantity;
-		if (!canBuy && logger.isDebugEnabled()) {
-			logger.error(new StringBuffer(30).append("Cannot level ")
-					.append(this.getClass().getSimpleName()).append(" to ")
-					.append(level).toString());
+	public boolean canBuy(List<Resource> resources) {
+		boolean canBuy = true;
+		for (Resource resource : resources) {
+			canBuy &= getCostForResource(resource.getType()) <= resource
+					.getQuantity();
+			if (!canBuy) {
+				if (logger.isDebugEnabled()) {
+					logger.error(new StringBuffer(30).append("Cannot level ")
+							.append(this.getClass().getSimpleName())
+							.append(" to ").append(level).toString());
+				}
+				break;
+			}
 		}
+
 		return canBuy;
 	}
 
 	/**
 	 * Get the current increment value based on the building's level.
 	 * 
+	 * @param resourceType
+	 *            TODO
+	 * 
 	 * @return the current increment value.
 	 */
-	public abstract double getIncrement();
+	public abstract double getIncrementForResource(ResourceType resourceType);
 
 	/**
 	 * Get the current cost value based on the building's level.
 	 * 
+	 * @param resourceType
+	 *            TODO
+	 * 
 	 * @return the current cost value.
 	 */
-	public abstract double getCost();
+	public abstract double getCostForResource(ResourceType resourceType);
+
+	/**
+	 * the kind of building this is. 
+	 * @return the kind of building this is.
+	 */
+	public BuildingType getType() {
+		return buildingType;
+	}
 }

@@ -4,65 +4,129 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.hopto.patriarch.incrementer.data.building.BerryPicker;
+import me.hopto.patriarch.incrementer.data.building.BlackSmith;
 import me.hopto.patriarch.incrementer.data.building.Building;
+import me.hopto.patriarch.incrementer.data.building.BuildingType;
+import me.hopto.patriarch.incrementer.data.building.FisherMan;
+import me.hopto.patriarch.incrementer.data.building.Inventor;
 import me.hopto.patriarch.incrementer.data.building.LumberJack;
+import me.hopto.patriarch.incrementer.data.building.MetalDigger;
 import me.hopto.patriarch.incrementer.data.building.Miner;
+import me.hopto.patriarch.incrementer.data.building.WoodGatherer;
 import me.hopto.patriarch.incrementer.data.calculator.IncrementCalculator;
+import me.hopto.patriarch.incrementer.data.resource.Food;
 import me.hopto.patriarch.incrementer.data.resource.Metal;
 import me.hopto.patriarch.incrementer.data.resource.Resource;
 import me.hopto.patriarch.incrementer.data.resource.ResourceType;
+import me.hopto.patriarch.incrementer.data.resource.Tool;
 import me.hopto.patriarch.incrementer.data.resource.Wood;
 
 import org.apache.log4j.Logger;
 
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
+
 public class Built implements Serializable {
 	private static final long serialVersionUID = 8766412728828956639L;
 	private static Logger logger = Logger.getLogger(Built.class);
-	IncrementCalculator IncrementCalculator;
-	Resource wood;
-	Resource metal;
-	Miner miner;
+	IncrementCalculator incrementCalculator;
+
+	// TODO i might delete all the sub references and keep working with the
+	// guava predicates.
+	List<Resource> resources;
+	Wood wood;
+	Metal metal;
+	Food food;
+	Tool tool;
+
+	// TODO i might delete all the sub references and keep working with the
+	// guava predicates.
+	List<Building> buildings;
+	BerryPicker berryPicker;
+	FisherMan fisherMan;
+	WoodGatherer woodGatherer;
 	LumberJack lumberJack;
-	List<Building> woodIncrementingBuildings;
-	List<Building> metalIncrementingBuildings;
+	MetalDigger metalDigger;
+	Miner miner;
+	Inventor inventor;
+	BlackSmith blackSmith;
 
 	public Built() {
-		wood = new Wood(0.0d, 0.0d);
-		metal = new Metal(0.0d, 0.0d);
-		lumberJack = new LumberJack(0, 0.2d, 0.0d);
-		miner = new Miner(0, 0.5d, 3.0d);
-		woodIncrementingBuildings = new ArrayList<Building>();
-		woodIncrementingBuildings.add(lumberJack);
-		metalIncrementingBuildings = new ArrayList<Building>();
-		metalIncrementingBuildings.add(miner);
-		IncrementCalculator = new IncrementCalculator();
+		resources = new ArrayList<Resource>();
+		resources.add(food = new Food(0.0d, 0.0d));
+		resources.add(metal = new Metal(0.0d, 0.0d));
+		resources.add(wood = new Wood(0.0d, 0.0d));
+		resources.add(tool = new Tool(0.0d, 0.0d));
+
+		buildings = new ArrayList<Building>();
+		buildings.add(berryPicker = new BerryPicker(0, 0.2d, 0.0d));
+		buildings.add(fisherMan = new FisherMan(0, 0.2d, 0.0d));
+		buildings.add(woodGatherer = new WoodGatherer(0, 0.2d, 0.0d));
+		buildings.add(lumberJack = new LumberJack(0, 0.2d, 0.0d));
+		buildings.add(metalDigger = new MetalDigger(0, 0.2d, 0.0d));
+		buildings.add(miner = new Miner(0, 0.5d, 3.0d));
+		buildings.add(inventor = new Inventor(0, 0.2d, 0.0d));
+		buildings.add(blackSmith = new BlackSmith(0, 0.2d, 0.0d));
+
+		incrementCalculator = new IncrementCalculator();
 	}
 
 	public void incrementAll(double ratio) {
-		wood.increment(ratio);
-		metal.increment(ratio);
-		if (logger.isDebugEnabled()) {
-			logger.debug(wood);
-			logger.debug(metal);
-		}
-
-	}
-
-	public void levelUpMiner() {
-		if (miner.canBuy(metal.getQuantity())) {
-			metal.buy(miner.getCost());
-			miner.levelUp();
-			metal.updateIncrementValue(IncrementCalculator
-					.getIncrement(metalIncrementingBuildings));
+		for (Resource resource : resources) {
+			resource.increment(ratio);
+			if (logger.isDebugEnabled())
+				logger.debug(resource);
 		}
 	}
 
-	public void levelUpLumberJack() {
-		if (lumberJack.canBuy(wood.getQuantity())) {
-			wood.buy(lumberJack.getCost());
-			lumberJack.levelUp();
-			wood.updateIncrementValue(IncrementCalculator
-					.getIncrement(woodIncrementingBuildings));
+	/**
+	 * Returns a formatted quantity of resources
+	 * 
+	 * @return the formatted quantity of resources
+	 */
+	public String getFormattedResourceQuantity(final ResourceType resourceType) {
+		return String.format("%.2f", findResourceByType(resourceType)
+				.getQuantity());
+	}
+
+	/**
+	 * Returns a formatted quantity of resources
+	 * 
+	 * @return the formatted quantity of resources
+	 */
+	public String getFormattedResourceCostForBuilding(
+			final ResourceType resourceType, final BuildingType buildingType) {
+		Building findBuildingByType = findBuildingByType(buildingType);
+		return String.format("%.2f",
+				findBuildingByType.getCostForResource(resourceType));
+	}
+
+	/**
+	 * Approach by predicates Just be sure not to level up an inexisting
+	 * building. is that even possible ? :p
+	 * 
+	 * @param buildingType
+	 *            the building to level up
+	 */
+	public void levelUp(final BuildingType buildingType) {
+		levelUp(findBuildingByType(buildingType));
+	}
+
+	/**
+	 * Approach by known building.
+	 * 
+	 * Just be sure not to level up an inexisting building. is that even
+	 * possible ? :p
+	 * 
+	 * @param buildingType
+	 *            the building to level up
+	 */
+	private void levelUp(Building building) {
+		if (building.canBuy(resources)) {
+			incrementCalculator.buy(building, resources);
+			building.levelUp();
+			incrementCalculator.incrementResources(buildings, resources);
 		}
 	}
 
@@ -76,19 +140,24 @@ public class Built implements Serializable {
 				.append(wood).append("\n\t").append(metal).toString();
 	}
 
-	/**
-	 * Returns a formatted quantity of resources
-	 * 
-	 * @return the formatted quantity of resources
-	 */
-	public String getFormattedResourceQuantity(ResourceType resourceType) {
-		switch (resourceType) {
-		case Metal:
-			return String.format("%.2f", metal.getQuantity());
-		case Wood:
-			return String.format("%.2f", wood.getQuantity());
-		default:
-			return "";
-		}
+	private Resource findResourceByType(final ResourceType resourceType) {
+		Predicate<Resource> finderByType = new Predicate<Resource>() {
+			@Override
+			public boolean apply(Resource input) {
+				return resourceType == input.getType();
+			}
+		};
+		return Iterables.filter(resources, finderByType).iterator().next();
 	}
+
+	private Building findBuildingByType(final BuildingType buildingType) {
+		Predicate<Building> finderByType = new Predicate<Building>() {
+			@Override
+			public boolean apply(Building input) {
+				return buildingType == input.getType();
+			}
+		};
+		return Iterables.filter(buildings, finderByType).iterator().next();
+	}
+
 }

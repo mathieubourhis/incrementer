@@ -6,13 +6,13 @@ import me.hopto.patriarch.incrementer.data.resource.ResourceType;
  * 
  * @see {@link Building}
  */
-public class LumberJack extends Building {
-	private static final long serialVersionUID = 4822841833261117010L;
+public class WoodGatherer extends Building {
+	private static final long serialVersionUID = -5833093484743001743L;
 
 	/** Default constructor for serialization. */
-	public LumberJack() {
+	public WoodGatherer() {
 		super();
-		buildingType = BuildingType.LumberJack;
+		buildingType = BuildingType.WoodGatherer;
 	}
 
 	/**
@@ -24,10 +24,10 @@ public class LumberJack extends Building {
 	 *            starting increment given by building
 	 * @see {@link Building#Building}
 	 */
-	public LumberJack(int startingLevel, final double baseIncrement,
+	public WoodGatherer(int startingLevel, final double baseIncrement,
 			final double baseCost) {
 		super(startingLevel, baseIncrement, baseCost);
-		buildingType = BuildingType.LumberJack;
+		buildingType = BuildingType.WoodGatherer;
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class LumberJack extends Building {
 		case Wood:
 			return 0.0d;
 		case Tool:
-			return baseCost * level;
+			return 0.0d;
 		default:
 			break;
 		}

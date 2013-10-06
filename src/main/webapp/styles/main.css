@@ -6,13 +6,25 @@ img {
 .buildings {
 	display: table;
 	width: auto;
-	background-color: #eee;
+/* 	background-color: #eee; */
 	border: 1px solid #666666;
 	border-spacing: 5px; /*cellspacing:poor IE support for  this*/
 	/* border-collapse:separate;*/
 }
 
-.building {
+.buildingeven {
+	background-color: #ccc;
+}
+
+.buildingodd {
+	background-color: #ccc;
+}
+
+.buildingtitle {
+	background-color: #ccc;
+}
+
+.buildingeven, .buildingodd, .buildingtitle {
 	display: table-row;
 	width: auto;
 }
@@ -21,5 +33,4 @@ img {
 	float: left; /*fix for  buggy browsers*/
 	display: table-column;
 	width: 200px;
-	background-color: #ccc;
 }

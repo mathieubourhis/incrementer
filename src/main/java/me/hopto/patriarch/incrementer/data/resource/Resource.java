@@ -87,4 +87,13 @@ public abstract class Resource implements Serializable {
 				.append(String.format("%.2f", increment)).append("]")
 				.toString();
 	}
+
+	/**
+	 * Return the type of resource we are using
+	 * 
+	 * @return the type of resource we are using
+	 */
+	public ResourceType getType() {
+		return type;
+	}
 }

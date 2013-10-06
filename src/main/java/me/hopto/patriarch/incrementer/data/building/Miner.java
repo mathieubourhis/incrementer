@@ -1,16 +1,18 @@
 package me.hopto.patriarch.incrementer.data.building;
 
+import me.hopto.patriarch.incrementer.data.resource.ResourceType;
+
 /**
- * You can find bottle caps in pubs.
  * 
  * @see {@link Building}
  */
 public class Miner extends Building {
-	private static final long serialVersionUID = 2733711938756765142L;
+	private static final long serialVersionUID = -7600326882064946876L;
 
 	/** Default constructor for serialization. */
 	public Miner() {
 		super();
+		buildingType = BuildingType.Miner;
 	}
 
 	/**
@@ -25,27 +27,54 @@ public class Miner extends Building {
 	public Miner(int startingLevel, final double baseIncrement,
 			final double baseCost) {
 		super(startingLevel, baseIncrement, baseCost);
+		buildingType = BuildingType.Miner;
 	}
 
 	/**
 	 * Get the current increment value based on the building's level.
 	 * 
 	 * @return the current increment value.
-	 * @see {@link Building#getIncrement()}
+	 * @see {@link Building#getIncrementForResource(ResourceType)}
 	 */
 	@Override
-	public double getIncrement() {
-		return level * baseIncrement;
+	public double getIncrementForResource(ResourceType resourceType) {
+
+		switch (resourceType) {
+		case Food:
+			return 0.0d;
+		case Metal:
+			return 0.0d;
+		case Wood:
+			return 0.0d;
+		case Tool:
+			return level * baseIncrement;
+		default:
+			break;
+		}
+		return 0.0d;
 	}
 
 	/**
 	 * Get the current cost value based on the building's level.
 	 * 
 	 * @return the current cost value.
-	 * @see {@link Building#getCost()}
+	 * @see {@link Building#getCostForResource(ResourceType)}
 	 */
 	@Override
-	public double getCost() {
-		return baseCost * level;
+	public double getCostForResource(ResourceType resourceType) {
+
+		switch (resourceType) {
+		case Food:
+			return baseCost * level;
+		case Metal:
+			return baseCost * level;
+		case Wood:
+			return baseCost * level;
+		case Tool:
+			return baseCost * level;
+		default:
+			break;
+		}
+		return 0.0d;
 	}
 }

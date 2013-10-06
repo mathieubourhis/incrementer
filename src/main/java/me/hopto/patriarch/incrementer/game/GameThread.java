@@ -1,6 +1,7 @@
 package me.hopto.patriarch.incrementer.game;
 
 import me.hopto.patriarch.incrementer.data.Built;
+import me.hopto.patriarch.incrementer.data.building.BuildingType;
 
 public class GameThread extends Thread {
 
@@ -10,12 +11,8 @@ public class GameThread extends Thread {
 		built = new Built();
 	}
 
-	public void levelUpMiner() {
-		built.levelUpMiner();
-	}
-
-	public void levelUpLumberJack() {
-		built.levelUpLumberJack();
+	public void levelUp(BuildingType type) {
+		built.levelUp(type);
 	}
 
 	@Override
