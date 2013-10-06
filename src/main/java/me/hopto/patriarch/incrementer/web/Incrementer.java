@@ -184,7 +184,7 @@ public class Incrementer extends WebPage {
 
 		@Override
 		public String getObject() {
-			return built.getFormattedResourceCostForBuilding(resourceType,
+			return built.getResourceCostForBuilding(resourceType,
 					buildingType);
 		}
 	}
@@ -205,7 +205,7 @@ public class Incrementer extends WebPage {
 
 		@Override
 		public String getObject() {
-			return built.getFormattedLevelForBuilding(buildingType);
+			return built.getLevelForBuilding(buildingType);
 		}
 	}
 }

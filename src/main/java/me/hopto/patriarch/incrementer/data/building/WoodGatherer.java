@@ -1,5 +1,7 @@
 package me.hopto.patriarch.incrementer.data.building;
 
+import me.hopto.patriarch.incrementer.data.calculator.Formula;
+import me.hopto.patriarch.incrementer.data.calculator.FormulaWrapper;
 import me.hopto.patriarch.incrementer.data.resource.ResourceType;
 
 /**
@@ -11,8 +13,7 @@ public class WoodGatherer extends Building {
 
 	/** Default constructor for serialization. */
 	public WoodGatherer() {
-		super();
-		buildingType = BuildingType.WoodGatherer;
+		this(0);
 	}
 
 	/**
@@ -20,59 +21,64 @@ public class WoodGatherer extends Building {
 	 * 
 	 * @param startingLevel
 	 *            starting level of building
-	 * @param baseIncrement
-	 *            starting increment given by building
 	 * @see {@link Building#Building}
 	 */
-	public WoodGatherer(int startingLevel, final double baseIncrement,
-			final double baseCost) {
-		super(startingLevel, baseIncrement, baseCost);
+	public WoodGatherer(int startingLevel) {
+		super(startingLevel);
 		buildingType = BuildingType.WoodGatherer;
 	}
 
-	/**
-	 * Get the current increment value based on the building's level.
-	 * 
-	 * @return the current increment value.
-	 * @see {@link Building#getIncrementForResource(ResourceType)}
-	 */
 	@Override
-	public double getIncrementForResource(ResourceType resourceType) {
-		switch (resourceType) {
-		case Food:
-			return 0.0d;
-		case Metal:
-			return 0.0d;
-		case Wood:
-			return baseIncrement * level;
-		case Tool:
-			return 0.0d;
-		default:
-			break;
-		}
-		return 0.0d;
+	public void addFoodFormula() {
+		formulas.put(ResourceType.Food, new FormulaWrapper(ResourceType.Food,
+				0.0d, 20.0d, new Formula() {
+					private static final long serialVersionUID = 4415565703841658704L;
+
+					@Override
+					public double getNextCostForLevel(double baseCost, int level) {
+						return lameHackForRounding(lameHackForRounding(baseCost
+								* (Math.pow(1.15d, level))));
+					}
+
+					@Override
+					public double getGlobalCostForLevel(double baseCost,
+							int level) {
+						return lameHackForRounding((baseCost * (Math.pow(1.15D,
+								level) - 1.0d)) / 0.15d);
+					}
+				}));
+
 	}
 
-	/**
-	 * Get the current cost value based on the building's level.
-	 * 
-	 * @return the current cost value.
-	 * @see {@link Building#getCostForResource(ResourceType)}
-	 */
 	@Override
-	public double getCostForResource(ResourceType resourceType) {
-		switch (resourceType) {
-		case Food:
-			return baseCost + (0.5d * level);
-		case Metal:
-			return 0.0d;
-		case Wood:
-			return 0.0d;
-		case Tool:
-			return 0.0d;
-		default:
-			break;
-		}
-		return 0.0d;
+	public void addWoodFormula() {
+		formulas.put(ResourceType.Wood, new FormulaWrapper(ResourceType.Wood,
+				0.1d, 0.0d, new Formula() {
+					private static final long serialVersionUID = -5456817389876614405L;
+
+					@Override
+					public double getGlobalIncrementForLevel(
+							double baseIncrement, int level) {
+						return lameHackForRounding(baseIncrement * level);
+					}
+				}));
+	}
+
+	@Override
+	public void addMetalFormula() {
+		formulas.put(ResourceType.Metal, new FormulaWrapper(ResourceType.Metal,
+				0.0d, 0.0d, new Formula() {
+					private static final long serialVersionUID = -8433013699166727148L;
+				}));
+
+	}
+
+	@Override
+	public void addToolFormula() {
+		formulas.put(ResourceType.Tool, new FormulaWrapper(ResourceType.Tool,
+				0.0d, 0.0d, new Formula() {
+					private static final long serialVersionUID = 254373899066709290L;
+				}));
+
 	}
 }

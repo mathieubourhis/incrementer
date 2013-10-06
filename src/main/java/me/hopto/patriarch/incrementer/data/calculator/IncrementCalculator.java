@@ -14,21 +14,38 @@ public class IncrementCalculator implements Serializable {
 
 	}
 
-	public void incrementResources(List<Building> buildings,
-			List<Resource> resources) {
+	public void incrementResources(Building building, List<Resource> resources) {
 		for (Resource resource : resources) {
-			double increment = 0.0d;
-			for (Building building : buildings) {
-				increment += building.getIncrementForResource(resource
-						.getType());
-			}
-			resource.updateIncrementValue(increment);
+			FormulaWrapper formula = building.findFormulaForResource(resource
+					.getType());
+			resource.updateIncrementValue(formula.getNextIncrement());
 		}
 	}
 
 	public void buy(Building building, List<Resource> resources) {
 		for (Resource resource : resources) {
-			resource.buy(building.getCostForResource(resource.getType()));
+			FormulaWrapper formula = building.findFormulaForResource(resource
+					.getType());
+			resource.buy(formula.getNextCostForLevel(building.getLevel()));
 		}
+	}
+
+	/**
+	 * checks wether an item can be bought
+	 * 
+	 * @return the current level
+	 */
+	public boolean canBuy(Building building, List<Resource> resources) {
+		boolean canBuy = true;
+		for (Resource resource : resources) {
+			FormulaWrapper formula = building.findFormulaForResource(resource
+					.getType());
+			canBuy &= formula.getNextCostForLevel(building.getLevel()) <= resource
+					.getQuantity();
+			if (!canBuy)
+				break;
+		}
+
+		return canBuy;
 	}
 }

@@ -60,7 +60,7 @@ Chapter 3.
 ----------
 * intro
 Ok, i have something really cool now, and what Wicket provides is OVER 9000 ! 
-I'll smooth up the visual a bit, add the +1 resource mechanics and adjust the formulas.
+I'll smooth up the visual a bit, add the +1 resource mechanics.
 
  * 3.0
  I need to have separated resources amounts, not just a massive toString one the biggest container.
@@ -74,6 +74,15 @@ I'll update the front now, to have a nice visual of what's been done until now.
 
  * 3.3
  I also need manual clicking on resources.
+
+Chapter 4.
+----------
+* intro
+Now is time to do some logic about formula handling (and values)
+
+* 1.0
+Let's add some class about cost holding and handling. I wan't to have diferent costs and formulas for each buildings.
+
 
 Incoming
 --------

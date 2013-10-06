@@ -65,7 +65,7 @@ public abstract class Resource implements Serializable {
 	 *            the new increment;
 	 */
 	public void updateIncrementValue(double updatedIncrement) {
-		this.increment = updatedIncrement;
+		this.increment += updatedIncrement;
 	}
 
 	/**
