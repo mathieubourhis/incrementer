@@ -29,6 +29,7 @@ public class Incrementer extends WebPage {
 
 	private Built built;
 	long hasSlept;
+	boolean autoManualClick = false;
 
 	private List<Component> componentsToRefresh;
 
@@ -52,11 +53,7 @@ public class Incrementer extends WebPage {
 			addBuilding(built, buildingType);
 		}
 
-		automatic();
-	}
-
-	private void manual() {
-		add(new AbstractAjaxTimerBehavior(Duration.milliseconds(100d)) {
+		add(new AbstractAjaxTimerBehavior(Duration.milliseconds(10d)) {
 			private static final long serialVersionUID = 1100349890208440665L;
 
 			/**
@@ -64,26 +61,16 @@ public class Incrementer extends WebPage {
 			 */
 			@Override
 			protected void onTimer(AjaxRequestTarget target) {
-				built.incrementAll(0.1d);
+				built.incrementAll(0.01d);
 				refreshComponents(target);
 			}
 		});
+
+		automatic();
 	}
 
 	void automatic() {
 		hasSlept = 0;
-
-		add(new AbstractAjaxTimerBehavior(Duration.milliseconds(100d)) {
-			private static final long serialVersionUID = 1100349890208440665L;
-
-			/**
-			 * @see org.apache.wicket.ajax.AbstractAjaxTimerBehavior#onTimer(org.apache.wicket.ajax.AjaxRequestTarget)
-			 */
-			@Override
-			protected void onTimer(AjaxRequestTarget target) {
-				built.incrementAll(0.1d);
-			}
-		});
 
 		add(new AbstractAjaxTimerBehavior(Duration.milliseconds(200d)) {
 			private static final long serialVersionUID = -1487136610861370272L;
@@ -94,12 +81,14 @@ public class Incrementer extends WebPage {
 			@Override
 			protected void onTimer(AjaxRequestTarget target) {
 				hasSlept += 200;
-				built.incrementOne(ResourceType.Food);
-				built.incrementOne(ResourceType.Food);
-				built.incrementOne(ResourceType.Food);
-				built.incrementOne(ResourceType.Wood);
-				built.incrementOne(ResourceType.Metal);
-				built.incrementOne(ResourceType.Tool);
+				if (autoManualClick) {
+					built.incrementOne(ResourceType.Food);
+					built.incrementOne(ResourceType.Food);
+					built.incrementOne(ResourceType.Food);
+					built.incrementOne(ResourceType.Wood);
+					built.incrementOne(ResourceType.Metal);
+					built.incrementOne(ResourceType.Tool);
+				}
 				if (hasSlept % 600 == 400) {
 					built.levelUp(BuildingType.BlackSmith);
 				}
@@ -130,7 +119,6 @@ public class Incrementer extends WebPage {
 					built.levelUp(BuildingType.FisherMan);
 				}
 
-				refreshComponents(target);
 			}
 
 		});

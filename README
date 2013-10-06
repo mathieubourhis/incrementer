@@ -86,16 +86,15 @@ Let's add some class about cost holding and handling. I wan't to have diferent c
 * 4.1
 The game starts to take some time to play, i need a comprehensive auto mode, for science.
 
+* 4.2
+I need to make it more fluid as time goes.
+
+
 Incoming
 --------
 - Grouping the resources by Produced resource (with some nice css)
 - Hiding everything except what's buildable and what resource is produced (hide or change style, idk)
 - Save / load
-- Removing every specific classes and keeping only "Building", "BuildingType", "Resource", "ResourceType".
-- Having distinct bas values and increments / resources in buildings. 
-- Having a distinct framework to initialize elements / formulas.
-- Do something with that calculator. delete or something.
-- Buff a lot the costs in order to promote clicking.
 - Adding onHover on images to resize them (up), and onClick to resize them (back to normal), and them back up 
 	(cause we're still onHover) but do the operation over time to allow the user to feel how the button is organic. :p
 - The todos in code.
@@ -103,10 +102,5 @@ Incoming
 
 ToLearn
 -------
--- how to encrypt saves
+- how to encrypt saves
 - Learning about hash code.
-
-Issues
-------
-- Weird thing, the loss of precision for doubles is quite troubling for outputs. Tried with BigDecimals, and was worse.. I formatted, but its heavy for performances / memory, especially for a game like this.
-
