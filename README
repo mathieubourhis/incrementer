@@ -72,21 +72,30 @@ I'll smooth up the visual a bit, add the +1 resource mechanics and adjust the fo
  * 3.2
 I'll update the front now, to have a nice visual of what's been done until now.
 
+ * 3.3
+ I also need manual clicking on resources.
+
 Incoming
+--------
 - Grouping the resources by Produced resource (with some nice css)
 - Hiding everything except what's buildable and what resource is produced (hide or change style, idk)
 - Save / load
-- Learning about hash code.
 - Removing every specific classes and keeping only "Building", "BuildingType", "Resource", "ResourceType".
 - Having distinct bas values and increments / resources in buildings. 
 - Having a distinct framework to initialize elements / formulas.
 - Do something with that calculator. delete or something.
-- Adding manual (clickable) resources. Maybe immdiately over the labels "food", and stuff. Buff a lot the costs in order to promote clicking.
+- Buff a lot the costs in order to promote clicking.
 - Adding onHover on images to resize them (up), and onClick to resize them (back to normal), and them back up 
 	(cause we're still onHover) but do the operation over time to allow the user to feel how the button is organic. :p
 - The todos in code.
 - Parsing this file in a web component to see the update notes.
 
+ToLearn
+-------
+-- how to encrypt saves
+- Learning about hash code.
+
 Issues
+------
 - Weird thing, the loss of precision for doubles is quite troubling for outputs. Tried with BigDecimals, and was worse.. I formatted, but its heavy for performances / memory, especially for a game like this.
 

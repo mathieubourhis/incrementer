@@ -65,6 +65,10 @@ public class Built implements Serializable {
 		}
 	}
 
+	public void incrementOne(ResourceType resourceType) {
+		findResourceByType(resourceType).manualIncrement();
+	}
+
 	/**
 	 * Returns a formatted quantity of resources
 	 * 

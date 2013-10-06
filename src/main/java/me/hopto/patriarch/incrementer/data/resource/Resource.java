@@ -96,4 +96,8 @@ public abstract class Resource implements Serializable {
 	public ResourceType getType() {
 		return type;
 	}
+
+	public void manualIncrement() {
+		quantity++;
+	}
 }

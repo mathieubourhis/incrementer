@@ -30,7 +30,7 @@ public class Incrementer extends WebPage {
 	private Built built;
 	long hasSlept;
 
-	private List<Component> components;
+	private List<Component> componentsToRefresh;
 
 	public Incrementer(final PageParameters parameters) {
 
@@ -42,14 +42,10 @@ public class Incrementer extends WebPage {
 		}
 
 		built = new Built();
+		componentsToRefresh = new ArrayList<Component>();
 
-		components = new ArrayList<Component>();
 		for (ResourceType resourceType : ResourceType.values()) {
-			ResourceLabel resourceLabel = new ResourceLabel(resourceType.name()
-					+ "Quantity", built, resourceType);
-			resourceLabel.setOutputMarkupId(true);
-			components.add(resourceLabel);
-			add(resourceLabel);
+			addResource(built, resourceType);
 		}
 
 		for (BuildingType buildingType : BuildingType.values()) {
@@ -69,7 +65,7 @@ public class Incrementer extends WebPage {
 			@Override
 			protected void onTimer(AjaxRequestTarget target) {
 				built.incrementAll(0.01d);
-				for (Component component : components) {
+				for (Component component : componentsToRefresh) {
 					target.add(component);
 				}
 			}
@@ -105,11 +101,31 @@ public class Incrementer extends WebPage {
 				} else if (hasSlept % 600 == 400) {
 					built.levelUp(BuildingType.LumberJack);
 				}
-				for (Component component : components) {
+				for (Component component : componentsToRefresh) {
 					target.add(component);
 				}
 			}
 		});
+	}
+
+	private void addResource(final Built built, final ResourceType resourceType) {
+		Image image = new Image(resourceType.name(),
+				getBuildingImage(resourceType.name()));
+		image.setOutputMarkupId(true);
+		image.add(new AjaxEventBehavior("onclick") {
+			private static final long serialVersionUID = 7136318411468165625L;
+
+			protected void onEvent(AjaxRequestTarget target) {
+				built.incrementOne(resourceType);
+			}
+		});
+		add(image);
+
+		ResourceLabel resourceLabel = new ResourceLabel(resourceType.name()
+				+ "Quantity", built, resourceType);
+		resourceLabel.setOutputMarkupId(true);
+		componentsToRefresh.add(resourceLabel);
+		add(resourceLabel);
 	}
 
 	private void addBuilding(final Built built, final BuildingType buildingType) {
@@ -128,14 +144,14 @@ public class Incrementer extends WebPage {
 				built, buildingType));
 		level.setOutputMarkupId(true);
 		add(level);
-		components.add(level);
+		componentsToRefresh.add(level);
 		for (ResourceType resourceType : ResourceType.values()) {
 			Label label = new Label(buildingType.name() + resourceType.name()
 					+ "Cost", new ResourceModel(built, resourceType,
 					buildingType));
 			label.setOutputMarkupId(true);
 			add(label);
-			components.add(label);
+			componentsToRefresh.add(label);
 		}
 	}
 
