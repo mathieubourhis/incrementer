@@ -107,3 +107,4 @@ ToLearn
 -------
 - how to encrypt saves
 - Learning about hash code.
+- how to configure jetty-maven-plugin, which doesn't work.. at all... even after a few hours on the matter. damn...
