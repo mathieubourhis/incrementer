@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import me.hopto.patriarch.incrementer.data.resource.ResourceType;
 
-import org.assertj.core.util.VisibleForTesting;
-
 public final class FormulaWrapper implements Serializable {
 	private static final long serialVersionUID = 811466630726523721L;
 
@@ -46,12 +44,10 @@ public final class FormulaWrapper implements Serializable {
 	}
 
 	// TODO not sure if usefull..
-	@VisibleForTesting
 	public ResourceType getResourceType() {
 		return resourceType;
 	}
 
-	@VisibleForTesting
 	public ResourceType getFormula() {
 		return resourceType;
 	}

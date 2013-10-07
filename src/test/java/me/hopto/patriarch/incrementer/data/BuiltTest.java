@@ -27,7 +27,9 @@ public class BuiltTest {
 
 	@Before
 	public void setup() {
-		logger.debug("[BEGIN] " + name.getMethodName());
+		if (logger.isDebugEnabled()) {
+			logger.debug("[BEGIN] " + name.getMethodName());
+		}
 		built = new Built();
 	}
 
