@@ -11,4 +11,9 @@ public class DebugConf implements Serializable {
 	public boolean autoClickStatus;
 	public boolean autoBuyStatus;
 	public boolean debugEnabled;
+	
+	public DebugConf(boolean autoBuyStatus, boolean autoClickStatus) {
+		this.autoBuyStatus =  autoBuyStatus;
+		this.autoClickStatus =  autoClickStatus;
+	}
 }

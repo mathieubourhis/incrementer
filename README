@@ -49,16 +49,23 @@ https://code.google.com/p/incrementer/wiki/GettingStarted
 
 = WhatsNew =
 ------------
+== Chapter 5. ==
+----------------
+|| 0.050 ||
+I need to be able to build a Debugging bar without detailed markup coding in the page.
+|| 0.05x ||
+Goal : I'll need to be able to look at my front-end code without throwing up.
+
 == Chapter 4. ==
 ----------------
 || 0.043 ||
 I need to add debugging tools (auto clickers and a debugging mode ON/OFF), maybe play a little with models.
 || 0.042 ||
 I need to make it more fluid as time goes.
-|| 0.040 ||
-Let's add some class about cost holding and handling. I want to have different costs and formulas for each buildings.
 || 0.041 ||
 The game starts to take some time to play, i need a comprehensive auto mode, for science.
+|| 0.040 ||
+Let's add some class about cost holding and handling. I want to have different costs and formulas for each buildings.
 || 0.04x ||
 Goal : Now is time to do some logic about formula handling (and values)
 

@@ -12,6 +12,7 @@ import me.hopto.patriarch.incrementer.web.debug.AutoBuyModel;
 import me.hopto.patriarch.incrementer.web.debug.AutoClickModel;
 import me.hopto.patriarch.incrementer.web.debug.DebugConf;
 import me.hopto.patriarch.incrementer.web.debug.DebugEnabledModel;
+import me.hopto.patriarch.incrementer.web.debug.DebugPanel;
 import me.hopto.patriarch.incrementer.web.debug.FoodAutoClickModel;
 import me.hopto.patriarch.incrementer.web.debug.MetalAutoClickModel;
 import me.hopto.patriarch.incrementer.web.debug.ToolAutoClickModel;
@@ -29,6 +30,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.image.resource.DefaultButtonImageResource;
 import org.apache.wicket.markup.html.panel.EmptyPanel;
+import org.apache.wicket.model.Model;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
 import org.apache.wicket.request.resource.IResource;
 import org.apache.wicket.request.resource.ResourceReference;
@@ -47,20 +49,10 @@ public class Incrementer extends WebPage {
 	private WebMarkupContainer debugContainer;
 
 	public Incrementer(final PageParameters parameters) {
-
 		super(parameters);
-		if (getApplication().getDebugSettings().isDevelopmentUtilitiesEnabled()) {
-			add(new DebugBar("dev"));
-		} else {
-			add(new EmptyPanel("dev").setVisible(false));
-		}
-
 		built = new Built();
+		debugConf = new DebugConf(true, true);
 		componentsToRefresh = new ArrayList<Component>();
-		debugConf = new DebugConf();
-		debugConf.debugEnabled = true;
-		debugConf.autoBuyStatus = true;
-		debugConf.autoClickStatus = true;
 		componentsToRefreshInDebugMode = new ArrayList<Component>();
 
 		for (ResourceType resourceType : ResourceType.values()) {
@@ -86,7 +78,15 @@ public class Incrementer extends WebPage {
 			}
 		});
 
-		addDebugPanel();
+		if (getApplication().getDebugSettings().isDevelopmentUtilitiesEnabled()) {
+			add(new DebugBar("dev"));
+			add(new DebugPanel("debugPanel", new Model<DebugConf>(debugConf)));
+		} else {
+			add(new EmptyPanel("dev").setVisible(false));
+			add(new EmptyPanel("debugPanel").setVisible(false));
+		}
+		
+//		addDebugPanel();
 		automatic();
 	}
 

@@ -1,25 +1,9 @@
+@CHARSET "ISO-8859-1";
+
 img {
 	width: 80px;
 	height: 15px;
 }
-
-.rightButton, .leftButton {
-	width: 25px;
-	height: 15px;
-}
-
-.rightButton {
-	float:right;
-	padding-right:10px;
-}
-
-.leftButton  {
-	float:left;
-	padding-left:10px;
-}
-
-
-
 
 .buildings, .resources {
 	display: table;
@@ -30,33 +14,15 @@ img {
 	/* border-collapse:separate;*/
 }
 
-.buildingeven {
-	background-color: #ccc;
-}
-
-.buildingodd {
-	background-color: #ccc;
-}
-
-.buildingtitle {
-	background-color: #ccc;
-}
-
-.resourcerow {
-	background-color: #ccc;
-}
-
 .buildingeven, .buildingodd, .buildingtitle, .resourcerow {
+	background-color: #ccc;
 	display: table-row;
 	width: auto;
 }
 
-.button, .resource, .centeredTextCell, .level {
-	float: left; /*fix for  buggy browsers*/
+.button, .resource, .level {
+	float: left; 
 	display: table-column;
 	width: 100px;
 }
 
-.centeredTextCell {
-	text-align:center;
-}
