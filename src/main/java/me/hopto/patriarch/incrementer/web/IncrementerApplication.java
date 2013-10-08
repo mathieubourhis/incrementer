@@ -29,6 +29,7 @@ public class IncrementerApplication extends WebApplication {
 		// So i can either remove it (even in deployment mode)
 		// Seriously I really dont care about it.
 		getDebugSettings().setAjaxDebugModeEnabled(false);
+		// getDebugSettings().setDevelopmentUtilitiesEnabled(false);
 
 		// Or I can up level of info to WARN/ERROR/FATAL in my log4j.
 		// Its really the amount of info that bugs me. I refresh a lot the page.

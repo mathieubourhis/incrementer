@@ -8,15 +8,8 @@ import me.hopto.patriarch.incrementer.data.building.BuildingType;
 import me.hopto.patriarch.incrementer.data.resource.ResourceType;
 import me.hopto.patriarch.incrementer.web.components.resource.ResourceLabel;
 import me.hopto.patriarch.incrementer.web.components.resource.ResourceModel;
-import me.hopto.patriarch.incrementer.web.debug.AutoBuyModel;
-import me.hopto.patriarch.incrementer.web.debug.AutoClickModel;
 import me.hopto.patriarch.incrementer.web.debug.DebugConf;
-import me.hopto.patriarch.incrementer.web.debug.DebugEnabledModel;
 import me.hopto.patriarch.incrementer.web.debug.DebugPanel;
-import me.hopto.patriarch.incrementer.web.debug.FoodAutoClickModel;
-import me.hopto.patriarch.incrementer.web.debug.MetalAutoClickModel;
-import me.hopto.patriarch.incrementer.web.debug.ToolAutoClickModel;
-import me.hopto.patriarch.incrementer.web.debug.WoodAutoClickModel;
 import me.hopto.patriarch.incrementer.web.level.LevelModel;
 
 import org.apache.wicket.Component;
@@ -24,7 +17,6 @@ import org.apache.wicket.ajax.AbstractAjaxTimerBehavior;
 import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.devutils.debugbar.DebugBar;
-import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
@@ -44,16 +36,17 @@ public class Incrementer extends WebPage {
 	DebugConf debugConf;
 
 	private List<Component> componentsToRefresh;
-	private List<Component> componentsToRefreshInDebugMode;
 
-	private WebMarkupContainer debugContainer;
+	// private List<Component> componentsToRefreshInDebugMode;
+
+	// private WebMarkupContainer debugContainer;
 
 	public Incrementer(final PageParameters parameters) {
 		super(parameters);
 		built = new Built();
 		debugConf = new DebugConf(true, true);
 		componentsToRefresh = new ArrayList<Component>();
-		componentsToRefreshInDebugMode = new ArrayList<Component>();
+		// componentsToRefreshInDebugMode = new ArrayList<Component>();
 
 		for (ResourceType resourceType : ResourceType.values()) {
 			addResource(built, resourceType);
@@ -85,8 +78,8 @@ public class Incrementer extends WebPage {
 			add(new EmptyPanel("dev").setVisible(false));
 			add(new EmptyPanel("debugPanel").setVisible(false));
 		}
-		
-//		addDebugPanel();
+
+		// addDebugPanel();
 		automatic();
 	}
 
@@ -204,163 +197,5 @@ public class Incrementer extends WebPage {
 				return new DefaultButtonImageResource(label);
 			}
 		};
-	}
-
-	// FIXME yes i actually throwed up writing all this..
-	private void addDebugPanel() {
-		debugContainer = new WebMarkupContainer("myDebugPanel",
-				new DebugEnabledModel(debugConf));
-		for (ResourceType resourceType : ResourceType.values()) {
-			Image imageMinus = new Image(resourceType.name() + "Minus",
-					getBuildingImage("-"));
-			imageMinus.setOutputMarkupId(true);
-			imageMinus.add(new AjaxEventBehavior("onclick") {
-				private static final long serialVersionUID = 7136318411468165625L;
-
-				// FIXME BEUURK
-				protected void onEvent(AjaxRequestTarget target) {
-					String id = this.getComponent().getId();
-					if ("FoodMinus".equals(id) && debugConf.foodAutoClick > 0) {
-						debugConf.foodAutoClick--;
-					} else if ("WoodMinus".equals(id)
-							&& debugConf.woodAutoClick > 0) {
-						debugConf.woodAutoClick--;
-					} else if ("MetalMinus".equals(id)
-							&& debugConf.metalAutoClick > 0) {
-						debugConf.metalAutoClick--;
-					} else if ("ToolMinus".equals(id)
-							&& debugConf.toolAutoClick > 0) {
-						debugConf.toolAutoClick--;
-					}
-				}
-			});
-			debugContainer.add(imageMinus);
-
-			Image imagePlus = new Image(resourceType.name() + "Plus",
-					getBuildingImage("+"));
-			imagePlus.setOutputMarkupId(true);
-			imagePlus.add(new AjaxEventBehavior("onclick") {
-				private static final long serialVersionUID = 7136318411468165625L;
-
-				protected void onEvent(AjaxRequestTarget target) {
-					String id = this.getComponent().getId();
-					if ("FoodPlus".equals(id)) {
-						debugConf.foodAutoClick++;
-					} else if ("WoodPlus".equals(id)) {
-						debugConf.woodAutoClick++;
-					} else if ("MetalPlus".equals(id)) {
-						debugConf.metalAutoClick++;
-					} else if ("ToolPlus".equals(id)) {
-						debugConf.toolAutoClick++;
-					}
-				}
-			});
-			debugContainer.add(imagePlus);
-			// TODO Add a model here
-			// Label autoClickQuantity = new Label(resourceType.name()
-			// + "AutoClick");
-			// autoClickQuantity.setOutputMarkupId(true);
-			// debugContainer.add(autoClickQuantity);
-			// componentsToRefreshInDebugMode.add(autoClickQuantity);
-		}
-
-		// TODO Add a model here
-		Label foodAutoClick = new Label("FoodAutoClick",
-				new FoodAutoClickModel(debugConf));
-		foodAutoClick.setOutputMarkupId(true);
-		debugContainer.add(foodAutoClick);
-		componentsToRefreshInDebugMode.add(foodAutoClick);
-
-		Label woodAutoClick = new Label("WoodAutoClick",
-				new WoodAutoClickModel(debugConf));
-		woodAutoClick.setOutputMarkupId(true);
-		debugContainer.add(woodAutoClick);
-		componentsToRefreshInDebugMode.add(woodAutoClick);
-
-		Label metalAutoClick = new Label("MetalAutoClick",
-				new MetalAutoClickModel(debugConf));
-		metalAutoClick.setOutputMarkupId(true);
-		debugContainer.add(metalAutoClick);
-		componentsToRefreshInDebugMode.add(metalAutoClick);
-
-		Label toolAutoClick = new Label("ToolAutoClick",
-				new ToolAutoClickModel(debugConf));
-		toolAutoClick.setOutputMarkupId(true);
-		debugContainer.add(toolAutoClick);
-		componentsToRefreshInDebugMode.add(toolAutoClick);
-
-		Image autoClickOn = new Image("AutoClickOn", getBuildingImage("On"));
-		autoClickOn.setOutputMarkupId(true);
-		autoClickOn.add(new AjaxEventBehavior("onclick") {
-			private static final long serialVersionUID = 7136318411468165625L;
-
-			protected void onEvent(AjaxRequestTarget target) {
-				debugConf.autoClickStatus = true;
-			}
-		});
-		debugContainer.add(autoClickOn);
-
-		Image autoClickOff = new Image("AutoClickOff", getBuildingImage("Off"));
-		autoClickOff.setOutputMarkupId(true);
-		autoClickOff.add(new AjaxEventBehavior("onclick") {
-			private static final long serialVersionUID = 7136318411468165625L;
-
-			protected void onEvent(AjaxRequestTarget target) {
-				debugConf.autoClickStatus = false;
-			}
-		});
-		debugContainer.add(autoClickOff);
-
-		Image autoBuyOn = new Image("AutoBuyOn", getBuildingImage("On"));
-		autoBuyOn.setOutputMarkupId(true);
-		autoBuyOn.add(new AjaxEventBehavior("onclick") {
-			private static final long serialVersionUID = 7136318411468165625L;
-
-			protected void onEvent(AjaxRequestTarget target) {
-				debugConf.autoBuyStatus = true;
-			}
-		});
-		debugContainer.add(autoBuyOn);
-
-		Image autoBuyOff = new Image("AutoBuyOff", getBuildingImage("Off"));
-		autoBuyOff.setOutputMarkupId(true);
-		autoBuyOff.add(new AjaxEventBehavior("onclick") {
-			private static final long serialVersionUID = 7136318411468165625L;
-
-			protected void onEvent(AjaxRequestTarget target) {
-				debugConf.autoBuyStatus = false;
-			}
-		});
-		debugContainer.add(autoBuyOff);
-
-		Label autoClickStatus = new Label("AutoClickStatus",
-				new AutoClickModel(debugConf));
-		autoClickStatus.setOutputMarkupId(true);
-		debugContainer.add(autoClickStatus);
-		componentsToRefreshInDebugMode.add(autoClickStatus);
-
-		Label autoBuyStatus = new Label("AutoBuyStatus", new AutoBuyModel(
-				debugConf));
-		autoBuyStatus.setOutputMarkupId(true);
-		debugContainer.add(autoBuyStatus);
-		componentsToRefreshInDebugMode.add(autoBuyStatus);
-
-		debugContainer.add(new AbstractAjaxTimerBehavior(Duration
-				.milliseconds(200.0d)) {
-			private static final long serialVersionUID = 1100349890208440665L;
-
-			/**
-			 * @see org.apache.wicket.ajax.AbstractAjaxTimerBehavior#onTimer(org.apache.wicket.ajax.AjaxRequestTarget)
-			 */
-			@Override
-			protected void onTimer(AjaxRequestTarget target) {
-				if (debugContainer.isVisible()) {
-					for (Component component : componentsToRefreshInDebugMode) {
-						target.add(component);
-					}
-				}
-			}
-		});
-		add(debugContainer);
 	}
 }
