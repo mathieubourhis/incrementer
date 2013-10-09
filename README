@@ -39,6 +39,7 @@ https://code.google.com/p/incrementer/wiki/GettingStarted
  the button is organic. :p
  * The TODOs in code.
  * Parsing this file in a web component to see the update notes.
+ * I need to simplify the debug component model handling, and making it easier to read. 
 
 = WhatsToLearnNext =
 --------------------
@@ -50,7 +51,9 @@ https://code.google.com/p/incrementer/wiki/GettingStarted
 = WhatsNew =
 ------------
 == Chapter 5. ==
-----------------
+---------------- 
+|| 0.051 || 
+I need to be able not to handle manually the content of the DebugPanel (each resources may change).
 || 0.050 ||
 I need to be able to build a Debugging bar without detailed markup coding in the page.
 || 0.05x ||
