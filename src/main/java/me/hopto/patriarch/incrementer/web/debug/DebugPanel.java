@@ -1,16 +1,12 @@
 package me.hopto.patriarch.incrementer.web.debug;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import me.hopto.patriarch.incrementer.data.resource.ResourceType;
 import me.hopto.patriarch.incrementer.web.debug.model.DebugList;
 import me.hopto.patriarch.incrementer.web.debug.model.DebugParam;
-import me.hopto.patriarch.incrementer.web.debug.model.ModeDebugParam;
-import me.hopto.patriarch.incrementer.web.debug.model.QuantityDebugParam;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
@@ -32,7 +28,6 @@ import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.RefreshingView;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.request.resource.IResource;
 import org.apache.wicket.request.resource.JavaScriptResourceReference;
@@ -51,9 +46,7 @@ public class DebugPanel extends Panel {
 	private ResourceReference minusImage;
 	private ResourceReference plusImage;
 	private List<Component> componentsToRefreshInDebugMode;
-	private List<IModel<DebugParam>> params;
-
-	private final RefreshingView<DebugParam> testRefreshingepeatableAction;
+	private DebugList params;
 
 	public DebugPanel(String id, final IModel<DebugConf> debugConf) {
 		super(id, debugConf);
@@ -84,8 +77,6 @@ public class DebugPanel extends Panel {
         params = new DebugList();
 		final WebMarkupContainer aTag = new WebMarkupContainer("aTag" );
 		aTag.setOutputMarkupId(true);
-		testRefreshingepeatableAction = testRefreshingepeatableAction();
-		aTag.add(testRefreshingepeatableAction);
 		aTag.add(testRepeatable(params));
 		add(aTag);
 		
@@ -101,11 +92,19 @@ public class DebugPanel extends Panel {
 //				componentsToRefreshInDebugMode.clear();
 //				getModelObject().add(new Object());
 //	            removeAll();
+
 				if (this.getComponent().isVisible()) {
 					for (Component component : componentsToRefreshInDebugMode) {
 						target.add(component);
 					}
-				}
+				}			
+
+				
+//				target.prependJavaScript(
+//						String.format(
+//						"var item=document.createElement('%s');item.id='%s';"+
+//						"Wicket.$('%s').insertBefore(item, Wicket.$('%s'));",
+//						"tr","action", "repeatingAction", "action"));
 				
 //				Iterator<Component> debugPanel = testRefreshingepeatableAction.iterator();
 //				while (debugPanel.hasNext()) {
@@ -131,122 +130,6 @@ public class DebugPanel extends Panel {
 		});
 
 
-	}
-
-	
-
-	private RefreshingView<DebugParam> testRefreshingepeatableAction() {        
-		RefreshingView<DebugParam> repeatingssAction = new RefreshingView<DebugParam>("repeatingAction") {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected Iterator<IModel<DebugParam>> getItemModels() {
-				return params.iterator();
-			}
-
-			@Override
-			protected void populateItem(Item<DebugParam> item) {
-
-
-				final DebugParam modelObject = item.getModelObject();
-				
-				// FIXME, is there a way to do it via model ?
-//				Image less = new Image("less", new Model<DebugParam>(modelObject));
-//				less.setImageResourceReference(getBuildingImage(modelObject.getLessTitle());
-				Image less = new Image("less", getBuildingImage(modelObject.getLessTitle()));
-//				less.setOutputMarkupId(true);
-				less.add(new AjaxEventBehavior("onclick") {
-					private static final long serialVersionUID = 7136318411468165625L;
-
-					protected void onEvent(AjaxRequestTarget target) {
-						modelObject.less();
-					}
-				});
-				item.add(less);
-
-				Image more = new Image("more", getBuildingImage(modelObject.getMoreTitle()));
-//				more.setOutputMarkupId(true);
-				more.add(new AjaxEventBehavior("onclick") {
-					private static final long serialVersionUID = 7136318411468165625L;
-
-					protected void onEvent(AjaxRequestTarget target) {
-						modelObject.more();
-					}
-				});
-				item.add(more);
-
-				// FIXME Model ? LoadableDetachableModel ? No Model ? Other Model ? Findout
-				Label value = new Label("action", new Model<String>(modelObject.toString()));
-//				item.add(new Label("action", item.getModel()));
-//				item.add(new Label("action", new LoadableDetachableModel<String>(item.getModelObject().toString()) {
-//					private static final long serialVersionUID = 1L;
-//					@Override
-//					protected String load() {
-//						return this.getObject();
-//					}
-//				}));
-				value.setMarkupId("action"+modelObject.getTitle());
-				value.setOutputMarkupId(true);
-				item.add(value);
-				componentsToRefreshInDebugMode.add(value);
-				
-			}
-		};
-		return repeatingssAction;
-	}
-	
-	
-	private Component testRepeatableAction(List<IModel<DebugParam>> params) {
-		ListView<IModel<DebugParam>> repeatingAction = new ListView<IModel<DebugParam>>("repeatingAction", params) {
-			private static final long serialVersionUID = -5704982492677831512L;
-
-			@Override
-			protected void populateItem(ListItem<IModel<DebugParam>> item) {
-
-				final DebugParam modelObject = item.getModelObject().getObject();
-				
-				// FIXME, is there a way to do it via model ?
-//				Image less = new Image("less", new Model<DebugParam>(modelObject));
-//				less.setImageResourceReference(getBuildingImage(modelObject.getLessTitle());
-				Image less = new Image("less", getBuildingImage(modelObject.getLessTitle()));
-//				less.setOutputMarkupId(true);
-				less.add(new AjaxEventBehavior("onclick") {
-					private static final long serialVersionUID = 7136318411468165625L;
-
-					protected void onEvent(AjaxRequestTarget target) {
-						modelObject.less();
-					}
-				});
-				item.add(less);
-
-				Image more = new Image("more", getBuildingImage(modelObject.getMoreTitle()));
-//				more.setOutputMarkupId(true);
-				more.add(new AjaxEventBehavior("onclick") {
-					private static final long serialVersionUID = 7136318411468165625L;
-
-					protected void onEvent(AjaxRequestTarget target) {
-						modelObject.more();
-					}
-				});
-				item.add(more);
-
-				// FIXME Model ? LoadableDetachableModel ? No Model ? Other Model ? Findout
-				Label value = new Label("action", new Model<String>(modelObject.toString()));
-//				item.add(new Label("action", item.getModel()));
-//				item.add(new Label("action", new LoadableDetachableModel<String>(item.getModelObject().toString()) {
-//					private static final long serialVersionUID = 1L;
-//					@Override
-//					protected String load() {
-//						return this.getObject();
-//					}
-//				}));
-
-				value.setOutputMarkupId(true);
-//				item.add(value);
-				componentsToRefreshInDebugMode.add(value);
-			}
-		};
-		return repeatingAction;
 	}
 
 	private Component testRepeatable(List<IModel<DebugParam>> params) {
@@ -497,4 +380,126 @@ public class DebugPanel extends Panel {
 			}
 		};
 	}
+	
+
+@Deprecated
+	private RefreshingView<DebugParam> testRefreshingepeatableAction() {        
+		RefreshingView<DebugParam> repeatingssAction = new RefreshingView<DebugParam>("repeatingAction") {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected Iterator<IModel<DebugParam>> getItemModels() {
+				return params.iterator();
+			}
+
+			@Override
+			protected void populateItem(Item<DebugParam> item) {
+
+
+				final DebugParam modelObject = item.getModelObject();
+				
+				// FIXME, is there a way to do it via model ?
+//				Image less = new Image("less", new Model<DebugParam>(modelObject));
+//				less.setImageResourceReference(getBuildingImage(modelObject.getLessTitle());
+				Image less = new Image("less", getBuildingImage(modelObject.getLessTitle()));
+//				less.setOutputMarkupId(true);
+				less.add(new AjaxEventBehavior("onclick") {
+					private static final long serialVersionUID = 7136318411468165625L;
+
+					protected void onEvent(AjaxRequestTarget target) {
+						modelObject.less();
+					}
+				});
+				item.add(less);
+
+				Image more = new Image("more", getBuildingImage(modelObject.getMoreTitle()));
+//				more.setOutputMarkupId(true);
+				more.add(new AjaxEventBehavior("onclick") {
+					private static final long serialVersionUID = 7136318411468165625L;
+
+					protected void onEvent(AjaxRequestTarget target) {
+						modelObject.more();
+					}
+				});
+				item.add(more);
+
+				// FIXME Model ? LoadableDetachableModel ? No Model ? Other Model ? Findout
+				Label value = new Label("action", new Model<String>(modelObject.toString()));
+//				item.add(new Label("action", item.getModel()));
+//				item.add(new Label("action", new LoadableDetachableModel<String>(item.getModelObject().toString()) {
+//					private static final long serialVersionUID = 1L;
+//					@Override
+//					protected String load() {
+//						return this.getObject();
+//					}
+//				}));
+				value.setMarkupId("action"+modelObject.getTitle());
+				value.setOutputMarkupId(true);
+				value.setOutputMarkupPlaceholderTag(true);
+				//value.setRenderBodyOnly(true);
+				item.add(value);
+				componentsToRefreshInDebugMode.add(value);
+				
+			}
+		};
+		return repeatingssAction;
+	}
+	
+	@Deprecated
+	private ListView<IModel<DebugParam>> testRepeatableAction(List<IModel<DebugParam>> params) {
+		ListView<IModel<DebugParam>> repeatingAction = new ListView<IModel<DebugParam>>("repeatingAction", params) {
+			private static final long serialVersionUID = -5704982492677831512L;
+
+			@Override
+			protected void populateItem(ListItem<IModel<DebugParam>> item) {
+
+				final DebugParam modelObject = item.getModelObject().getObject();
+				
+				// FIXME, is there a way to do it via model ?
+//				Image less = new Image("less", new Model<DebugParam>(modelObject));
+//				less.setImageResourceReference(getBuildingImage(modelObject.getLessTitle());
+				Image less = new Image("less", getBuildingImage(modelObject.getLessTitle()));
+//				less.setOutputMarkupId(true);
+				less.add(new AjaxEventBehavior("onclick") {
+					private static final long serialVersionUID = 7136318411468165625L;
+
+					protected void onEvent(AjaxRequestTarget target) {
+						modelObject.less();
+					}
+				});
+				item.add(less);
+
+				Image more = new Image("more", getBuildingImage(modelObject.getMoreTitle()));
+//				more.setOutputMarkupId(true);
+				more.add(new AjaxEventBehavior("onclick") {
+					private static final long serialVersionUID = 7136318411468165625L;
+
+					protected void onEvent(AjaxRequestTarget target) {
+						modelObject.more();
+					}
+				});
+				item.add(more);
+
+				// FIXME Model ? LoadableDetachableModel ? No Model ? Other Model ? Findout
+				Label value = new Label("action", new Model<String>(modelObject.toString()));
+//				item.add(new Label("action", item.getModel()));
+//				item.add(new Label("action", new LoadableDetachableModel<String>(item.getModelObject().toString()) {
+//					private static final long serialVersionUID = 1L;
+//					@Override
+//					protected String load() {
+//						return this.getObject();
+//					}
+//				}));
+
+				value.setMarkupId("action"+modelObject.getTitle());
+				value.setOutputMarkupId(true);
+				value.setOutputMarkupPlaceholderTag(true);
+				item.add(value);
+				componentsToRefreshInDebugMode.add(value);
+			}
+		};
+		repeatingAction.setReuseItems(true);
+		return repeatingAction;
+	}
+
 }
