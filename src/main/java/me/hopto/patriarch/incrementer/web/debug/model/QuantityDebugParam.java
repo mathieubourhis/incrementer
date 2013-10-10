@@ -2,11 +2,11 @@ package me.hopto.patriarch.incrementer.web.debug.model;
 
 public class QuantityDebugParam implements DebugParam<Integer> {
 	private static final long serialVersionUID = -613586970847900362L;
-	
+
 	String title;
 	Integer value;
-	
-	public QuantityDebugParam (String title, Integer value) {
+
+	public QuantityDebugParam(String title, Integer value) {
 		this.title = title;
 		this.value = value;
 	}
@@ -15,18 +15,23 @@ public class QuantityDebugParam implements DebugParam<Integer> {
 	public String getTitle() {
 		return title;
 	}
+
 	@Override
-	public Integer getValue(){
+	public Integer getValue() {
 		return value;
-		
+
 	}
+
 	@Override
-	public void less(){
-		value--;
-		
+	public void less() {
+		if (value > 0) {
+			value--;
+		}
+
 	}
+
 	@Override
-	public void more(){
+	public void more() {
 		value++;
 	}
 
@@ -37,11 +42,11 @@ public class QuantityDebugParam implements DebugParam<Integer> {
 
 	@Override
 	public String getLessTitle() {
-		return "-";		
+		return "-";
 	}
 
 	@Override
 	public String getMoreTitle() {
-		return "+";		
+		return "+";
 	}
 }

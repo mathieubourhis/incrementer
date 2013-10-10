@@ -37,11 +37,11 @@ public class ModeDebugParam implements DebugParam<Boolean> {
 	
 	@Override
 	public String getLessTitle() {
-		return "On";		
+		return "Off";		
 	}
 
 	@Override
 	public String getMoreTitle() {
-		return "Off";		
+		return "On";		
 	}
 }
