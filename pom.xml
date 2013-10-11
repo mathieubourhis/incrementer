@@ -1,25 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<properties>
-		<global.incrementer.version>0.053</global.incrementer.version>
-		<global.mockito.version>1.9.5</global.mockito.version>
-		<global.assertj.version>1.4.0</global.assertj.version>
-		<global.guava.version>11.0.1</global.junit.version>
-		<global.slf4j.version>1.6.4</global.junit.version>
-		<global.log4j.version>1.2.16</global.junit.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-	</properties>
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.hopto.patriarch</groupId>
 	<artifactId>incrementer-parent</artifactId>
-	<version>${global.incrementer.version}</version>
+	<version>0.053</version>
 	<packaging>pom</packaging>
 	<name>incrementer-parent</name>
 	<description>Incrementer's parent project</description>
 	<url>https://code.google.com/p/incrementer/</url>
-
-
+	
+	<properties>
+		<global.mockito.version>1.9.5</global.mockito.version>
+		<global.assertj.version>1.4.0</global.assertj.version>
+		<global.junit.version>4.11</global.junit.version>
+		<global.guava.version>11.0.1</global.guava.version>
+		<global.slf4j.version>1.6.4</global.slf4j.version>
+		<global.log4j.version>1.2.16</global.log4j.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
 	<modules>
 		<module>incrementer</module>
