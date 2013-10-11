@@ -96,6 +96,13 @@
 
 
 	<dependencies>
+		<!-- The Game -->
+		<dependency>
+			<groupId>me.hopto.patriarch</groupId>
+			<artifactId>incrementer</artifactId>
+			<version>0.053</version>
+		</dependency>
+	
 		<!-- WICKET -->
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
