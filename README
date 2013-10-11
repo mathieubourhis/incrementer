@@ -51,6 +51,8 @@ https://code.google.com/p/incrementer/wiki/GettingStarted
 ------------
 == Chapter 5. ==
 ---------------- 
+|| 0.053 || 
+I need to split my project in two halves, one for the game, one for the web impl.
 || 0.052 || 
 I need a code formater. Eclipse needs hints on how I'd rather format it.
 || 0.051 || 
