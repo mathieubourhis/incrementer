@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+</head>
+<body>
+ <wicket:panel>
+  <div wicket:id="resourcesTable" class="resources">
+   <div class="resourcerow">
+    <div class="resource"><span class="centeredTextCell">Food</span></div>
+    <div class="resource"><span class="centeredTextCell">Wood</span></div>
+    <div class="resource"><span class="centeredTextCell">Metal</span></div>
+    <div class="resource"><span class="centeredTextCell">Tool</span></div>
+    <div class="resource"><span class="centeredTextCell">AutoClick</span></div>
+    <div class="resource"><span class="centeredTextCell">AutoBuy</span></div>
+  </div>
+
+   <div wicket:id="resourcerowAction" class="resourcerow">
+    <div class="resource"><img class="leftButton" wicket:id="lessFood" /><span wicket:id="actionFood" class="centeredTextCell">[FoodAutoClick]</span><img class="rightButton" wicket:id="moreFood" /></div>
+    <div class="resource"><img class="leftButton" wicket:id="lessWood" /><span wicket:id="actionWood" class="centeredTextCell">[WoodAutoClick]</span><img class="rightButton" wicket:id="moreWood" /></div>
+    <div class="resource"><img class="leftButton" wicket:id="lessMetal" /><span wicket:id="actionMetal" class="centeredTextCell">[MetalAutoClick]</span><img class="rightButton" wicket:id="moreMetal" /></div>
+    <div class="resource"><img class="leftButton" wicket:id="lessTool" /><span wicket:id="actionTool" class="centeredTextCell">[ToolAutoClick]</span><img class="rightButton" wicket:id="moreTool" /></div>
+    <div class="resource"><img class="leftButton" wicket:id="lessAutoClick" /><span wicket:id="actionAutoClick" class="centeredTextCell">[AutoClickStatus]</span><img class="rightButton" wicket:id="moreAutoClick" /></div>
+    <div class="resource"><img class="leftButton" wicket:id="lessAutoBuy" /><span wicket:id="actionAutoBuy" class="centeredTextCell">[AutoBuyStatus]</span><img class="rightButton" wicket:id="moreAutoBuy" /></div>
+  </div>
+  </div>
+ </wicket:panel>
+</body>
+</html>
