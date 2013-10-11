@@ -5,7 +5,7 @@ import me.hopto.patriarch.incrementer.data.building.BuildingType;
 
 public class GameThread extends Thread {
 
-	private Built built;
+	private Built	built;
 
 	public GameThread() {
 		built = new Built();

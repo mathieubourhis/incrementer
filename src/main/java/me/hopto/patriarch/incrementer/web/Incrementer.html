@@ -3,143 +3,131 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Incrementer</title>
-<link rel="stylesheet" type="text/css" href="styles/main.css" />
-<link rel="shortcut icon" href="img/favicon.ico" >
+<!-- <link rel="stylesheet" type="text/css" href="styles/main.css" /> -->
+<link rel="shortcut icon" href="img/favicon.ico">
 <!-- <link rel="icon" type="image/png" href="img/incrementer.png"> -->
 </head>
 <body>
-	<span wicket:id="dev">[DebugBar]</span>
-	<br /> 
-	
-	<div class="resources">
-		<div class="resourcerow">
-			<div class="resource"><img wicket:id="Food"/></div><div class="resource"><span wicket:id="FoodQuantity">[FoodQuantity]</span></div>
-			<div class="resource"><img wicket:id="Wood"/></div><div class="resource"><span wicket:id="WoodQuantity">[WoodQuantity]</span></div>
-		</div>
-		<div class="resourcerow">
-			<div class="resource"><img wicket:id="Metal"/></div><div class="resource"><span wicket:id="MetalQuantity">[MetalQuantity]</span></div>
-			<div class="resource"><img wicket:id="Tool"/></div><div class="resource"><span wicket:id="ToolQuantity">[ToolQuantity]</span></div>
-		</div>
-	</div>
+ <span wicket:id="dev">[DebugBar]</span>
+ <br />
 
-	<div class="buildings">
-		<div class="buildingtitle">
-			<div class="button">Building</div>
-			<div class="cost">
-				<div class="level">Level</div>
-				<div class="resource">Food Cost</div>
-				<div class="resource">Wood Cost</div>
-				<div class="resource">Metal Cost</div>
-				<div class="resource">Tool Cost</div>
-			</div>
-		</div>
+ <div class="resources">
+  <div class="resourcerow">
+   <div class="resource"><img wicket:id="Food" /></div>
+   <div class="resource"><span wicket:id="FoodQuantity">[FoodQuantity]</span></div>
+   <div class="resource"><img wicket:id="Wood" /></div>
+   <div class="resource"><span wicket:id="WoodQuantity">[WoodQuantity]</span></div>
+ </div>
+  <div class="resourcerow">
+   <div class="resource"><img wicket:id="Metal" /></div>
+   <div class="resource"><span wicket:id="MetalQuantity">[MetalQuantity]</span></div>
+   <div class="resource"><img wicket:id="Tool" /></div>
+   <div class="resource"><span wicket:id="ToolQuantity">[ToolQuantity]</span></div>
+ </div>
+ </div>
 
-
-		<div class="buildingeven">
-			<div class="button">
-				<img wicket:id="BerryPicker" />
-			</div>
-			<div class="cost">
-				<div class="level"><span wicket:id="BerryPickerLevel">[BerryPickerLevel]</span></div>
-				<div class="resource"><span wicket:id="BerryPickerFoodCost">[BerryPickerFoodCost]</span></div>
-				<div class="resource"><span wicket:id="BerryPickerWoodCost">[BerryPickerWoodCost]</span></div>
-				<div class="resource"><span wicket:id="BerryPickerMetalCost">[BerryPickerMetalCost]</span></div>
-				<div class="resource"><span wicket:id="BerryPickerToolCost">[BerryPickerToolCost]</span></div>
-			</div>
-		</div>
+ <div class="buildings">
+  <div class="buildingtitle">
+   <div class="button">Building</div>
+   <div class="cost">
+    <div class="level">Level</div>
+    <div class="resource">Food Cost</div>
+    <div class="resource">Wood Cost</div>
+    <div class="resource">Metal Cost</div>
+    <div class="resource">Tool Cost</div>
+  </div>
+ </div>
 
 
-		<div class="buildingodd">
-			<div class="button">
-				<img wicket:id="FisherMan" />
-			</div>
-			<div class="cost">
-				<div class="level"><span wicket:id="FisherManLevel">[FisherManLevel]</span></div>
-				<div class="resource"><span wicket:id="FisherManFoodCost">[FisherManFoodCost]</span></div>
-				<div class="resource"><span wicket:id="FisherManWoodCost">[FisherManWoodCost]</span></div>
-				<div class="resource"><span wicket:id="FisherManMetalCost">[FisherManMetalCost]</span></div>
-				<div class="resource"><span wicket:id="FisherManToolCost">[FisherManToolCost]</span></div>
-			</div>
-		</div>
-		<div class="buildingeven">
-			<div class="button">
-				<img wicket:id="WoodGatherer" />
-			</div>
-			<div class="cost">
-				<div class="level"><span wicket:id="WoodGathererLevel">[WoodGathererLevel]</span></div>
-				<div class="resource"><span wicket:id="WoodGathererFoodCost">[WoodGathererFoodCost]</span></div>
-				<div class="resource"><span wicket:id="WoodGathererWoodCost">[WoodGathererWoodCost]</span></div>
-				<div class="resource"><span wicket:id="WoodGathererMetalCost">[WoodGathererMetalCost]</span></div>
-				<div class="resource"><span wicket:id="WoodGathererToolCost">[WoodGathererToolCost]</span></div>
-			</div>
-		</div>
+  <div class="buildingeven">
+   <div class="button"><img wicket:id="BerryPicker" /></div>
+   <div class="cost">
+    <div class="level"><span wicket:id="BerryPickerLevel">[BerryPickerLevel]</span></div>
+    <div class="resource"><span wicket:id="BerryPickerFoodCost">[BerryPickerFoodCost]</span></div>
+    <div class="resource"><span wicket:id="BerryPickerWoodCost">[BerryPickerWoodCost]</span></div>
+    <div class="resource"><span wicket:id="BerryPickerMetalCost">[BerryPickerMetalCost]</span></div>
+    <div class="resource"><span wicket:id="BerryPickerToolCost">[BerryPickerToolCost]</span></div>
+  </div>
+ </div>
 
-		<div class="buildingodd">
-			<div class="button">
-				<img wicket:id="LumberJack" />
-			</div>
-			<div class="cost">
-				<div class="level"><span wicket:id="LumberJackLevel">[LumberJackLevel]</span></div>
-				<div class="resource"><span wicket:id="LumberJackFoodCost">[LumberJackFoodCost]</span></div>
-				<div class="resource"><span wicket:id="LumberJackWoodCost">[LumberJackWoodCost]</span></div>
-				<div class="resource"><span wicket:id="LumberJackMetalCost">[LumberJackMetalCost]</span></div>
-				<div class="resource"><span wicket:id="LumberJackToolCost">[LumberJackToolCost]</span></div>
-			</div>
-		</div>
 
-		<div class="buildingeven">
-			<div class="button">
-				<img wicket:id="MetalDigger" />
-			</div>
-			<div class="cost">
-				<div class="level"><span wicket:id="MetalDiggerLevel">[MetalDiggerLevel]</span></div>
-				<div class="resource"><span wicket:id="MetalDiggerFoodCost">[MetalDiggerFoodCost]</span></div>
-				<div class="resource"><span wicket:id="MetalDiggerWoodCost">[MetalDiggerWoodCost]</span></div>
-				<div class="resource"><span wicket:id="MetalDiggerMetalCost">[MetalDiggerMetalCost]</span></div>
-				<div class="resource"><span wicket:id="MetalDiggerToolCost">[MetalDiggerToolCost]</span></div>
-			</div>
-		</div>
+  <div class="buildingodd">
+   <div class="button"><img wicket:id="FisherMan" /></div>
+   <div class="cost">
+    <div class="level"><span wicket:id="FisherManLevel">[FisherManLevel]</span></div>
+    <div class="resource"><span wicket:id="FisherManFoodCost">[FisherManFoodCost]</span></div>
+    <div class="resource"><span wicket:id="FisherManWoodCost">[FisherManWoodCost]</span></div>
+    <div class="resource"><span wicket:id="FisherManMetalCost">[FisherManMetalCost]</span></div>
+    <div class="resource"><span wicket:id="FisherManToolCost">[FisherManToolCost]</span></div>
+  </div>
+ </div>
+  <div class="buildingeven">
+   <div class="button"><img wicket:id="WoodGatherer" /></div>
+   <div class="cost">
+    <div class="level"><span wicket:id="WoodGathererLevel">[WoodGathererLevel]</span></div>
+    <div class="resource"><span wicket:id="WoodGathererFoodCost">[WoodGathererFoodCost]</span></div>
+    <div class="resource"><span wicket:id="WoodGathererWoodCost">[WoodGathererWoodCost]</span></div>
+    <div class="resource"><span wicket:id="WoodGathererMetalCost">[WoodGathererMetalCost]</span></div>
+    <div class="resource"><span wicket:id="WoodGathererToolCost">[WoodGathererToolCost]</span></div>
+  </div>
+ </div>
 
-		<div class="buildingodd">
-			<div class="button">
-				<img wicket:id="Miner" />
-			</div>
-			<div class="cost">
-				<div class="level"><span wicket:id="MinerLevel">[MinerLevel]</span></div>
-				<div class="resource"><span wicket:id="MinerFoodCost">[MinerFoodCost]</span></div>
-				<div class="resource"><span wicket:id="MinerWoodCost">[MinerWoodCost]</span></div>
-				<div class="resource"><span wicket:id="MinerMetalCost">[MinerMetalCost]</span></div>
-				<div class="resource"><span wicket:id="MinerToolCost">[MinerToolCost]</span></div>
-			</div>
-		</div>
-	
-		<div class="buildingeven">
-			<div class="button">
-				<img wicket:id="Inventor" />
-			</div>
-			<div class="cost">
-				<div class="level"><span wicket:id="InventorLevel">[InventorLevel]</span></div>
-				<div class="resource"><span wicket:id="InventorFoodCost">[InventorFoodCost]</span></div>
-				<div class="resource"><span wicket:id="InventorWoodCost">[InventorWoodCost]</span></div>
-				<div class="resource"><span wicket:id="InventorMetalCost">[InventorMetalCost]</span></div>
-				<div class="resource"><span wicket:id="InventorToolCost">[InventorToolCost]</span></div>
-			</div>
-		</div>
+  <div class="buildingodd">
+   <div class="button"><img wicket:id="LumberJack" /></div>
+   <div class="cost">
+    <div class="level"><span wicket:id="LumberJackLevel">[LumberJackLevel]</span></div>
+    <div class="resource"><span wicket:id="LumberJackFoodCost">[LumberJackFoodCost]</span></div>
+    <div class="resource"><span wicket:id="LumberJackWoodCost">[LumberJackWoodCost]</span></div>
+    <div class="resource"><span wicket:id="LumberJackMetalCost">[LumberJackMetalCost]</span></div>
+    <div class="resource"><span wicket:id="LumberJackToolCost">[LumberJackToolCost]</span></div>
+  </div>
+ </div>
 
-		<div class="buildingodd">
-			<div class="button">
-				<img wicket:id="BlackSmith" />
-			</div>
-			<div class="cost">
-				<div class="level"><span wicket:id="BlackSmithLevel">[BlackSmithLevel]</span></div>
-				<div class="resource"><span wicket:id="BlackSmithFoodCost">[BlackSmithFoodCost]</span></div>
-				<div class="resource"><span wicket:id="BlackSmithWoodCost">[BlackSmithWoodCost]</span></div>
-				<div class="resource"><span wicket:id="BlackSmithMetalCost">[BlackSmithMetalCost]</span></div>
-				<div class="resource"><span wicket:id="BlackSmithToolCost">[BlackSmithToolCost]</span></div>
-			</div>
-		</div>
-		
-	</div>
-	<span wicket:id="debugPanel">[DebugPanel]</span>
+  <div class="buildingeven">
+   <div class="button"><img wicket:id="MetalDigger" /></div>
+   <div class="cost">
+    <div class="level"><span wicket:id="MetalDiggerLevel">[MetalDiggerLevel]</span></div>
+    <div class="resource"><span wicket:id="MetalDiggerFoodCost">[MetalDiggerFoodCost]</span></div>
+    <div class="resource"><span wicket:id="MetalDiggerWoodCost">[MetalDiggerWoodCost]</span></div>
+    <div class="resource"><span wicket:id="MetalDiggerMetalCost">[MetalDiggerMetalCost]</span></div>
+    <div class="resource"><span wicket:id="MetalDiggerToolCost">[MetalDiggerToolCost]</span></div>
+  </div>
+ </div>
+
+  <div class="buildingodd">
+   <div class="button"><img wicket:id="Miner" /></div>
+   <div class="cost">
+    <div class="level"><span wicket:id="MinerLevel">[MinerLevel]</span></div>
+    <div class="resource"><span wicket:id="MinerFoodCost">[MinerFoodCost]</span></div>
+    <div class="resource"><span wicket:id="MinerWoodCost">[MinerWoodCost]</span></div>
+    <div class="resource"><span wicket:id="MinerMetalCost">[MinerMetalCost]</span></div>
+    <div class="resource"><span wicket:id="MinerToolCost">[MinerToolCost]</span></div>
+  </div>
+ </div>
+
+  <div class="buildingeven">
+   <div class="button"><img wicket:id="Inventor" /></div>
+   <div class="cost">
+    <div class="level"><span wicket:id="InventorLevel">[InventorLevel]</span></div>
+    <div class="resource"><span wicket:id="InventorFoodCost">[InventorFoodCost]</span></div>
+    <div class="resource"><span wicket:id="InventorWoodCost">[InventorWoodCost]</span></div>
+    <div class="resource"><span wicket:id="InventorMetalCost">[InventorMetalCost]</span></div>
+    <div class="resource"><span wicket:id="InventorToolCost">[InventorToolCost]</span></div>
+  </div>
+ </div>
+
+  <div class="buildingodd">
+   <div class="button"><img wicket:id="BlackSmith" /></div>
+   <div class="cost">
+    <div class="level"><span wicket:id="BlackSmithLevel">[BlackSmithLevel]</span></div>
+    <div class="resource"><span wicket:id="BlackSmithFoodCost">[BlackSmithFoodCost]</span></div>
+    <div class="resource"><span wicket:id="BlackSmithWoodCost">[BlackSmithWoodCost]</span></div>
+    <div class="resource"><span wicket:id="BlackSmithMetalCost">[BlackSmithMetalCost]</span></div>
+    <div class="resource"><span wicket:id="BlackSmithToolCost">[BlackSmithToolCost]</span></div>
+  </div>
+ </div>
+
+ </div>
+ <span wicket:id="debugPanel">[DebugPanel]</span>
 </body>
 </html>

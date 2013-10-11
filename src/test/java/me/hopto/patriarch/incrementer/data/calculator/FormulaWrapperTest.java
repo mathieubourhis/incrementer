@@ -2,7 +2,6 @@ package me.hopto.patriarch.incrementer.data.calculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import me.hopto.patriarch.incrementer.data.resource.ResourceType;
-
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
@@ -15,42 +14,37 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class FormulaWrapperTest {
 	@Rule
-	public TestName name = new TestName();
-	private static Logger logger = Logger.getLogger(FormulaWrapperTest.class);
-	private FormulaWrapper formulaWrapper;
-	private int level;
-	private double nextCost;
-	private double globalCost;
-	private double nextIncrement;
-	private double globalIncrement;
+	public TestName					name		= new TestName();
+	private static Logger		logger	= Logger.getLogger(FormulaWrapperTest.class);
+	private FormulaWrapper	formulaWrapper;
+	private int							level;
+	private double					nextCost;
+	private double					globalCost;
+	private double					nextIncrement;
+	private double					globalIncrement;
 
 	@Before
 	public void setup() {
 		logger.debug("[BEGIN] " + name.getMethodName());
 		level = 0;
-		formulaWrapper = new FormulaWrapper(ResourceType.Food, 0.1d, 15.0d,
-				new Formula() {
-					private static final long serialVersionUID = -972193014569969911L;
+		formulaWrapper = new FormulaWrapper(ResourceType.Food, 0.1d, 15.0d, new Formula() {
+			private static final long	serialVersionUID	= -972193014569969911L;
 
-					@Override
-					public double getNextCostForLevel(double baseCost, int level) {
-						return lameHackForRounding(lameHackForRounding(baseCost
-								* (Math.pow(1.15d, level))));
-					}
+			@Override
+			public double getNextCostForLevel(double baseCost, int level) {
+				return lameHackForRounding(lameHackForRounding(baseCost * (Math.pow(1.15d, level))));
+			}
 
-					@Override
-					public double getGlobalCostForLevel(double baseCost,
-							int level) {
-						return lameHackForRounding((baseCost * (Math.pow(1.15D,
-								level) - 1.0d)) / 0.15d);
-					}
+			@Override
+			public double getGlobalCostForLevel(double baseCost, int level) {
+				return lameHackForRounding((baseCost * (Math.pow(1.15D, level) - 1.0d)) / 0.15d);
+			}
 
-					@Override
-					public double getGlobalIncrementForLevel(
-							double baseIncrement, int level) {
-						return lameHackForRounding(baseIncrement * level);
-					}
-				});
+			@Override
+			public double getGlobalIncrementForLevel(double baseIncrement, int level) {
+				return lameHackForRounding(baseIncrement * level);
+			}
+		});
 	}
 
 	@After

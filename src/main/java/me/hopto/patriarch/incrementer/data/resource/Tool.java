@@ -10,7 +10,7 @@ public class Tool extends Resource {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2688702428894968224L;
+	private static final long	serialVersionUID	= 2688702428894968224L;
 
 	/** Default constructor for serialization. */
 	public Tool() {
@@ -20,10 +20,8 @@ public class Tool extends Resource {
 	/**
 	 * Init this resource stack.
 	 * 
-	 * @param startingQuantity
-	 *            starting quantity of resource.
-	 * @param incrementBy
-	 *            starting increment by this the quantity of resource.
+	 * @param startingQuantity starting quantity of resource.
+	 * @param incrementBy starting increment by this the quantity of resource.
 	 * @see {@link Resource#Resource}
 	 */
 	public Tool(double startingQuantity, double startingIncrement) {

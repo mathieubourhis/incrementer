@@ -1,7 +1,6 @@
 package me.hopto.patriarch.incrementer.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 import org.apache.log4j.Logger;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.After;
@@ -17,9 +16,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 public class IncrementerTest {
 
 	@Rule
-	public TestName name = new TestName();
-	private static Logger logger = Logger.getLogger(IncrementerTest.class);
-	private static WicketTester wicketTester;
+	public TestName							name		= new TestName();
+	private static Logger				logger	= Logger.getLogger(IncrementerTest.class);
+	private static WicketTester	wicketTester;
 
 	@BeforeClass
 	public static void setUpBeforeClass() {
@@ -45,8 +44,7 @@ public class IncrementerTest {
 	public void testIncrementer() {
 		wicketTester.assertRenderedPage(Incrementer.class);
 		logger.debug(wicketTester.getApplication().getHomePage());
-		assertThat(wicketTester.getTagByWicketId("BerryPickerLevel").getValue())
-				.isNotNull().isEqualTo("0");
+		assertThat(wicketTester.getTagByWicketId("BerryPickerLevel").getValue()).isNotNull().isEqualTo("0");
 
 		// wicketTester.startPanel(SomePanel.class);
 		// DropDownChoice dChoice = (DropDownChoice)

@@ -1,26 +1,23 @@
 @CHARSET "ISO-8859-1";
 
-
-
-.rightButton, .leftButton {
+.rightButton,.leftButton {
 	width: 25px;
 	height: 15px;
 }
 
 .rightButton {
-	float:right;
-	padding-right:10px;
+	float: right;
+	padding-right: 10px;
 }
 
-.leftButton  {
-	float:left;
-	padding-left:10px;
+.leftButton {
+	float: left;
+	padding-left: 10px;
 }
 
 .centeredTextCell {
-	text-align:center;
+	text-align: center;
 }
-
 
 .resourcerow {
 	background-color: #ccc;
@@ -28,8 +25,8 @@
 	width: auto;
 }
 
-.resource, .centeredTextCell {
-	float: left; 
+.resource,.centeredTextCell {
+	float: left;
 	display: table-column;
 	width: 100px;
 }
@@ -37,7 +34,7 @@
 .resources {
 	display: table;
 	width: 610px;
-/* 	background-color: #eee; */
+	/* 	background-color: #eee; */
 	border: 1px solid #666666;
 	border-spacing: 5px; /*cellspacing:poor IE support for  this*/
 	/* border-collapse:separate;*/

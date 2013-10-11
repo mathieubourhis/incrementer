@@ -3,21 +3,20 @@ package me.hopto.patriarch.incrementer.data.building;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
 import me.hopto.patriarch.incrementer.data.calculator.FormulaWrapper;
 import me.hopto.patriarch.incrementer.data.resource.ResourceType;
 
 public abstract class Building implements Serializable {
-	private static final long serialVersionUID = 1931346693501761137L;
+	private static final long					serialVersionUID	= 1931346693501761137L;
 
 	/** Current level of building. */
-	int level;
+	int																level;
 
 	/** the kind of building this is. */
-	BuildingType buildingType;
+	BuildingType											buildingType;
 
 	/** All formulas for this building. */
-	Map<ResourceType, FormulaWrapper> formulas;
+	Map<ResourceType, FormulaWrapper>	formulas;
 
 	/** Default constructor for serialization. */
 	// TODO check if default public empty constructor is really needed for
@@ -29,8 +28,7 @@ public abstract class Building implements Serializable {
 	/**
 	 * Init this building's level.
 	 * 
-	 * @param startingLevel
-	 *            starting level of building
+	 * @param startingLevel starting level of building
 	 */
 	public Building(int startingLevel) {
 		this.level = startingLevel;

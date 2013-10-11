@@ -4,8 +4,8 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 
 @SuppressWarnings("rawtypes")
 public class DebugParamModel extends AbstractReadOnlyModel<String> {
-	private static final long serialVersionUID = -2757209162337804931L;
-	private DebugParam debugParam;
+	private static final long	serialVersionUID	= -2757209162337804931L;
+	private DebugParam				debugParam;
 
 	public DebugParamModel(DebugParam param) {
 		this.debugParam = param;

@@ -1,10 +1,10 @@
 package me.hopto.patriarch.incrementer.web.debug.model;
 
 public class QuantityDebugParam implements DebugParam<Integer> {
-	private static final long serialVersionUID = -613586970847900362L;
+	private static final long	serialVersionUID	= -613586970847900362L;
 
-	String title;
-	Integer value;
+	String										title;
+	Integer										value;
 
 	public QuantityDebugParam(String title, Integer value) {
 		this.title = title;

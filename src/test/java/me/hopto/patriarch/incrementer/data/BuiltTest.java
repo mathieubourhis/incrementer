@@ -7,7 +7,6 @@ import me.hopto.patriarch.incrementer.data.calculator.FormulaWrapper;
 import me.hopto.patriarch.incrementer.data.calculator.FormulaWrapperTest;
 import me.hopto.patriarch.incrementer.data.resource.Resource;
 import me.hopto.patriarch.incrementer.data.resource.ResourceType;
-
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
@@ -21,9 +20,9 @@ import org.mockito.runners.MockitoJUnitRunner;
 public class BuiltTest {
 
 	@Rule
-	public TestName name = new TestName();
-	private static Logger logger = Logger.getLogger(FormulaWrapperTest.class);
-	private Built built;
+	public TestName				name		= new TestName();
+	private static Logger	logger	= Logger.getLogger(FormulaWrapperTest.class);
+	private Built					built;
 
 	@Before
 	public void setup() {
@@ -55,22 +54,17 @@ public class BuiltTest {
 			int nbResourcesProduced = 0;
 			// Checking if i didn't missput formulas, one by resource
 			for (ResourceType resourceType : ResourceType.values()) {
-				FormulaWrapper formulaWrapper = building
-						.findFormulaForResource(resourceType);
+				FormulaWrapper formulaWrapper = building.findFormulaForResource(resourceType);
 				assertThat(formulaWrapper).isNotNull();
-				assertThat(formulaWrapper.getResourceType()).isEqualTo(
-						resourceType);
+				assertThat(formulaWrapper.getResourceType()).isEqualTo(resourceType);
 				assertThat(formulaWrapper.getFormula()).isNotNull();
-				if (formulaWrapper.getNextIncrement() > 0.0d)
-					nbResourcesProduced++;
+				if (formulaWrapper.getNextIncrement() > 0.0d) nbResourcesProduced++;
 			}
 			// One and only one resource produced by building
 			assertThat(nbResourcesProduced).isEqualTo(1);
-			if (logger.isDebugEnabled())
-				logger.debug(buildingType.name() + " - All Formulas OK");
+			if (logger.isDebugEnabled()) logger.debug(buildingType.name() + " - All Formulas OK");
 		}
-		if (logger.isDebugEnabled())
-			logger.debug("Only one of each Building OK");
+		if (logger.isDebugEnabled()) logger.debug("Only one of each Building OK");
 		// Coupled with the next test, makes sure I only have one of each
 		// resources
 		assertThat(built.resources).hasSize(ResourceType.values().length);
@@ -80,7 +74,6 @@ public class BuiltTest {
 			assertThat(resource).isNotNull();
 		}
 
-		if (logger.isDebugEnabled())
-			logger.debug("Only one of each Resource OK");
+		if (logger.isDebugEnabled()) logger.debug("Only one of each Resource OK");
 	}
 }

@@ -6,7 +6,7 @@ package me.hopto.patriarch.incrementer.data.resource;
  * @see {@link Resource}
  */
 public class Metal extends Resource {
-	private static final long serialVersionUID = 818423470852393251L;
+	private static final long	serialVersionUID	= 818423470852393251L;
 
 	/** Default constructor for serialization. */
 	public Metal() {
@@ -16,10 +16,8 @@ public class Metal extends Resource {
 	/**
 	 * Init this resource stack.
 	 * 
-	 * @param startingQuantity
-	 *            starting quantity of resource.
-	 * @param incrementBy
-	 *            starting increment by this the quantity of resource.
+	 * @param startingQuantity starting quantity of resource.
+	 * @param incrementBy starting increment by this the quantity of resource.
 	 * @see {@link Resource#Resource}
 	 */
 	public Metal(double startingQuantity, double startingIncrement) {

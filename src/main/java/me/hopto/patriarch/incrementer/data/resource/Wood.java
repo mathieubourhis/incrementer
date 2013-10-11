@@ -6,7 +6,7 @@ package me.hopto.patriarch.incrementer.data.resource;
  * @see {@link Resource}
  */
 public class Wood extends Resource {
-	private static final long serialVersionUID = 5837388679197667282L;
+	private static final long	serialVersionUID	= 5837388679197667282L;
 
 	/** Default constructor for serialization. */
 	public Wood() {
@@ -16,10 +16,8 @@ public class Wood extends Resource {
 	/**
 	 * Init this resource stack.
 	 * 
-	 * @param startingQuantity
-	 *            starting quantity of resource.
-	 * @param incrementBy
-	 *            starting increment by this the quantity of resource.
+	 * @param startingQuantity starting quantity of resource.
+	 * @param incrementBy starting increment by this the quantity of resource.
 	 * @see {@link Resource#Resource}
 	 */
 	public Wood(double startingQuantity, double startingIncrement) {

@@ -1,26 +1,23 @@
 package me.hopto.patriarch.incrementer.data.calculator;
 
 import java.io.Serializable;
-
 import me.hopto.patriarch.incrementer.data.resource.ResourceType;
 
 public final class FormulaWrapper implements Serializable {
-	private static final long serialVersionUID = 811466630726523721L;
+	private static final long	serialVersionUID	= 811466630726523721L;
 
 	/** Which resource is concerned. */
-	final ResourceType resourceType;
+	final ResourceType				resourceType;
 
 	/** Base increment of building. */
-	final double baseIncrement;
+	final double							baseIncrement;
 
 	/** Base cost of building. */
-	final double baseCost;
+	final double							baseCost;
 
-	final Formula formula;
+	final Formula							formula;
 
-	public FormulaWrapper(final ResourceType resourceType,
-			final double baseIncrement, final double baseCost,
-			final Formula formula) {
+	public FormulaWrapper(final ResourceType resourceType, final double baseIncrement, final double baseCost, final Formula formula) {
 		this.resourceType = resourceType;
 		this.baseIncrement = baseIncrement;
 		this.baseCost = baseCost;

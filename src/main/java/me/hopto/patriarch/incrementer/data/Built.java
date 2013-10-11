@@ -1,12 +1,10 @@
 package me.hopto.patriarch.incrementer.data;
 
 import static com.google.common.base.Objects.toStringHelper;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
 import me.hopto.patriarch.incrementer.data.building.BerryPicker;
 import me.hopto.patriarch.incrementer.data.building.BlackSmith;
 import me.hopto.patriarch.incrementer.data.building.Building;
@@ -25,19 +23,17 @@ import me.hopto.patriarch.incrementer.data.resource.Resource;
 import me.hopto.patriarch.incrementer.data.resource.ResourceType;
 import me.hopto.patriarch.incrementer.data.resource.Tool;
 import me.hopto.patriarch.incrementer.data.resource.Wood;
-
 import org.apache.log4j.Logger;
-
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
 public class Built implements Serializable {
-	private static final long serialVersionUID = 8766412728828956639L;
-	private static Logger logger = Logger.getLogger(Built.class);
-	IncrementCalculator incrementCalculator;
+	private static final long	serialVersionUID	= 8766412728828956639L;
+	private static Logger			logger						= Logger.getLogger(Built.class);
+	IncrementCalculator				incrementCalculator;
 
-	List<Resource> resources;
-	List<Building> buildings;
+	List<Resource>						resources;
+	List<Building>						buildings;
 
 	public Built() {
 		resources = new ArrayList<Resource>();
@@ -62,8 +58,7 @@ public class Built implements Serializable {
 	public void incrementAll(double ratio) {
 		for (Resource resource : resources) {
 			resource.increment(ratio);
-			if (logger.isDebugEnabled())
-				logger.debug(resource);
+			if (logger.isDebugEnabled()) logger.debug(resource);
 		}
 	}
 
@@ -77,8 +72,7 @@ public class Built implements Serializable {
 	 * @return the formatted quantity of resources
 	 */
 	public String getFormattedResourceQuantity(final ResourceType resourceType) {
-		double quantity = lameHackForRounding(findResourceByType(resourceType)
-				.getQuantity());
+		double quantity = lameHackForRounding(findResourceByType(resourceType).getQuantity());
 		return String.valueOf(quantity);
 		// format("%.2f", quantity);
 	}
@@ -94,8 +88,7 @@ public class Built implements Serializable {
 	 * 
 	 * @return the formatted quantity of resources
 	 */
-	public String getResourceCostForBuilding(final ResourceType resourceType,
-			final BuildingType buildingType) {
+	public String getResourceCostForBuilding(final ResourceType resourceType, final BuildingType buildingType) {
 		Building building = findBuildingByType(buildingType);
 		FormulaWrapper formula = building.findFormulaForResource(resourceType);
 		return String.valueOf(formula.getNextCostForLevel(building.getLevel()));
@@ -113,11 +106,9 @@ public class Built implements Serializable {
 	}
 
 	/**
-	 * Approach by predicates Just be sure not to level up an inexisting
-	 * building. is that even possible ? :p
+	 * Approach by predicates Just be sure not to level up an inexisting building. is that even possible ? :p
 	 * 
-	 * @param buildingType
-	 *            the building to level up
+	 * @param buildingType the building to level up
 	 */
 	public void levelUp(final BuildingType buildingType) {
 		levelUp(findBuildingByType(buildingType));
@@ -126,11 +117,9 @@ public class Built implements Serializable {
 	/**
 	 * Approach by known building.
 	 * 
-	 * Just be sure not to level up an inexisting building. is that even
-	 * possible ? :p
+	 * Just be sure not to level up an inexisting building. is that even possible ? :p
 	 * 
-	 * @param buildingType
-	 *            the building to level up
+	 * @param buildingType the building to level up
 	 */
 	private void levelUp(Building building) {
 		if (incrementCalculator.canBuy(building, resources)) {
@@ -139,15 +128,11 @@ public class Built implements Serializable {
 			incrementCalculator.incrementResources(building, resources);
 
 			if (logger.isInfoEnabled()) {
-				logger.info(new StringBuffer(30).append("Leveling ")
-						.append(building.getType().name()).append(" to ")
-						.append(building.getLevel() + 1).toString());
+				logger.info(new StringBuffer(30).append("Leveling ").append(building.getType().name()).append(" to ").append(building.getLevel() + 1).toString());
 			}
 		} else {
 			if (logger.isInfoEnabled()) {
-				logger.info(new StringBuffer(30).append("Cannot level ")
-						.append(building.getType().name()).append(" to ")
-						.append(building.getLevel() + 1).toString());
+				logger.info(new StringBuffer(30).append("Cannot level ").append(building.getType().name()).append(" to ").append(building.getLevel() + 1).toString());
 			}
 		}
 	}
@@ -157,8 +142,7 @@ public class Built implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return toStringHelper(this).addValue(this.resources)
-				.addValue(this.buildings).toString();
+		return toStringHelper(this).addValue(this.resources).addValue(this.buildings).toString();
 	}
 
 	Resource findResourceByType(final ResourceType resourceType) {

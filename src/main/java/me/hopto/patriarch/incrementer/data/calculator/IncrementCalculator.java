@@ -2,13 +2,12 @@ package me.hopto.patriarch.incrementer.data.calculator;
 
 import java.io.Serializable;
 import java.util.List;
-
 import me.hopto.patriarch.incrementer.data.building.Building;
 import me.hopto.patriarch.incrementer.data.resource.Resource;
 
 // TODO this should be a spring stateless service, gotta add maven or dl libs.
 public class IncrementCalculator implements Serializable {
-	private static final long serialVersionUID = 3567474099928109902L;
+	private static final long	serialVersionUID	= 3567474099928109902L;
 
 	public IncrementCalculator() {
 
@@ -16,16 +15,14 @@ public class IncrementCalculator implements Serializable {
 
 	public void incrementResources(Building building, List<Resource> resources) {
 		for (Resource resource : resources) {
-			FormulaWrapper formula = building.findFormulaForResource(resource
-					.getType());
+			FormulaWrapper formula = building.findFormulaForResource(resource.getType());
 			resource.updateIncrementValue(formula.getNextIncrement());
 		}
 	}
 
 	public void buy(Building building, List<Resource> resources) {
 		for (Resource resource : resources) {
-			FormulaWrapper formula = building.findFormulaForResource(resource
-					.getType());
+			FormulaWrapper formula = building.findFormulaForResource(resource.getType());
 			resource.buy(formula.getNextCostForLevel(building.getLevel()));
 		}
 	}
@@ -38,12 +35,9 @@ public class IncrementCalculator implements Serializable {
 	public boolean canBuy(Building building, List<Resource> resources) {
 		boolean canBuy = true;
 		for (Resource resource : resources) {
-			FormulaWrapper formula = building.findFormulaForResource(resource
-					.getType());
-			canBuy &= formula.getNextCostForLevel(building.getLevel()) <= resource
-					.getQuantity();
-			if (!canBuy)
-				break;
+			FormulaWrapper formula = building.findFormulaForResource(resource.getType());
+			canBuy &= formula.getNextCostForLevel(building.getLevel()) <= resource.getQuantity();
+			if (!canBuy) break;
 		}
 
 		return canBuy;
