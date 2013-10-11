@@ -16,7 +16,8 @@
 		<global.guava.version>11.0.1</global.guava.version>
 		<global.slf4j.version>1.6.4</global.slf4j.version>
 		<global.log4j.version>1.2.16</global.log4j.version>
-		<global.jetty.version>7.6.3.v20120416</global.jetty.version>
+		<global.jetty.version>8.1.13.v20130916</global.jetty.version>
+		<global.servlet-api.version>2.4</global.servlet-api.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -26,40 +27,6 @@
 	</modules>
 
 	<build>
-		<!-- <finalName>incrementer-parent</finalName> -->
-		<!-- <resources> -->
-		<!-- <resource> -->
-		<!-- <filtering>false</filtering> -->
-		<!-- <directory>src/main/resources</directory> -->
-		<!-- </resource> -->
-		<!-- <resource> -->
-		<!-- <filtering>false</filtering> -->
-		<!-- <directory>src/main/java</directory> -->
-		<!-- <includes> -->
-		<!-- <include>**</include> -->
-		<!-- </includes> -->
-		<!-- <excludes> -->
-		<!-- <exclude>**/*.java</exclude> -->
-		<!-- </excludes> -->
-		<!-- </resource> -->
-		<!-- </resources> -->
-		<!-- <testResources> -->
-		<!-- <testResource> -->
-		<!-- <filtering>false</filtering> -->
-		<!-- <directory>src/test/resources</directory> -->
-		<!-- </testResource> -->
-		<!-- <testResource> -->
-		<!-- <filtering>false</filtering> -->
-		<!-- <directory>src/test/java</directory> -->
-		<!-- <includes> -->
-		<!-- <include>**</include> -->
-		<!-- </includes> -->
-		<!-- <excludes> -->
-		<!-- <exclude>**/*.java</exclude> -->
-		<!-- </excludes> -->
-		<!-- </testResource> -->
-		<!-- </testResources> -->
-
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -86,7 +53,7 @@
 				<plugin>
 					<groupId>org.mortbay.jetty</groupId>
 					<artifactId>jetty-maven-plugin</artifactId>
-					<!-- <version>${global.jetty.version}</version> -->
+					<version>8.1.13.v20130916</version>
 					<configuration>
 						<scanIntervalSeconds>0</scanIntervalSeconds>
 						<webApp>
@@ -176,6 +143,12 @@
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${global.junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${global.servlet-api.version}</version>
 				<scope>test</scope>
 			</dependency>
 			<dependency>
