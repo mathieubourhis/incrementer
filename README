@@ -45,12 +45,13 @@ https://code.google.com/p/incrementer/wiki/GettingStarted
  * how to encrypt saves
  * Learning about hash code.
  * Learning about the correct way to use wicket models. 
- * how to configure jetty-maven-plugin, which doesn't work.. at all... even after a few hours on the matter. damn...
 
 = WhatsNew =
 ------------
 == Chapter 5. ==
 ---------------- 
+|| 0.054 || 
+I need to run the project without eclipse, using only maven.
 || 0.053 || 
 I need to split my project in two halves, one for the game, one for the web impl.
 || 0.052 || 
