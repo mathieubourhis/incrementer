@@ -2,19 +2,21 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.hopto.patriarch</groupId>
 	<artifactId>incrementer</artifactId>
-	<version>0.053</version>
+	<version>${global.incrementer.version}</version>
 	<packaging>jar</packaging>
 	<name>incrementer</name>
 	<description>An incrementer game</description>
 	<url>https://code.google.com/p/incrementer/</url>
 
-	<properties>
-		<mockito.version>1.9.5</mockito.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+	<parent>
+		<groupId>me.hopto.patriarch</groupId>
+		<artifactId>incrementer-parent</artifactId>
+		<version>${global.incrementer.version}</version>
+		<relativePath>..</relativePath>
+	</parent>
 
 	<build>
-		<finalName>Incrementer</finalName>
+		<finalName>incrementer</finalName>
 		<resources>
 			<resource>
 				<filtering>false</filtering>
@@ -71,53 +73,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
-	<dependencies>
-		<!-- MSIC -->
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>11.0.1</version>
-		</dependency>
-
-		<!-- SLF4J LOG4J BINDING -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.6.4</version>
-		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
-		</dependency>
-
-
-		<!-- TESTING DEPENDENCIES -->
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>${mockito.version}</version>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<artifactId>hamcrest-core</artifactId>
-					<groupId>org.hamcrest</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-core</artifactId>
-			<version>1.4.0</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
 </project>
