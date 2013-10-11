@@ -2,16 +2,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.hopto.patriarch</groupId>
 	<artifactId>incrementer</artifactId>
-	<version>0.052</version>
-	<packaging>war</packaging>
+	<version>0.053</version>
+	<packaging>jar</packaging>
 	<name>incrementer</name>
 	<description>An incrementer game</description>
 	<url>https://code.google.com/p/incrementer/</url>
 
 	<properties>
-		<wicket.version>6.11.0</wicket.version>
 		<mockito.version>1.9.5</mockito.version>
-		<jetty.version>7.6.3.v20120416</jetty.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -64,26 +62,6 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>${jetty.version}</version>
-				<configuration>
-					<connectors>
-						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-							<port>8080</port>
-							<maxIdleTime>3600000</maxIdleTime>
-						</connector>
-						<connector implementation="org.eclipse.jetty.server.ssl.SslSocketConnector">
-							<port>8443</port>
-							<maxIdleTime>3600000</maxIdleTime>
-							<keystore>${project.build.directory}/test-classes/keystore</keystore>
-							<password>wicket</password>
-							<keyPassword>wicket</keyPassword>
-						</connector>
-					</connectors>
-				</configuration>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>2.9</version>
@@ -96,26 +74,6 @@
 
 
 	<dependencies>
-		<!-- WICKET -->
-		<dependency>
-			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-core</artifactId>
-			<version>${wicket.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-devutils</artifactId>
-			<version>${wicket.version}</version>
-		</dependency>
-
-		<!-- OPTIONAL DEPENDENCY -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.wicket</groupId> -->
-		<!-- <artifactId>wicket-extensions</artifactId> -->
-		<!-- <version>${wicket.version}</version> -->
-		<!-- </dependency> -->
-
-
 		<!-- MSIC -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -160,18 +118,6 @@
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.4</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty.aggregate</groupId>
-			<artifactId>jetty-all-server</artifactId>
-			<version>${jetty.version}</version>
-			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 </project>
