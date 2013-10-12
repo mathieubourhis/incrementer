@@ -1,8 +1,9 @@
-package me.hopto.patriarch.incrementer.core.calculator;
+package me.hopto.patriarch.incrementer.app.calculator;
 
 import java.io.Serializable;
 import java.util.List;
 import me.hopto.patriarch.incrementer.core.building.Building;
+import me.hopto.patriarch.incrementer.core.formula.FormulaWrapper;
 import me.hopto.patriarch.incrementer.core.resource.Resource;
 
 // TODO this should be a spring stateless service, gotta add maven or dl libs.

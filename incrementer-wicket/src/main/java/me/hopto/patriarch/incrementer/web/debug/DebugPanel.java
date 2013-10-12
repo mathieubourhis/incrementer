@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import me.hopto.patriarch.incrementer.core.Built;
+import me.hopto.patriarch.incrementer.app.data.Built;
 import me.hopto.patriarch.incrementer.core.building.BuildingType;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 import me.hopto.patriarch.incrementer.web.debug.model.DebugList;

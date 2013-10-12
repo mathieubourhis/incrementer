@@ -1,9 +1,8 @@
-package me.hopto.patriarch.incrementer.core.calculator;
+package me.hopto.patriarch.incrementer.app.calculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import me.hopto.patriarch.incrementer.core.calculator.Formula;
-import me.hopto.patriarch.incrementer.core.calculator.FormulaWrapper;
-import me.hopto.patriarch.incrementer.core.resource.ResourceType;
+import me.hopto.patriarch.incrementer.core.formula.Formula;
+import me.hopto.patriarch.incrementer.core.formula.FormulaWrapper;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
@@ -29,7 +28,7 @@ public class FormulaWrapperTest {
 	public void setup() {
 		logger.debug("[BEGIN] " + name.getMethodName());
 		level = 0;
-		formulaWrapper = new FormulaWrapper(ResourceType.Food, 0.1d, 15.0d, new Formula() {
+		formulaWrapper = new FormulaWrapper(0.1d, 15.0d, new Formula() {
 			private static final long	serialVersionUID	= -972193014569969911L;
 
 			@Override

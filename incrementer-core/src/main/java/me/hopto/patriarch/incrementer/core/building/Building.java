@@ -3,9 +3,12 @@ package me.hopto.patriarch.incrementer.core.building;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-import me.hopto.patriarch.incrementer.core.calculator.FormulaWrapper;
+import me.hopto.patriarch.incrementer.core.formula.FormulaWrapper;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 
+/**
+ * Defines a building. Abstractions are package protected for simplicity.
+ */
 public abstract class Building implements Serializable {
 	private static final long					serialVersionUID	= 1931346693501761137L;
 
@@ -18,15 +21,13 @@ public abstract class Building implements Serializable {
 	/** All formulas for this building. */
 	Map<ResourceType, FormulaWrapper>	formulas;
 
-	/** Default constructor for serialization. */
-	// TODO check if default public empty constructor is really needed for
-	// serialization.
+	/** Default constructor (init). */
 	public Building() {
 		this(0);
 	}
 
 	/**
-	 * Init this building's level.
+	 * Init this building's level (load).
 	 * 
 	 * @param startingLevel starting level of building
 	 */
@@ -53,13 +54,33 @@ public abstract class Building implements Serializable {
 		return level;
 	}
 
-	public abstract void addFoodFormula();
+	/**
+	 * Adds formulas for food resource and income calculations.
+	 * 
+	 * @see {@link Building#addFoodFormula}
+	 */
+	abstract void addFoodFormula();
 
-	public abstract void addWoodFormula();
+	/**
+	 * Adds formulas for wood resource and income calculations.
+	 * 
+	 * @see {@link Building#addWoodFormula}
+	 */
+	abstract void addWoodFormula();
 
-	public abstract void addMetalFormula();
+	/**
+	 * Adds formulas for Metal resource and income calculations.
+	 * 
+	 * @see {@link Building#addMetalFormula}
+	 */
+	abstract void addMetalFormula();
 
-	public abstract void addToolFormula();
+	/**
+	 * Adds formulas for Tool resource and income calculations.
+	 * 
+	 * @see {@link Building#addToolFormula}
+	 */
+	abstract void addToolFormula();
 
 	/**
 	 * the kind of building this is.
@@ -70,6 +91,12 @@ public abstract class Building implements Serializable {
 		return buildingType;
 	}
 
+	/**
+	 * Finds formulas for a resource.
+	 * 
+	 * @param resourceType the resource to find the formulas of
+	 * @return the found formulas
+	 */
 	public FormulaWrapper findFormulaForResource(ResourceType resourceType) {
 		return formulas.get(resourceType);
 	}

@@ -1,4 +1,4 @@
-package me.hopto.patriarch.incrementer.game;
+package me.hopto.patriarch.incrementer.app.game;
 
 import me.hopto.patriarch.incrementer.core.building.BuildingType;
 

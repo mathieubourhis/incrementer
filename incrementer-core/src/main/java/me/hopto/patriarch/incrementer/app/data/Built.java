@@ -1,10 +1,11 @@
-package me.hopto.patriarch.incrementer.core;
+package me.hopto.patriarch.incrementer.app.data;
 
 import static com.google.common.base.Objects.toStringHelper;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import me.hopto.patriarch.incrementer.app.calculator.IncrementCalculator;
 import me.hopto.patriarch.incrementer.core.building.BerryPicker;
 import me.hopto.patriarch.incrementer.core.building.BlackSmith;
 import me.hopto.patriarch.incrementer.core.building.Building;
@@ -15,8 +16,7 @@ import me.hopto.patriarch.incrementer.core.building.LumberJack;
 import me.hopto.patriarch.incrementer.core.building.MetalDigger;
 import me.hopto.patriarch.incrementer.core.building.Miner;
 import me.hopto.patriarch.incrementer.core.building.WoodGatherer;
-import me.hopto.patriarch.incrementer.core.calculator.FormulaWrapper;
-import me.hopto.patriarch.incrementer.core.calculator.IncrementCalculator;
+import me.hopto.patriarch.incrementer.core.formula.FormulaWrapper;
 import me.hopto.patriarch.incrementer.core.resource.Food;
 import me.hopto.patriarch.incrementer.core.resource.Metal;
 import me.hopto.patriarch.incrementer.core.resource.Resource;

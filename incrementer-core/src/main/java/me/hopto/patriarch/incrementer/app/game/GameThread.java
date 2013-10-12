@@ -1,6 +1,6 @@
-package me.hopto.patriarch.incrementer.game;
+package me.hopto.patriarch.incrementer.app.game;
 
-import me.hopto.patriarch.incrementer.core.Built;
+import me.hopto.patriarch.incrementer.app.data.Built;
 import me.hopto.patriarch.incrementer.core.building.BuildingType;
 
 public class GameThread extends Thread {

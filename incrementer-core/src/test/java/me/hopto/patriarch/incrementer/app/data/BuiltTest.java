@@ -1,10 +1,10 @@
-package me.hopto.patriarch.incrementer.core;
+package me.hopto.patriarch.incrementer.app.data;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import me.hopto.patriarch.incrementer.app.calculator.FormulaWrapperTest;
 import me.hopto.patriarch.incrementer.core.building.Building;
 import me.hopto.patriarch.incrementer.core.building.BuildingType;
-import me.hopto.patriarch.incrementer.core.calculator.FormulaWrapper;
-import me.hopto.patriarch.incrementer.core.calculator.FormulaWrapperTest;
+import me.hopto.patriarch.incrementer.core.formula.FormulaWrapper;
 import me.hopto.patriarch.incrementer.core.resource.Resource;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 import org.apache.log4j.Logger;
@@ -56,8 +56,6 @@ public class BuiltTest {
 			for (ResourceType resourceType : ResourceType.values()) {
 				FormulaWrapper formulaWrapper = building.findFormulaForResource(resourceType);
 				assertThat(formulaWrapper).isNotNull();
-				assertThat(formulaWrapper.getResourceType()).isEqualTo(resourceType);
-				assertThat(formulaWrapper.getFormula()).isNotNull();
 				if (formulaWrapper.getNextIncrement() > 0.0d) nbResourcesProduced++;
 			}
 			// One and only one resource produced by building

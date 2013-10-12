@@ -1,8 +1,9 @@
-package me.hopto.patriarch.incrementer.core.calculator;
+package me.hopto.patriarch.incrementer.core.formula;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+/** Provides initial formulas based on levels and base values. */
 public abstract class Formula implements Serializable {
 	private static final long	serialVersionUID	= 6335699924699243360L;
 
@@ -39,6 +40,12 @@ public abstract class Formula implements Serializable {
 		return 0.0d;
 	}
 
+	/**
+	 * Java primitive double are really imprecise. Even division by 100.00d will be fucked up.
+	 * 
+	 * @param globalCost the amount to round.
+	 * @return the rounded amount.
+	 */
 	protected double lameHackForRounding(double globalCost) {
 		BigDecimal a = BigDecimal.valueOf(globalCost);
 		BigDecimal roundOff = a.setScale(2, BigDecimal.ROUND_HALF_EVEN);

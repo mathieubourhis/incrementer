@@ -2,7 +2,7 @@ package me.hopto.patriarch.incrementer.web;
 
 import java.util.ArrayList;
 import java.util.List;
-import me.hopto.patriarch.incrementer.core.Built;
+import me.hopto.patriarch.incrementer.app.data.Built;
 import me.hopto.patriarch.incrementer.core.building.BuildingType;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 import me.hopto.patriarch.incrementer.web.components.resource.ResourceLabel;

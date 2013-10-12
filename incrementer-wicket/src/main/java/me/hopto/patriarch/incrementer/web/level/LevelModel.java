@@ -1,6 +1,6 @@
 package me.hopto.patriarch.incrementer.web.level;
 
-import me.hopto.patriarch.incrementer.core.Built;
+import me.hopto.patriarch.incrementer.app.data.Built;
 import me.hopto.patriarch.incrementer.core.building.BuildingType;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 
