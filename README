@@ -33,7 +33,6 @@ https://code.google.com/p/incrementer/wiki/GettingStarted
 -------------------
  * Grouping the resources by Produced resource (with some nice CSS)
  * Hiding everything except what's buildable and what resource is produced (hide or change style, IDK)
- * Save / load
  * Adding onHover on images to resize them (up), and onClick to resize them (back to normal), and them 
  back up  (cause we're still onHover) but do the operation over time to allow the user to feel how 
  the button is organic. :p
@@ -42,14 +41,13 @@ https://code.google.com/p/incrementer/wiki/GettingStarted
 
 = WhatsToLearnNext =
 --------------------
- * how to encrypt saves
- * Learning about hash code.
- * Learning about the correct way to use wicket models. 
 
 = WhatsNew =
 ------------
 == Chapter 6. ==
 ---------------- 
+|| 0.061 ||
+I need a viable way to save and load progress
 || 0.06x ||
 Goal : I'll need to be able to save and load my progress.
 
