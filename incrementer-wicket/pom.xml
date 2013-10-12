@@ -2,7 +2,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.hopto.patriarch</groupId>
 	<artifactId>incrementer-wicket</artifactId>
-	<version>0.062</version>
 	<packaging>war</packaging>
 	<name>incrementer-wicket</name>
 	<description>Wicket Implementation for incrementer</description>
@@ -85,12 +84,12 @@
 		<dependency>
 			<groupId>me.hopto.patriarch</groupId>
 			<artifactId>incrementer-core</artifactId>
-			<version>${project.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>me.hopto.patriarch</groupId>
 			<artifactId>incrementer-app</artifactId>
-			<version>${project.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 
 		<!-- WICKET -->

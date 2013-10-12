@@ -52,7 +52,9 @@ public class SaveManagerTest {
 
 		// Assert
 		if (logger.isDebugEnabled()) logger.debug(saveGame);
+		if (logger.isDebugEnabled()) logger.debug(save);
 		if (logger.isDebugEnabled()) logger.debug(loadedGame);
+		if (logger.isDebugEnabled()) logger.debug(VersionProvider.getVersion());
 		assertThat(loadedGame).isEqualTo(saveGame);
 	}
 }

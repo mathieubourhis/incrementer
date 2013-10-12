@@ -2,7 +2,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.hopto.patriarch</groupId>
 	<artifactId>incrementer-core</artifactId>
-	<version>0.062</version>
 	<packaging>jar</packaging>
 	<name>incrementer-core</name>
 	<description>An incrementer game (Core module)</description>
@@ -15,10 +14,6 @@
 		<relativePath>..</relativePath>
 	</parent>
 
-	<!-- TODO -->
-	<!-- Add META-INF (generated) ? -->
-	<!-- Do I need finalName ? -->
-	<!-- Do I Need package-info ? -->
 	<build>
 		<finalName>incrementer-core</finalName>
 		<resources>

@@ -2,7 +2,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.hopto.patriarch</groupId>
 	<artifactId>incrementer-app</artifactId>
-	<version>0.062</version>
 	<packaging>jar</packaging>
 	<name>incrementer-app</name>
 	<description>An incrementer game (App Module)</description>
@@ -15,18 +14,15 @@
 		<relativePath>..</relativePath>
 	</parent>
 
-	<!-- TODO -->
-	<!-- Add META-INF (generated) ? -->
-	<!-- Do I need finalName ? -->
 	<build>
 		<finalName>incrementer-app</finalName>
 		<resources>
 			<resource>
-				<filtering>false</filtering>
+				<filtering>true</filtering>
 				<directory>src/main/resources</directory>
 			</resource>
 			<resource>
-				<filtering>false</filtering>
+				<filtering>true</filtering>
 				<directory>src/main/java</directory>
 				<includes>
 					<include>**</include>
@@ -38,11 +34,11 @@
 		</resources>
 		<testResources>
 			<testResource>
-				<filtering>false</filtering>
+				<filtering>true</filtering>
 				<directory>src/test/resources</directory>
 			</testResource>
 			<testResource>
-				<filtering>false</filtering>
+				<filtering>true</filtering>
 				<directory>src/test/java</directory>
 				<includes>
 					<include>**</include>
@@ -69,7 +65,7 @@
 		<dependency>
 			<groupId>me.hopto.patriarch</groupId>
 			<artifactId>incrementer-core</artifactId>
-			<version>${project.version}</version>
+			<version>${project.parent.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>biz.source_code</groupId>

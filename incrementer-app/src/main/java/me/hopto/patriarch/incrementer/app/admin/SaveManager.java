@@ -25,15 +25,16 @@ public class SaveManager {
 	}
 
 	public Save gameToMap(Built game) {
-		Map<String, String> saveParameters = new HashMap<String, String>();
+		Map<String, String> saveResources = new HashMap<String, String>();
 		for (ResourceType resourceType : ResourceType.values()) {
-			saveParameters.put(resourceType.name(), game.getFormattedResourceQuantity(resourceType));
+			saveResources.put(resourceType.name(), game.getFormattedResourceQuantity(resourceType));
 		}
 
+		Map<String, String> saveBuildings = new HashMap<String, String>();
 		for (BuildingType buildingType : BuildingType.values()) {
-			saveParameters.put(buildingType.name(), game.getLevelForBuilding(buildingType));
+			saveBuildings.put(buildingType.name(), game.getLevelForBuilding(buildingType));
 		}
-		return new Save(saveParameters);
+		return new Save("0.062", saveResources, saveBuildings);
 	}
 
 	public String save(Save game) {
