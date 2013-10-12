@@ -45,9 +45,11 @@ https://code.google.com/p/incrementer/wiki/GettingStarted
 = WhatsNew =
 ------------
 == Chapter 6. ==
----------------- 
-|| 0.062 ||
+----------------
+|| 0.063 ||
 I need to make sure I can load an obsolete save file (older version).
+|| 0.062 ||
+I need to find a way to check loading is not corrupted with old save (tests)
 || 0.061 ||
 I need a viable way to save and load progress.
 || 0.06x ||

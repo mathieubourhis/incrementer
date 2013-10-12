@@ -10,7 +10,7 @@
 	<parent>
 		<groupId>me.hopto.patriarch</groupId>
 		<artifactId>incrementer-parent</artifactId>
-		<version>0.062</version>
+		<version>0.063</version>
 		<relativePath>..</relativePath>
 	</parent>
 
