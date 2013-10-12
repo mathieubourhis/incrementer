@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.hopto.patriarch</groupId>
-	<artifactId>incrementer-wicket</artifactId>
+	<artifactId>incrementer-app</artifactId>
 	<version>0.055</version>
-	<packaging>war</packaging>
-	<name>incrementer-wicket</name>
-	<description>Wicket Implementation for incrementer</description>
+	<packaging>jar</packaging>
+	<name>incrementer-app</name>
+	<description>An incrementer game (App Module)</description>
 	<url>https://code.google.com/p/incrementer/</url>
 
 	<parent>
@@ -15,13 +15,11 @@
 		<relativePath>..</relativePath>
 	</parent>
 
-
-	<properties>
-		<wicket.version>6.11.0</wicket.version>
-	</properties>
-	
+	<!-- TODO -->
+	<!-- Add META-INF (generated) ? -->
+	<!-- Do I need finalName ? -->
 	<build>
-		<finalName>incrementer-wicket</finalName>
+		<finalName>incrementer-app</finalName>
 		<resources>
 			<resource>
 				<filtering>false</filtering>
@@ -54,7 +52,6 @@
 				</excludes>
 			</testResource>
 		</testResources>
-
 		<plugins>
 			<plugin>
 				<inherited>true</inherited>
@@ -62,67 +59,17 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<!-- Overrides path -->
-				<configuration>
-					<war>${basedir}/target/incrementer-wicket</war>
-				</configuration>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-eclipse-plugin</artifactId>
-				<configuration>
-					<wtpversion>2.0</wtpversion>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
-
 	<dependencies>
 		<!-- The Game -->
 		<dependency>
 			<groupId>me.hopto.patriarch</groupId>
 			<artifactId>incrementer-core</artifactId>
 			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>me.hopto.patriarch</groupId>
-			<artifactId>incrementer-app</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-
-		<!-- WICKET -->
-		<dependency>
-			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-core</artifactId>
-			<version>${wicket.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-devutils</artifactId>
-			<version>${wicket.version}</version>
-			<scope>compile</scope>
-		</dependency>
-
-		<!-- OPTIONAL DEPENDENCY -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.wicket</groupId> -->
-		<!-- <artifactId>wicket-extensions</artifactId> -->
-		<!-- <version>${wicket.version}</version> -->
-		<!-- <scope>compile</scope> -->
-		<!-- </dependency> -->
-
-		<!-- TESTING DEPENDENCIES -->
-		<dependency>
-			<groupId>org.eclipse.jetty.aggregate</groupId>
-			<artifactId>jetty-all-server</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
 		</dependency>
 	</dependencies>
 </project>

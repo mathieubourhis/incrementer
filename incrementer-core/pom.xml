@@ -5,7 +5,7 @@
 	<version>0.055</version>
 	<packaging>jar</packaging>
 	<name>incrementer-core</name>
-	<description>An incrementer game</description>
+	<description>An incrementer game (Core module)</description>
 	<url>https://code.google.com/p/incrementer/</url>
 
 	<parent>

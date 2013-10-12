@@ -23,6 +23,7 @@
 
 	<modules>
 		<module>incrementer-core</module>
+		<module>incrementer-app</module>
 		<module>incrementer-wicket</module>
 	</modules>
 
