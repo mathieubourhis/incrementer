@@ -4,7 +4,11 @@ import me.hopto.patriarch.incrementer.core.formula.Formula;
 import me.hopto.patriarch.incrementer.core.formula.FormulaWrapper;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 
-/** Will pick wood in the forest, from the ground or from small trees. */
+/**
+ * Will pick wood in the forest, from the ground or from small trees.
+ * 
+ * @see {@link Building}
+ */
 public class WoodGatherer extends Building {
 	private static final long	serialVersionUID	= -5833093484743001743L;
 

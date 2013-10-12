@@ -4,7 +4,11 @@ import me.hopto.patriarch.incrementer.core.formula.Formula;
 import me.hopto.patriarch.incrementer.core.formula.FormulaWrapper;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 
-/** A Berry Picker will pick food very slowly from bushes of trees. */
+/**
+ * A Berry Picker will pick food very slowly from bushes of trees.
+ * 
+ * @see {@link Building}
+ */
 public class BerryPicker extends Building {
 	private static final long	serialVersionUID	= 4038925478742169348L;
 

@@ -4,7 +4,11 @@ import me.hopto.patriarch.incrementer.core.formula.Formula;
 import me.hopto.patriarch.incrementer.core.formula.FormulaWrapper;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 
-/** Will produce better amount of Metal. */
+/**
+ * Will produce better amount of Metal.
+ * 
+ * @see {@link Building}
+ */
 public class Miner extends Building {
 	private static final long	serialVersionUID	= -7600326882064946876L;
 

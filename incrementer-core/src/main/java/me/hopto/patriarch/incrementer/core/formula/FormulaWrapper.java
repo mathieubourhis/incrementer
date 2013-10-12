@@ -3,7 +3,8 @@ package me.hopto.patriarch.incrementer.core.formula;
 import java.io.Serializable;
 
 /**
- * 
+ * Wrapps a formula and base costs and increments.<BR>
+ * TODO I should remove this class. But it might be usefull if I wan't to apply modifiers on increments. To Track.
  */
 public final class FormulaWrapper implements Serializable {
 	private static final long	serialVersionUID	= 811466630726523721L;
@@ -17,6 +18,13 @@ public final class FormulaWrapper implements Serializable {
 	/** The formula to wrap. */
 	final Formula							formula;
 
+	/**
+	 * Wrapps a formula.
+	 * 
+	 * @param baseIncrement the base increment.
+	 * @param baseCost the base cost.
+	 * @param formula the formula.
+	 */
 	public FormulaWrapper(final double baseIncrement, final double baseCost, final Formula formula) {
 		this.baseIncrement = baseIncrement;
 		this.baseCost = baseCost;

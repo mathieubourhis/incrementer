@@ -4,7 +4,11 @@ import me.hopto.patriarch.incrementer.core.formula.Formula;
 import me.hopto.patriarch.incrementer.core.formula.FormulaWrapper;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 
-/** Finds metal in rivers (the same way silver / gold diggers do). */
+/**
+ * Finds metal in rivers (the same way silver / gold diggers do).
+ * 
+ * @see {@link Building}
+ */
 public class MetalDigger extends Building {
 	private static final long	serialVersionUID	= -7600326882064946876L;
 

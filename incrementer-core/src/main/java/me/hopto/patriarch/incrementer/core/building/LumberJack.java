@@ -4,7 +4,11 @@ import me.hopto.patriarch.incrementer.core.formula.Formula;
 import me.hopto.patriarch.incrementer.core.formula.FormulaWrapper;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 
-/** Will produce better amount of wood. */
+/**
+ * Will produce better amount of wood.
+ * 
+ * @see {@link Building}
+ */
 public class LumberJack extends Building {
 	private static final long	serialVersionUID	= 4822841833261117010L;
 

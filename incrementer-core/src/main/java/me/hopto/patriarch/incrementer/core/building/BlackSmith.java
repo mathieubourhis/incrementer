@@ -4,7 +4,11 @@ import me.hopto.patriarch.incrementer.core.formula.Formula;
 import me.hopto.patriarch.incrementer.core.formula.FormulaWrapper;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 
-/** Will mass-produce tools. */
+/**
+ * Will mass-produce tools.
+ * 
+ * @see {@link Building}
+ */
 public class BlackSmith extends Building {
 	private static final long	serialVersionUID	= 2733711938756765142L;
 

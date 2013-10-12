@@ -4,7 +4,11 @@ import me.hopto.patriarch.incrementer.core.formula.Formula;
 import me.hopto.patriarch.incrementer.core.formula.FormulaWrapper;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 
-/** A fisherman will produce better amounts of food. */
+/**
+ * A fisherman will produce better amounts of food.
+ * 
+ * @see {@link Building}
+ */
 public class FisherMan extends Building {
 	private static final long	serialVersionUID	= -3203852755166742102L;
 

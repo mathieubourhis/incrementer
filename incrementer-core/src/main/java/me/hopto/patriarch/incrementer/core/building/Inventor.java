@@ -4,7 +4,11 @@ import me.hopto.patriarch.incrementer.core.formula.Formula;
 import me.hopto.patriarch.incrementer.core.formula.FormulaWrapper;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 
-/** Will invent the first tools. */
+/**
+ * Will invent the first tools.
+ * 
+ * @see {@link Building}
+ */
 public class Inventor extends Building {
 	private static final long	serialVersionUID	= 2733711938756765142L;
 
