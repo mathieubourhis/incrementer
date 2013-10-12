@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.hopto.patriarch</groupId>
 	<artifactId>incrementer-wicket</artifactId>
-	<version>0.061</version>
+	<version>0.062</version>
 	<packaging>war</packaging>
 	<name>incrementer-wicket</name>
 	<description>Wicket Implementation for incrementer</description>
@@ -11,7 +11,7 @@
 	<parent>
 		<groupId>me.hopto.patriarch</groupId>
 		<artifactId>incrementer-parent</artifactId>
-		<version>0.061</version>
+		<version>0.062</version>
 		<relativePath>..</relativePath>
 	</parent>
 

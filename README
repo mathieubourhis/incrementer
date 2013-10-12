@@ -46,8 +46,10 @@ https://code.google.com/p/incrementer/wiki/GettingStarted
 ------------
 == Chapter 6. ==
 ---------------- 
+|| 0.062 ||
+I need to make sure I can load an obsolete save file (older version).
 || 0.061 ||
-I need a viable way to save and load progress
+I need a viable way to save and load progress.
 || 0.06x ||
 Goal : I'll need to be able to save and load my progress.
 

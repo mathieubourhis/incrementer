@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>me.hopto.patriarch</groupId>
 	<artifactId>incrementer-app</artifactId>
-	<version>0.061</version>
+	<version>0.062</version>
 	<packaging>jar</packaging>
 	<name>incrementer-app</name>
 	<description>An incrementer game (App Module)</description>
@@ -11,7 +11,7 @@
 	<parent>
 		<groupId>me.hopto.patriarch</groupId>
 		<artifactId>incrementer-parent</artifactId>
-		<version>0.061</version>
+		<version>0.062</version>
 		<relativePath>..</relativePath>
 	</parent>
 
