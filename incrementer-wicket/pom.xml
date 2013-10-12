@@ -15,10 +15,11 @@
 		<relativePath>..</relativePath>
 	</parent>
 
+
 	<properties>
 		<wicket.version>6.11.0</wicket.version>
 	</properties>
-
+	
 	<build>
 		<finalName>incrementer-wicket</finalName>
 		<resources>
@@ -83,7 +84,7 @@
 		<!-- The Game -->
 		<dependency>
 			<groupId>me.hopto.patriarch</groupId>
-			<artifactId>incrementer</artifactId>
+			<artifactId>incrementer-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
@@ -92,11 +93,13 @@
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-core</artifactId>
 			<version>${wicket.version}</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket-devutils</artifactId>
 			<version>${wicket.version}</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- OPTIONAL DEPENDENCY -->
@@ -104,6 +107,7 @@
 		<!-- <groupId>org.apache.wicket</groupId> -->
 		<!-- <artifactId>wicket-extensions</artifactId> -->
 		<!-- <version>${wicket.version}</version> -->
+		<!-- <scope>compile</scope> -->
 		<!-- </dependency> -->
 
 		<!-- TESTING DEPENDENCIES -->

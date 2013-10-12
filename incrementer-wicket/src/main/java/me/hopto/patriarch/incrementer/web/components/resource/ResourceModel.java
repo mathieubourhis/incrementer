@@ -1,8 +1,8 @@
 package me.hopto.patriarch.incrementer.web.components.resource;
 
-import me.hopto.patriarch.incrementer.data.Built;
-import me.hopto.patriarch.incrementer.data.building.BuildingType;
-import me.hopto.patriarch.incrementer.data.resource.ResourceType;
+import me.hopto.patriarch.incrementer.core.Built;
+import me.hopto.patriarch.incrementer.core.building.BuildingType;
+import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 
 // TODO store ref of items in constructor instead of searching for them

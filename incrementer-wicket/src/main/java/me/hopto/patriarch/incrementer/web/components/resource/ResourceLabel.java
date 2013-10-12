@@ -1,7 +1,7 @@
 package me.hopto.patriarch.incrementer.web.components.resource;
 
-import me.hopto.patriarch.incrementer.data.Built;
-import me.hopto.patriarch.incrementer.data.resource.ResourceType;
+import me.hopto.patriarch.incrementer.core.Built;
+import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 

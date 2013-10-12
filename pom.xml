@@ -22,7 +22,7 @@
 	</properties>
 
 	<modules>
-		<module>incrementer</module>
+		<module>incrementer-core</module>
 		<module>incrementer-wicket</module>
 	</modules>
 
@@ -81,11 +81,20 @@
 			<build>
 				<pluginManagement>
 					<plugins>
+						<!-- Only able to launch goals run-war and run-exploded here. -->
+						<!-- Find out how to tell maven to execute from incrementer-wicket dir. -->
 						<plugin>
 							<groupId>org.mortbay.jetty</groupId>
 							<artifactId>jetty-maven-plugin</artifactId>
 							<configuration>
+								<!-- <webApp> -->
+								<!-- <descriptor>${basedir}/incrementer-wicket/src/main/webapp/WEB-INF/web.xml</descriptor> -->
+								<!-- <tempDirectory>${basedir}/incrementer-wicket/target/tmp</tempDirectory> -->
+								<!-- <baseResource>${basedir}/incrementer-wicket/src/main/webapp</baseResource> -->
+								<!-- </webApp> -->
 								<war>${basedir}/incrementer-wicket/target/incrementer-wicket</war>
+								<!-- <webAppSourceDirectory>${basedir}/incrementer-wicket/src/main/webapp</webAppSourceDirectory> -->
+								<!-- <classesDirectory>${basedir}/incrementer-wicket/target/classes</classesDirectory> -->
 							</configuration>
 						</plugin>
 					</plugins>
@@ -159,8 +168,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
-
 
 	<!-- Global dependencies -->
 	<dependencies>
