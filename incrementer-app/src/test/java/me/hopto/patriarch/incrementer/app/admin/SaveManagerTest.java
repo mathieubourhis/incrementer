@@ -1,6 +1,7 @@
 package me.hopto.patriarch.incrementer.app.admin;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import java.io.IOException;
 import me.hopto.patriarch.incrementer.app.data.Built;
 import me.hopto.patriarch.incrementer.core.building.BuildingType;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
@@ -41,12 +42,15 @@ public class SaveManagerTest {
 	}
 
 	@Test
-	public void checkSavingManager() {
+	public void checkSavingManager() throws IOException, ClassNotFoundException {
 		// Setup
+		String version = VersionProvider.getVersion();
 
 		// Test
 		Save saveGame = saveManager.gameToMap(built);
 		String save = saveManager.save(saveGame);
+		SaveManager.toFile(saveGame, "src/test/resources/saves/save-" + version);
+		Save saveGameFromFile = (Save) SaveManager.fromFile("src/test/resources/saves/save-" + version);
 
 		Save loadedGame = saveManager.load(save);
 
@@ -54,7 +58,10 @@ public class SaveManagerTest {
 		if (logger.isDebugEnabled()) logger.debug(saveGame);
 		if (logger.isDebugEnabled()) logger.debug(save);
 		if (logger.isDebugEnabled()) logger.debug(loadedGame);
-		if (logger.isDebugEnabled()) logger.debug(VersionProvider.getVersion());
+		if (logger.isDebugEnabled()) logger.debug(saveGameFromFile);
+		if (logger.isDebugEnabled()) logger.debug(version);
+
 		assertThat(loadedGame).isEqualTo(saveGame);
+		assertThat(saveGameFromFile).isEqualTo(saveGame);
 	}
 }
