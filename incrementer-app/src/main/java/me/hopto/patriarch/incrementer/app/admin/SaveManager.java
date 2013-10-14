@@ -12,11 +12,6 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
-import me.hopto.patriarch.incrementer.app.data.Built;
-import me.hopto.patriarch.incrementer.core.building.BuildingType;
-import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 import biz.source_code.base64Coder.Base64Coder;
 
 public class SaveManager {
@@ -28,19 +23,6 @@ public class SaveManager {
 			ex.printStackTrace();
 		}
 		return saveGame;
-	}
-
-	public Save gameToMap(Built game) {
-		Map<String, String> saveResources = new HashMap<String, String>();
-		for (ResourceType resourceType : ResourceType.values()) {
-			saveResources.put(resourceType.name(), game.getFormattedResourceQuantity(resourceType));
-		}
-
-		Map<String, String> saveBuildings = new HashMap<String, String>();
-		for (BuildingType buildingType : BuildingType.values()) {
-			saveBuildings.put(buildingType.name(), game.getLevelForBuilding(buildingType));
-		}
-		return new Save(VersionProvider.getVersion(), saveResources, saveBuildings);
 	}
 
 	public String save(Save game) {

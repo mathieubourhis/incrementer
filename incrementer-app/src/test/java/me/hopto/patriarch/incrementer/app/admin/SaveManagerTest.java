@@ -1,6 +1,8 @@
 package me.hopto.patriarch.incrementer.app.admin;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import me.hopto.patriarch.incrementer.app.data.Built;
 import me.hopto.patriarch.incrementer.core.building.BuildingType;
@@ -22,10 +24,12 @@ public class SaveManagerTest {
 	private static Logger	logger	= Logger.getLogger(SaveManagerTest.class);
 	private Built					built;
 	private SaveManager		saveManager;
+	private SaveMapper		saveMapper;
 
 	@Before
 	public void setup() {
 		saveManager = new SaveManager();
+		saveMapper = new SaveMapper();
 		built = new Built();
 		for (int i = 0; i < 15; i++)
 			built.incrementOne(ResourceType.Food);
@@ -47,7 +51,7 @@ public class SaveManagerTest {
 		String version = VersionProvider.getVersion();
 
 		// Test
-		Save saveGame = saveManager.gameToMap(built);
+		Save saveGame = saveMapper.toSave(built);
 		String save = saveManager.save(saveGame);
 		SaveManager.toFile(saveGame, "src/test/resources/saves/save-" + version);
 		Save saveGameFromFile = (Save) SaveManager.fromFile("src/test/resources/saves/save-" + version);
@@ -63,5 +67,33 @@ public class SaveManagerTest {
 
 		assertThat(loadedGame).isEqualTo(saveGame);
 		assertThat(saveGameFromFile).isEqualTo(saveGame);
+	}
+
+	@Test
+	public void checkPreviousSaves() {
+		// Setup
+
+		// Test
+
+		File saveDir = new File("src/test/resources/saves");
+		if (saveDir.exists() && saveDir.isDirectory()) {
+			File[] listFiles = saveDir.listFiles(new FilenameFilter() {
+				@Override
+				public boolean accept(File dir, String name) {
+					return name.startsWith("save-");
+				}
+
+			});
+			for (File saveFile : listFiles) {
+				if (logger.isDebugEnabled()) logger.debug(saveFile.getPath());
+				try {
+					Save saveGameFromFile = (Save) SaveManager.fromFile(saveFile.getPath());
+					if (logger.isDebugEnabled()) logger.debug(saveGameFromFile);
+					// TODO map to Built
+				} catch (ClassNotFoundException | IOException e) {
+					logger.error("Can't load save : " + saveFile.getName());
+				}
+			}
+		}
 	}
 }
