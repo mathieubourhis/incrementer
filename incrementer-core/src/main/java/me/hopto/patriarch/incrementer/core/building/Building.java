@@ -1,10 +1,13 @@
 package me.hopto.patriarch.incrementer.core.building;
 
+import static com.google.common.base.Objects.equal;
+import static com.google.common.base.Objects.toStringHelper;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import me.hopto.patriarch.incrementer.core.formula.FormulaWrapper;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
+import com.google.common.base.Objects;
 
 /**
  * Defines a building. Abstractions are package protected for simplicity.
@@ -99,5 +102,30 @@ public abstract class Building implements Serializable {
 	 */
 	public FormulaWrapper findFormulaForResource(ResourceType resourceType) {
 		return formulas.get(resourceType);
+	}
+
+	//TODO Consider formulas in equals / toString / hash ? 
+	/**
+	 * @param obj Object to be compared to me for equality.
+	 * @return {@code true} if provided object is considered equal to me or {@code false} if provided object is not considered equal to me.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || getClass() != obj.getClass()) return false;
+
+		final Building other = (Building) obj;
+		return equal(this.level, other.level) && equal(this.buildingType, other.buildingType);
+	}
+
+	/** @return basic HashCode. */
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(this.level, this.buildingType);
+	}
+
+	/** @return basic toString. */
+	@Override
+	public String toString() {
+		return toStringHelper(this).addValue(this.buildingType).addValue(this.level).toString();
 	}
 }

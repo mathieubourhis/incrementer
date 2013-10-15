@@ -1,7 +1,10 @@
 package me.hopto.patriarch.incrementer.core.resource;
 
+import static com.google.common.base.Objects.equal;
+import static com.google.common.base.Objects.toStringHelper;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import com.google.common.base.Objects;
 
 /**
  * Defines a resource. Abstractions are package protected for simplicity.
@@ -66,14 +69,6 @@ public abstract class Resource implements Serializable {
 		this.increment += updatedIncrement;
 	}
 
-	/** Basic override for debugging purposes. */
-	@Override
-	public String toString() {
-		BigDecimal aQuantity = BigDecimal.valueOf(quantity);
-		BigDecimal anIncrement = BigDecimal.valueOf(increment);
-		return new StringBuffer(30).append("[").append(this.getClass().getSimpleName()).append("] [Quantity: ").append(aQuantity.setScale(2, BigDecimal.ROUND_HALF_EVEN).toString()).append("] [Increment: ").append(anIncrement.setScale(2, BigDecimal.ROUND_HALF_EVEN).toString()).append("]").toString();
-	}
-
 	/**
 	 * Return the type of resource we are using
 	 * 
@@ -86,5 +81,39 @@ public abstract class Resource implements Serializable {
 	/** Increment only one unit. */
 	public void manualIncrement() {
 		quantity++;
+	}
+
+	/**
+	 * @param obj Object to be compared to me for equality.
+	 * @return {@code true} if provided object is considered equal to me or {@code false} if provided object is not considered equal to me.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || getClass() != obj.getClass()) return false;
+
+		BigDecimal thisQuantity = BigDecimal.valueOf(quantity);
+		BigDecimal thisIncrement = BigDecimal.valueOf(increment);
+
+		final Resource other = (Resource) obj;
+		BigDecimal otherQuantity = BigDecimal.valueOf(other.quantity);
+		BigDecimal otherIncrement = BigDecimal.valueOf(other.increment);
+
+		return equal(thisQuantity.setScale(2, BigDecimal.ROUND_HALF_EVEN).toString(), otherQuantity.setScale(2, BigDecimal.ROUND_HALF_EVEN).toString()) && equal(thisIncrement.setScale(2, BigDecimal.ROUND_HALF_EVEN).toString(), otherIncrement.setScale(2, BigDecimal.ROUND_HALF_EVEN).toString()) && equal(this.type, other.type);
+	}
+
+	/** @return basic HashCode. */
+	@Override
+	public int hashCode() {
+		BigDecimal thisQuantity = BigDecimal.valueOf(quantity);
+		BigDecimal thisIncrement = BigDecimal.valueOf(increment);
+		return Objects.hashCode(thisQuantity.setScale(2, BigDecimal.ROUND_HALF_EVEN).doubleValue(), thisIncrement.setScale(2, BigDecimal.ROUND_HALF_EVEN).doubleValue());
+	}
+
+	/** @return basic toString. */
+	@Override
+	public String toString() {
+		BigDecimal thisQuantity = BigDecimal.valueOf(quantity);
+		BigDecimal thisIncrement = BigDecimal.valueOf(increment);
+		return toStringHelper(this).addValue(this.type).addValue(thisQuantity.setScale(2, BigDecimal.ROUND_HALF_EVEN).toString()).addValue(thisIncrement.setScale(2, BigDecimal.ROUND_HALF_EVEN).toString()).toString();
 	}
 }

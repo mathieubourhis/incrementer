@@ -37,54 +37,52 @@ public class SaveMapper {
 		return new Save(VersionProvider.getVersion(), saveResources, saveBuildings);
 	}
 
+	/**
+	 * I have to manually map. In case I choose to add / remove stuff from the game.<BR>
+	 * I can only keep what I know has to be here in this version of the game.<BR>
+	 * Translate what I know has to be translated, Throw the rest.<BR>
+	 * 
+	 * @param save
+	 * @return
+	 */
 	public Built toGame(Save save) {
-		Built game = null;
 		Map<String, String> saveResources = save.getSaveResources();
-		// I have to manually map. In case I choose to add / remove stuff from
-		// the game.
-
-		// I can only keep what I know has to be here in this version of the
-		// game.
-		// Translate what I know has to be translated
-		// Throw the rest.
+		Map<String, String> saveBuildings = save.getSaveBuildings();
 
 		Resource food = mapFood(saveResources);
 		Resource wood = mapWood(saveResources);
 		Resource metal = mapMetal(saveResources);
 		Resource tool = mapTool(saveResources);
 
-		Building berryPicker = mapBerryPicker(saveResources);
-		Building fisherMan = mapFisherMan(saveResources);
-		Building woodGatherer = mapWoodGatherer(saveResources);
-		Building lumberJack = mapLumberJack(saveResources);
-		Building metalDigger = mapMetalDigger(saveResources);
-		Building miner = mapMiner(saveResources);
-		Building inventor = mapInventor(saveResources);
-		Building blackSmith = mapBlackSmith(saveResources);
 		List<Resource> resources = new ArrayList<Resource>();
 		resources.add(food);
 		resources.add(wood);
 		resources.add(metal);
 		resources.add(tool);
-		List<Building> buildings = new ArrayList<Building>();
-		buildings.add(berryPicker);
-		buildings.add(fisherMan);
-		buildings.add(woodGatherer);
-		buildings.add(lumberJack);
-		buildings.add(metalDigger);
-		buildings.add(miner);
-		buildings.add(inventor);
-		buildings.add(blackSmith);
 
-		// TODO add contructor 
-		return game;
+		List<Building> buildings = new ArrayList<Building>();
+		buildings.add(mapBerryPicker(saveBuildings));
+		buildings.add(mapFisherMan(saveBuildings));
+		buildings.add(mapWoodGatherer(saveBuildings));
+		buildings.add(mapLumberJack(saveBuildings));
+		buildings.add(mapMetalDigger(saveBuildings));
+		buildings.add(mapMiner(saveBuildings));
+		buildings.add(mapInventor(saveBuildings));
+		buildings.add(mapBlackSmith(saveBuildings));
+
+		for (Building building : buildings) {
+			food.updateIncrementValue(building.findFormulaForResource(ResourceType.Food).getGlobalIncrementForLevel(building.getLevel()));
+			wood.updateIncrementValue(building.findFormulaForResource(ResourceType.Wood).getGlobalIncrementForLevel(building.getLevel()));
+			metal.updateIncrementValue(building.findFormulaForResource(ResourceType.Metal).getGlobalIncrementForLevel(building.getLevel()));
+			tool.updateIncrementValue(building.findFormulaForResource(ResourceType.Tool).getGlobalIncrementForLevel(building.getLevel()));
+		}
+
+		return new Built(resources, buildings);
 	}
 
 	private Resource mapFood(Map<String, String> saveResources) {
 		String savedQuantity = saveResources != null ? saveResources.get(ResourceType.Food.name()) : null;
-		//
-		// savedQuantity = saveResources == null ? saveResources.get("oldName")
-		// : saveResources;
+		// savedQuantity = saveResources == null ? saveResources.get("oldName") : saveResources;
 		double mappedQuantity = 0.0d;
 		if (savedQuantity != null) {
 			mappedQuantity = Double.parseDouble(savedQuantity);

@@ -1,5 +1,6 @@
 package me.hopto.patriarch.incrementer.app.data;
 
+import static com.google.common.base.Objects.equal;
 import static com.google.common.base.Objects.toStringHelper;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -24,6 +25,7 @@ import me.hopto.patriarch.incrementer.core.resource.ResourceType;
 import me.hopto.patriarch.incrementer.core.resource.Tool;
 import me.hopto.patriarch.incrementer.core.resource.Wood;
 import org.apache.log4j.Logger;
+import com.google.common.base.Objects;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
@@ -35,11 +37,12 @@ public class Built implements Serializable {
 	List<Resource>						resources;
 	List<Building>						buildings;
 
+	/** Startup the game from scratch */
 	public Built() {
 		resources = new ArrayList<Resource>();
 		resources.add(new Food(0.0d, 0.0d));
-		resources.add(new Metal(0.0d, 0.0d));
 		resources.add(new Wood(0.0d, 0.0d));
+		resources.add(new Metal(0.0d, 0.0d));
 		resources.add(new Tool(0.0d, 0.0d));
 
 		buildings = new ArrayList<Building>();
@@ -52,6 +55,12 @@ public class Built implements Serializable {
 		buildings.add(new Inventor(0));
 		buildings.add(new BlackSmith(0));
 
+		incrementCalculator = new IncrementCalculator();
+	}
+
+	public Built(List<Resource> resources, List<Building> buildings) {
+		this.resources = resources;
+		this.buildings = buildings;
 		incrementCalculator = new IncrementCalculator();
 	}
 
@@ -137,14 +146,6 @@ public class Built implements Serializable {
 		}
 	}
 
-	/**
-	 * Basic override for debugging purposes.
-	 */
-	@Override
-	public String toString() {
-		return toStringHelper(this).addValue(this.resources).addValue(this.buildings).toString();
-	}
-
 	Resource findResourceByType(final ResourceType resourceType) {
 		Predicate<Resource> finderByType = new Predicate<Resource>() {
 			@Override
@@ -165,4 +166,27 @@ public class Built implements Serializable {
 		return Iterables.filter(buildings, finderByType).iterator().next();
 	}
 
+	/**
+	 * @param obj Object to be compared to me for equality.
+	 * @return {@code true} if provided object is considered equal to me or {@code false} if provided object is not considered equal to me.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null || getClass() != obj.getClass()) return false;
+		//  FIXME does not work if order different within lists.
+		final Built other = (Built) obj;
+		return equal(this.resources, other.resources) && equal(this.buildings, other.buildings);
+	}
+
+	/** @return basic HashCode. */
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(this.resources, this.buildings);
+	}
+
+	/** @return basic toString. */
+	@Override
+	public String toString() {
+		return toStringHelper(this).addValue(this.resources).addValue(this.buildings).toString();
+	}
 }
