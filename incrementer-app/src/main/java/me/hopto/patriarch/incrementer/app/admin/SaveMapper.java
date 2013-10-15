@@ -24,6 +24,13 @@ import me.hopto.patriarch.incrementer.core.resource.Wood;
 
 public class SaveMapper {
 
+	// Should I Inject stuff ?
+	// 	import javax.inject.Inject;
+	//	@Inject
+	//	private SaveMapper() {
+	//
+	//	}
+
 	public Save toSave(Built game) {
 		Map<String, String> saveResources = new HashMap<String, String>();
 		for (ResourceType resourceType : ResourceType.values()) {

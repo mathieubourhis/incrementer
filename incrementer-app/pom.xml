@@ -14,6 +14,11 @@
   <relativePath>..</relativePath>
  </parent>
 
+
+ <properties>
+  <dagger.version>1.1.0</dagger.version>
+ </properties>
+
  <build>
   <finalName>incrementer-app</finalName>
   <resources>
@@ -67,10 +72,25 @@
    <artifactId>incrementer-core</artifactId>
    <version>${project.parent.version}</version>
   </dependency>
+
+  <!-- Save Encoding -->
   <dependency>
    <groupId>biz.source_code</groupId>
    <artifactId>base64coder</artifactId>
    <version>2010-12-19</version>
   </dependency>
- </dependencies>
+
+  <!-- Dependency Injection -->
+<!--   <dependency> -->
+<!--    <groupId>com.squareup.dagger</groupId> -->
+<!--    <artifactId>dagger</artifactId> -->
+<!--    <version>${dagger.version}</version> -->
+<!--   </dependency> -->
+<!--   <dependency> -->
+<!--    <groupId>com.squareup.dagger</groupId> -->
+<!--    <artifactId>dagger-compiler</artifactId> -->
+<!--    <version>${dagger.version}</version> -->
+<!--    <optional>true</optional> -->
+<!--   </dependency> -->
+</dependencies>
 </project>
