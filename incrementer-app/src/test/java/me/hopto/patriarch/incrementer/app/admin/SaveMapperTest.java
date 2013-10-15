@@ -21,7 +21,7 @@ public class SaveMapperTest {
 
 	@Rule
 	public TestName				name		= new TestName();
-	private static Logger	logger	= Logger.getLogger(SaveManagerTest.class);
+	private static Logger	logger	= Logger.getLogger(SaveMapperTest.class);
 	private Built					built;
 	private SaveManager		saveManager;
 	private SaveMapper		saveMapper;

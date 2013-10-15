@@ -49,7 +49,9 @@ public class SaveMapper {
 		Map<String, String> saveResources = save.getSaveResources();
 		Map<String, String> saveBuildings = save.getSaveBuildings();
 
-		Resource food = mapFood(saveResources);
+		//		Resource food = mapFood(saveResources);
+		Resource food = new Food(new ResourceMapper().map(saveResources), 0.0d);
+
 		Resource wood = mapWood(saveResources);
 		Resource metal = mapMetal(saveResources);
 		Resource tool = mapTool(saveResources);

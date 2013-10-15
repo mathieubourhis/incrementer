@@ -47,6 +47,15 @@ public abstract class Resource implements Serializable {
 	}
 
 	/**
+	 * For initialization purpose only. Init the quantity of this Resource.
+	 * 
+	 * @param quantity the quantity of this Resource.
+	 */
+	public void setInitialQuantity(double quantity) {
+		this.quantity = quantity;
+	}
+
+	/**
 	 * Decrement a resource's quantity by an cost value.
 	 * 
 	 * @param cost the cost to decrement the quantity by.
