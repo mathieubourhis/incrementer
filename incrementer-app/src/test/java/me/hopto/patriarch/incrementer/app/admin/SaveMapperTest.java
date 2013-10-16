@@ -3,7 +3,6 @@ package me.hopto.patriarch.incrementer.app.admin;
 import static org.assertj.core.api.Assertions.assertThat;
 import java.io.File;
 import java.io.FilenameFilter;
-import java.io.IOException;
 import me.hopto.patriarch.incrementer.app.data.Built;
 import me.hopto.patriarch.incrementer.core.building.BuildingType;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
@@ -28,8 +27,8 @@ public class SaveMapperTest {
 
 	@Before
 	public void setup() {
-		saveManager = new SaveManager();
 		saveMapper = new SaveMapper();
+		saveManager = new SaveManager();
 		built = new Built();
 		for (int i = 0; i < 15; i++)
 			built.incrementOne(ResourceType.Food);
@@ -53,7 +52,7 @@ public class SaveMapperTest {
 		Save saveGame = saveMapper.toSave(built);
 		String save = saveManager.save(saveGame);
 
-		Save loadedGame = saveManager.load(save);
+		Save loadedGame = saveManager.load();
 		Built loadedBuilt = saveMapper.toGame(loadedGame);
 
 		// Assert
@@ -83,16 +82,14 @@ public class SaveMapperTest {
 			});
 			for (File saveFile : listFiles) {
 				if (logger.isDebugEnabled()) logger.debug(saveFile.getPath());
-				try {
-					Save saveGameFromFile = (Save) SaveManager.fromFile(saveFile.getPath());
-					if (logger.isDebugEnabled()) logger.debug(saveGameFromFile);
-					Built loadedBuilt = saveMapper.toGame(saveGameFromFile);
-					// Assert
-					assertThat(loadedBuilt).isNotNull();
-					if (logger.isDebugEnabled()) logger.debug(loadedBuilt);
-				} catch (ClassNotFoundException | IOException e) {
-					logger.error("Can't load save : " + saveFile.getName());
-				}
+				saveManager = new SaveManager(new SaveToFile(saveFile.getPath()));
+				Save saveGameFromFile = saveManager.load();
+
+				if (logger.isDebugEnabled()) logger.debug(saveGameFromFile);
+				Built loadedBuilt = saveMapper.toGame(saveGameFromFile);
+				// Assert
+				assertThat(loadedBuilt).isNotNull();
+				if (logger.isDebugEnabled()) logger.debug(loadedBuilt);
 			}
 		}
 	}

@@ -3,7 +3,6 @@ package me.hopto.patriarch.incrementer.app.admin;
 import static org.assertj.core.api.Assertions.assertThat;
 import java.io.File;
 import java.io.FilenameFilter;
-import java.io.IOException;
 import me.hopto.patriarch.incrementer.app.data.Built;
 import me.hopto.patriarch.incrementer.core.building.BuildingType;
 import me.hopto.patriarch.incrementer.core.resource.ResourceType;
@@ -46,17 +45,17 @@ public class SaveManagerTest {
 	}
 
 	@Test
-	public void checkSavingManager() throws IOException, ClassNotFoundException {
+	public void checkSavingManager() {
 		// Setup
 		String version = VersionProvider.getVersion();
 
 		// Test
 		Save saveGame = saveMapper.toSave(built);
 		String save = saveManager.save(saveGame);
-		SaveManager.toFile(saveGame, "src/test/resources/saves/save-" + version);
-		Save saveGameFromFile = (Save) SaveManager.fromFile("src/test/resources/saves/save-" + version);
-
-		Save loadedGame = saveManager.load(save);
+		SaveToFile savingBehaviour = new SaveToFile("src/test/resources/saves/save-" + version);
+		savingBehaviour.save(saveGame);
+		Save saveGameFromFile = savingBehaviour.load();
+		Save loadedGame = saveManager.load();
 
 		// Assert
 		if (logger.isDebugEnabled()) logger.debug(saveGame);
@@ -86,13 +85,11 @@ public class SaveManagerTest {
 			});
 			for (File saveFile : listFiles) {
 				if (logger.isDebugEnabled()) logger.debug(saveFile.getPath());
-				try {
-					Save saveGameFromFile = (Save) SaveManager.fromFile(saveFile.getPath());
-					if (logger.isDebugEnabled()) logger.debug(saveGameFromFile);
-					// TODO map to Built
-				} catch (ClassNotFoundException | IOException e) {
-					logger.error("Can't load save : " + saveFile.getName());
-				}
+
+				Save saveGameFromFile = new SaveToFile(saveFile.getPath()).load();
+				if (logger.isDebugEnabled()) logger.debug(saveGameFromFile);
+				// TODO map to Built
+
 			}
 		}
 	}

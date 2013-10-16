@@ -15,24 +15,30 @@ import java.nio.file.Paths;
 import biz.source_code.base64Coder.Base64Coder;
 
 public class SaveManager {
-	public Save load(String save) {
-		Save saveGame = null;
-		try {
-			saveGame = (Save) fromString(save);
-		} catch (IOException | ClassNotFoundException ex) {
-			ex.printStackTrace();
-		}
-		return saveGame;
+
+	private SavingBehaviour	savingBehaviour;
+
+	/**
+	 * Default init with default behaviour
+	 */
+	public SaveManager() {
+		this.savingBehaviour = new SaveToString();
+	}
+
+	public SaveManager(SavingBehaviour savingBehaviour) {
+		this.savingBehaviour = savingBehaviour;
+	}
+
+	public void setSavingBehaviour(SavingBehaviour savingBehaviour) {
+		this.savingBehaviour = savingBehaviour;
+	}
+
+	public Save load() {
+		return savingBehaviour.load();
 	}
 
 	public String save(Save game) {
-		String save = null;
-		try {
-			save = toString(game);
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-		return save;
+		return savingBehaviour.save(game);
 	}
 
 	/** Read the object from Base64 string. */
