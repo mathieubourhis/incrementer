@@ -8,6 +8,9 @@ import java.io.ObjectOutputStream;
 import org.apache.log4j.Logger;
 import biz.source_code.base64Coder.Base64Coder;
 
+/**
+ * @see {@link http://stackoverflow.com/questions/134492/how-to-serialize-an-object-into-a-string}
+ */
 public class SaveToString implements SavingBehaviour {
 	private static Logger	logger	= Logger.getLogger(SaveToString.class);
 	private String				save;
